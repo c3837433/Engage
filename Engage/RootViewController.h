@@ -1,0 +1,13 @@
+//
+//  RootViewController.h
+//  Engage
+//
+//  Created by Angela Smith on 10/30/14.
+//  Copyright (c) 2014 Angela Smith. All rights reserved.
+//
+
+#import "RESideMenu.h"
+
+@interface RootViewController : RESideMenu  <RESideMenuDelegate>
+
+@end

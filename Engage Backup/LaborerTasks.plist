@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>tasks</key>
+		<array/>
+		<key>backgroundImage</key>
+		<string>tempBg.png</string>
+		<key>iconImage</key>
+		<string>gatherBg.png</string>
+		<key>taskName</key>
+		<string>Laborer Updates</string>
+	</dict>
+	<dict>
+		<key>iconImage</key>
+		<string>pray.png</string>
+		<key>backgroundImage</key>
+		<string>prayBg.png</string>
+		<key>tasks</key>
+		<array>
+			<string>- For laborers to be sent into fields of harvest</string>
+			<string>- For souls to be saved</string>
+		</array>
+		<key>taskName</key>
+		<string>1. Pray</string>
+	</dict>
+	<dict>
+		<key>iconImage</key>
+		<string>love.png</string>
+		<key>backgroundImage</key>
+		<string>loveBg.png</string>
+		<key>tasks</key>
+		<array>
+			<string>- Share God stories with people or introduce someone to Jesus</string>
+			<string>- Healing or prayer ministry</string>
+			<string>- Act of service or generosity</string>
+			<string>- Word of Prophecy or Encouragement</string>
+		</array>
+		<key>taskName</key>
+		<string>2. Love</string>
+	</dict>
+	<dict>
+		<key>iconImage</key>
+		<string>gather.png</string>
+		<key>backgroundImage</key>
+		<string>gatherBg.png</string>
+		<key>tasks</key>
+		<array>
+			<string>- Share God stories/testimonies</string>
+			<string>- Encounter the Lord</string>
+			<string>- Connect with one another</string>
+		</array>
+		<key>taskName</key>
+		<string>3. Gather</string>
+	</dict>
+</array>
+</plist>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoryDetailsInfoHeaderView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="300" id="iN0-l3-epB" customClass="DetailStoryHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bo1-gd-vCj">
+                    <rect key="frame" x="8" y="0.0" width="304" height="88"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6uz-eH-Gji" customClass="PFImageView">
+                            <rect key="frame" x="8" y="8" width="45" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="j8b-o6-n3c"/>
+                                <constraint firstAttribute="width" constant="45" id="rob-Q5-F8g"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHH-Wb-OCx">
+                            <rect key="frame" x="8" y="8" width="45" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="45" id="L8Q-ya-Fpp"/>
+                                <constraint firstAttribute="height" constant="45" id="onG-Ov-PzP"/>
+                            </constraints>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="501" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSe-Uy-7Eo">
+                            <rect key="frame" x="56" y="8" width="81" height="30"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="13"/>
+                            <state key="normal" title="Author Name">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyv-dV-x2d">
+                            <rect key="frame" x="146" y="8" width="148" height="30"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="13"/>
+                            <state key="normal" title="Home Group">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2C4-au-cUQ">
+                            <rect key="frame" x="58" y="35" width="236" height="18"/>
+                            <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="13"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Post Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kER-Wk-e1x">
+                            <rect key="frame" x="8" y="57" width="288" height="22"/>
+                            <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="14"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="kER-Wk-e1x" firstAttribute="top" secondItem="6uz-eH-Gji" secondAttribute="bottom" constant="4" id="0SR-tr-YBm"/>
+                        <constraint firstItem="nHH-Wb-OCx" firstAttribute="top" secondItem="Bo1-gd-vCj" secondAttribute="top" constant="8" id="9qx-1y-cOi"/>
+                        <constraint firstAttribute="trailing" secondItem="kER-Wk-e1x" secondAttribute="trailing" constant="8" id="AF2-3p-26E"/>
+                        <constraint firstItem="6uz-eH-Gji" firstAttribute="top" secondItem="Bo1-gd-vCj" secondAttribute="top" constant="8" id="Gti-2q-eVy"/>
+                        <constraint firstItem="6uz-eH-Gji" firstAttribute="leading" secondItem="Bo1-gd-vCj" secondAttribute="leading" constant="8" id="K0R-CQ-O7p"/>
+                        <constraint firstItem="kER-Wk-e1x" firstAttribute="leading" secondItem="Bo1-gd-vCj" secondAttribute="leading" constant="8" id="Lcm-SW-iZ5"/>
+                        <constraint firstAttribute="bottom" secondItem="kER-Wk-e1x" secondAttribute="bottom" constant="9" id="QdO-MZ-uoz"/>
+                        <constraint firstItem="Eyv-dV-x2d" firstAttribute="top" secondItem="Bo1-gd-vCj" secondAttribute="top" constant="8" id="Qmw-FX-dhN"/>
+                        <constraint firstItem="SSe-Uy-7Eo" firstAttribute="top" secondItem="Bo1-gd-vCj" secondAttribute="top" constant="8" id="QyL-nM-vrv"/>
+                        <constraint firstItem="Eyv-dV-x2d" firstAttribute="leading" secondItem="SSe-Uy-7Eo" secondAttribute="trailing" constant="9" id="RfC-Zo-HPE"/>
+                        <constraint firstItem="nHH-Wb-OCx" firstAttribute="leading" secondItem="Bo1-gd-vCj" secondAttribute="leading" constant="8" id="jXV-tf-XDl"/>
+                        <constraint firstItem="2C4-au-cUQ" firstAttribute="bottom" secondItem="nHH-Wb-OCx" secondAttribute="bottom" id="jdA-QE-BUC"/>
+                        <constraint firstItem="SSe-Uy-7Eo" firstAttribute="leading" secondItem="nHH-Wb-OCx" secondAttribute="trailing" constant="3" id="loY-o0-Ico"/>
+                        <constraint firstAttribute="trailing" secondItem="Eyv-dV-x2d" secondAttribute="trailing" constant="10" id="pbo-4i-odZ"/>
+                        <constraint firstItem="2C4-au-cUQ" firstAttribute="leading" secondItem="nHH-Wb-OCx" secondAttribute="trailing" constant="5" id="qIJ-6B-Kfo"/>
+                        <constraint firstItem="2C4-au-cUQ" firstAttribute="trailing" secondItem="Eyv-dV-x2d" secondAttribute="trailing" id="vBF-uT-rfQ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" cyan="0.040000000000000001" magenta="0.040000000000000001" yellow="0.02" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Bo1-gd-vCj" secondAttribute="bottom" id="1uy-hW-Gy0"/>
+                <constraint firstItem="Bo1-gd-vCj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2Fi-GG-Q92"/>
+                <constraint firstItem="Bo1-gd-vCj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="e4Z-Ie-fOe"/>
+                <constraint firstAttribute="trailing" secondItem="Bo1-gd-vCj" secondAttribute="trailing" constant="8" id="sfz-re-WsS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="storyAuthorButton" destination="SSe-Uy-7Eo" id="J06-gQ-1tR"/>
+                <outlet property="storyAuthorPic" destination="6uz-eH-Gji" id="XpY-8g-11E"/>
+                <outlet property="storyGroupButton" destination="Eyv-dV-x2d" id="7jz-u4-ahd"/>
+                <outlet property="storyTime" destination="2C4-au-cUQ" id="7RM-4p-da1"/>
+                <outlet property="storyTitle" destination="kER-Wk-e1x" id="fHy-xU-x9h"/>
+                <outlet property="userButton" destination="nHH-Wb-OCx" id="xmE-sO-JAb"/>
+            </connections>
+            <point key="canvasLocation" x="393" y="485"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
