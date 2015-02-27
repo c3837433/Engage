@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/ProfileViewController.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/ProfileViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/ProfileViewController.m \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/ProfileViewController.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \
@@ -40,10 +40,10 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFCollectionViewCell.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/ParseUI.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/MBProgressHUD.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/UIImage+ResizeAdditions.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ProfileTextStoryCell.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/STTweetLabel.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ProfileMediaStoryCell.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ProfileStoryDetailViewController.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ProfileTextDetailViewController.h
+  /Users/angelasmith/Desktop/Engage/Engage/MBProgressHUD.h \
+  /Users/angelasmith/Desktop/Engage/Engage/UIImage+ResizeAdditions.h \
+  /Users/angelasmith/Desktop/Engage/Engage/ProfileTextStoryCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage/STTweetLabel.h \
+  /Users/angelasmith/Desktop/Engage/Engage/ProfileMediaStoryCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage/ProfileStoryDetailViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/ProfileTextDetailViewController.h

@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/HomeGroupTableViewCell.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/HomeGroupTableViewCell.h
+  /Users/angelasmith/Desktop/Engage/Engage/HomeGroupTableViewCell.m \
+  /Users/angelasmith/Desktop/Engage/Engage/HomeGroupTableViewCell.h

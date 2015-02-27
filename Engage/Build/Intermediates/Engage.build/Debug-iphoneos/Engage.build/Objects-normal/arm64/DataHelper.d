@@ -1,6 +1,5 @@
-dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DataHelper.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DataHelper.h \
+dependencies: /Users/angelasmith/Desktop/Engage/Engage/DataHelper.m \
+  /Users/angelasmith/Desktop/Engage/Engage/DataHelper.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \
@@ -25,4 +24,4 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFACL.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/Parse.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/UIImage+ResizeAdditions.h
+  /Users/angelasmith/Desktop/Engage/Engage/UIImage+ResizeAdditions.h

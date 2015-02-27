@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/TextCommentDetailViewController.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/TextCommentDetailViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/TextCommentDetailViewController.m \
+  /Users/angelasmith/Desktop/Engage/Engage/TextCommentDetailViewController.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFTextField.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpViewController.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpView.h \
@@ -40,12 +40,12 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFACL.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/Parse.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/STTweetLabel.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/CommentCell.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/UserDetailsViewController.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DZNSegmentedControl.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ApplicationKeys.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Utility.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Cache.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/AddCommentFooterCell.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/MBProgressHUD.h
+  /Users/angelasmith/Desktop/Engage/Engage/STTweetLabel.h \
+  /Users/angelasmith/Desktop/Engage/Engage/CommentCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage/UserDetailsViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/DZNSegmentedControl.h \
+  /Users/angelasmith/Desktop/Engage/Engage/ApplicationKeys.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Utility.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Cache.h \
+  /Users/angelasmith/Desktop/Engage/Engage/AddCommentFooterCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage/MBProgressHUD.h

@@ -1,9 +1,9 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/GroupsListViewController.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/GroupsListViewController.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/MBProgressHUD.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/HomeGroupTableViewCell.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/HomeGroupObject.h \
+  /Users/angelasmith/Desktop/Engage/Engage/GroupsListViewController.m \
+  /Users/angelasmith/Desktop/Engage/Engage/GroupsListViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/MBProgressHUD.h \
+  /Users/angelasmith/Desktop/Engage/Engage/HomeGroupTableViewCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage/HomeGroupObject.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \
@@ -28,7 +28,7 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFACL.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/Parse.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/AppDelegate.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/AppDelegate.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFTextField.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpViewController.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpView.h \

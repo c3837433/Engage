@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/StoryDetailsInfoHeaderView.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/StoryDetailsInfoHeaderView.h \
+  /Users/angelasmith/Desktop/Engage/Engage/StoryDetailsInfoHeaderView.m \
+  /Users/angelasmith/Desktop/Engage/Engage/StoryDetailsInfoHeaderView.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \
@@ -25,7 +25,7 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFACL.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/Parse.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DetailStoryHeaderView.h \
+  /Users/angelasmith/Desktop/Engage/Engage/DetailStoryHeaderView.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFTextField.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpViewController.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpView.h \
@@ -41,6 +41,6 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFCollectionViewCell.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/ParseUI.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/STTweetLabel.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DetailStoryMediaView.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/AddStoryCommentViewController.h
+  /Users/angelasmith/Desktop/Engage/Engage/STTweetLabel.h \
+  /Users/angelasmith/Desktop/Engage/Engage/DetailStoryMediaView.h \
+  /Users/angelasmith/Desktop/Engage/Engage/AddStoryCommentViewController.h

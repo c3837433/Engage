@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/ProfileImageView.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/ProfileImageView.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/ProfileImageView.m \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/ProfileImageView.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \

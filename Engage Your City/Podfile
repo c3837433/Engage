@@ -1,0 +1,10 @@
+platform :ios, '8.0'
+
+target "Engage Your City" do
+	pod 'embedly-ios'
+	pod 'MBProgressHUD', '~> 0.9'
+	pod 'STTweetLabel', '~> 3.1.11'
+	pod 'DZNSegmentedControl', '~> 1.1'
+	pod 'RESideMenu', '~> 4.0.7'
+	pod 'MZFormSheetController', '~> 2.3.4'
+end

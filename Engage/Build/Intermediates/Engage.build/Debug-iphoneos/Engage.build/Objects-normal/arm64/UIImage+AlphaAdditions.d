@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/UIImage+AlphaAdditions.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/UIImage+AlphaAdditions.h
+  /Users/angelasmith/Desktop/Engage/Engage/UIImage+AlphaAdditions.m \
+  /Users/angelasmith/Desktop/Engage/Engage/UIImage+AlphaAdditions.h

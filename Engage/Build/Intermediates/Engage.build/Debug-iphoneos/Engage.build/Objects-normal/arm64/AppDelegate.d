@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/AppDelegate.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/AppDelegate.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/AppDelegate.m \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/AppDelegate.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \
@@ -25,7 +25,7 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFACL.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/Parse.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/MBProgressHUD.h \
+  /Users/angelasmith/Desktop/Engage/Engage/MBProgressHUD.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFTextField.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpViewController.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpView.h \
@@ -87,15 +87,15 @@ dependencies: \
   /Users/angelasmith/Documents/FacebookSDK/FacebookSDK.framework/Headers/FBTaggableFriendPickerViewController.h \
   /Users/angelasmith/Documents/FacebookSDK/FacebookSDK.framework/Headers/FBUserSettingsViewController.h \
   /Users/angelasmith/Documents/FacebookSDK/FacebookSDK.framework/Headers/NSError+FBError.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/PanelViewController.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/LogInViewController.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DataHelper.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Utility.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Cache.h \
+  /Users/angelasmith/Desktop/Engage/Engage/PanelViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/LogInViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/DataHelper.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Utility.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Cache.h \
   /Users/angelasmith/Development/parse-library-1/ParseFacebookUtils.framework/Headers/PFFacebookUtils.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/GroupRegionsViewController.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/RootViewController.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/RESideMenu.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/UIViewController+RESideMenu.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Reachability.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ApplicationKeys.h
+  /Users/angelasmith/Desktop/Engage/Engage/GroupRegionsViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/RootViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/RESideMenu.h \
+  /Users/angelasmith/Desktop/Engage/Engage/UIViewController+RESideMenu.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Reachability.h \
+  /Users/angelasmith/Desktop/Engage/Engage/ApplicationKeys.h

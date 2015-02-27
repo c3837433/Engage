@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/AddCommentFooterCell.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/AddCommentFooterCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage/AddCommentFooterCell.m \
+  /Users/angelasmith/Desktop/Engage/Engage/AddCommentFooterCell.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \

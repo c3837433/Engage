@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/SettingsTableViewController.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/SettingsTableViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/SettingsTableViewController.m \
+  /Users/angelasmith/Desktop/Engage/Engage/SettingsTableViewController.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \
@@ -71,9 +71,9 @@ dependencies: \
   /Users/angelasmith/Documents/FacebookSDK/FacebookSDK.framework/Headers/FBTaggableFriendPickerViewController.h \
   /Users/angelasmith/Documents/FacebookSDK/FacebookSDK.framework/Headers/FBUserSettingsViewController.h \
   /Users/angelasmith/Documents/FacebookSDK/FacebookSDK.framework/Headers/NSError+FBError.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DataHelper.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/MBProgressHUD.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/AppDelegate.h \
+  /Users/angelasmith/Desktop/Engage/Engage/DataHelper.h \
+  /Users/angelasmith/Desktop/Engage/Engage/MBProgressHUD.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/AppDelegate.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFTextField.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpViewController.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpView.h \

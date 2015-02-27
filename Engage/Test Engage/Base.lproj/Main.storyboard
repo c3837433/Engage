@@ -3752,7 +3752,7 @@
             <objects>
                 <tableViewController id="mgc-hP-YIr" customClass="TextCommentDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="jky-1m-HAZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95374282529999999" green="0.93379543369999995" blue="0.94440154949999999" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="xnw-qp-0q2">
@@ -4356,7 +4356,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="mediaCommntDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eYb-lV-N5W" customClass="MediaCommentDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Rv8-rD-RLf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95374282529999999" green="0.93379543369999995" blue="0.94440154949999999" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="c2E-d6-AhM">
@@ -5158,8 +5158,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="meh-pa-bjf"/>
-        <segue reference="iHm-z7-3ZD"/>
+        <segue reference="9NV-kO-Ce9"/>
+        <segue reference="E1K-Xv-2hf"/>
         <segue reference="bG7-0e-zMc"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Pods/AFNetworking/AFNetworking/AFURLResponseSerialization.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Pods/AFNetworking/AFNetworking/AFURLResponseSerialization.h
+  /Users/angelasmith/Desktop/Engage/Engage/Pods/AFNetworking/AFNetworking/AFURLResponseSerialization.m \
+  /Users/angelasmith/Desktop/Engage/Engage/Pods/AFNetworking/AFNetworking/AFURLResponseSerialization.h

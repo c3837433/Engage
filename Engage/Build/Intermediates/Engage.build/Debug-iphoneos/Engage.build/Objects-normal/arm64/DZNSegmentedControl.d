@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DZNSegmentedControl.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DZNSegmentedControl.h
+  /Users/angelasmith/Desktop/Engage/Engage/DZNSegmentedControl.m \
+  /Users/angelasmith/Desktop/Engage/Engage/DZNSegmentedControl.h

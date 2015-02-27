@@ -638,8 +638,6 @@
 				99E56CF91A9BE422004EE670 /* CustomAlertView.h */,
 				99E56CFA1A9BE422004EE670 /* CustomAlertView.m */,
 				99E56CF81A9BB295004EE670 /* Find Stories by Hashtag */,
-				99D6DAEF1A931B7F0037FCD5 /* ApplicationKeys.h */,
-				99D6DAF01A931B7F0037FCD5 /* ApplicationKeys.m */,
 				0EA653C11A02B6F900AC31A9 /* Panel Controls */,
 				0EEC1BE519A126D700AAA4F3 /* Helper Files */,
 				0EEC1BE419A126BA00AAA4F3 /* Log In and Sign Up */,
@@ -792,6 +790,8 @@
 		0EEC1BE519A126D700AAA4F3 /* Helper Files */ = {
 			isa = PBXGroup;
 			children = (
+				99D6DAEF1A931B7F0037FCD5 /* ApplicationKeys.h */,
+				99D6DAF01A931B7F0037FCD5 /* ApplicationKeys.m */,
 				99D6DAFC1A941A3F0037FCD5 /* Reachability */,
 				0E25524A1A799A6500CF2EE0 /* Label Buttons */,
 				0E492F0F1A841E9F0077249A /* SegmentedControl */,

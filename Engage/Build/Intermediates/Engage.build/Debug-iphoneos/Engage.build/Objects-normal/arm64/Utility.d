@@ -1,5 +1,5 @@
-dependencies: /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Utility.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Utility.h \
+dependencies: /Users/angelasmith/Desktop/Engage/Engage/Utility.m \
+  /Users/angelasmith/Desktop/Engage/Engage/Utility.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \
@@ -24,6 +24,6 @@ dependencies: /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Utility.m \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFACL.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/Parse.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/UIImage+ResizeAdditions.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Cache.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ApplicationKeys.h
+  /Users/angelasmith/Desktop/Engage/Engage/UIImage+ResizeAdditions.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Cache.h \
+  /Users/angelasmith/Desktop/Engage/Engage/ApplicationKeys.h

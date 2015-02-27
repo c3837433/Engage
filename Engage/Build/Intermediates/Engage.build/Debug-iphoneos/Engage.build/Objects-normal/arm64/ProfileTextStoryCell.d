@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ProfileTextStoryCell.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ProfileTextStoryCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage/ProfileTextStoryCell.m \
+  /Users/angelasmith/Desktop/Engage/Engage/ProfileTextStoryCell.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \
@@ -25,7 +25,7 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFACL.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/Parse.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/STTweetLabel.h \
+  /Users/angelasmith/Desktop/Engage/Engage/STTweetLabel.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFTextField.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpViewController.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpView.h \
@@ -41,4 +41,4 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFCollectionViewCell.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/ParseUI.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Utility.h
+  /Users/angelasmith/Desktop/Engage/Engage/Utility.h

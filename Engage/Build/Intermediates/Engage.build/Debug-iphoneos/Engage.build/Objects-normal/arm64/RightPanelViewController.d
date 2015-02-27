@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/RightPanelViewController.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/RightPanelViewController.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/RESideMenu.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/UIViewController+RESideMenu.h
+  /Users/angelasmith/Desktop/Engage/Engage/RightPanelViewController.m \
+  /Users/angelasmith/Desktop/Engage/Engage/RightPanelViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/RESideMenu.h \
+  /Users/angelasmith/Desktop/Engage/Engage/UIViewController+RESideMenu.h

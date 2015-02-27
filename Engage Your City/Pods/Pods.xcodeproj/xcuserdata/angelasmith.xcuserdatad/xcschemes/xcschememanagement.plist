@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-Engage Your City-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Engage Your City-DZNSegmentedControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Engage Your City-MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Engage Your City-MZAppearance.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Engage Your City-MZFormSheetController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Engage Your City-RESideMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Engage Your City-STTweetLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Engage Your City-embedly-ios.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Engage Your City.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0DC4C6AE16A0DFCA4518E393</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>191DD701BE44FBEEA73EA9E2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2EBB5E32FFF30DB18BCF6B85</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>637BB1AC4B4AD2420E3DEB52</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7C48BB2C87CC4317A5F32281</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A362C978F1E2461933987669</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CC3442306436E071A54E3AF7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DCC8E7DF844D52884FDD28F6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F2B1060814D26AEB809AC2C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

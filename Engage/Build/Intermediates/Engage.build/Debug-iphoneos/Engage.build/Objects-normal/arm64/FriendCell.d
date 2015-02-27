@@ -1,6 +1,5 @@
-dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/FriendCell.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/FriendCell.h \
+dependencies: /Users/angelasmith/Desktop/Engage/Engage/FriendCell.m \
+  /Users/angelasmith/Desktop/Engage/Engage/FriendCell.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \

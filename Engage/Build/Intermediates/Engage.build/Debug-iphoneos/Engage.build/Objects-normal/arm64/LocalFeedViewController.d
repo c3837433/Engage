@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/LocalFeedViewController.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/LogInViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/LocalFeedViewController.m \
+  /Users/angelasmith/Desktop/Engage/Engage/LogInViewController.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \
@@ -40,14 +40,14 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFCollectionViewCell.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/ParseUI.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Utility.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Cache.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/AddStoryCommentViewController.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/StoryDetailsInfoHeaderView.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DetailStoryHeaderView.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/STTweetLabel.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DetailStoryMediaView.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/LocalFeedViewController.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/StoryMediaCell.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/StoryTextCell.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/TTTTimeIntervalFormatter.h
+  /Users/angelasmith/Desktop/Engage/Engage/Utility.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Cache.h \
+  /Users/angelasmith/Desktop/Engage/Engage/AddStoryCommentViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/StoryDetailsInfoHeaderView.h \
+  /Users/angelasmith/Desktop/Engage/Engage/DetailStoryHeaderView.h \
+  /Users/angelasmith/Desktop/Engage/Engage/STTweetLabel.h \
+  /Users/angelasmith/Desktop/Engage/Engage/DetailStoryMediaView.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/LocalFeedViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/StoryMediaCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage/StoryTextCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage/TTTTimeIntervalFormatter.h

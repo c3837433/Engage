@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DetailStoryMediaView.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DetailStoryMediaView.h \
+  /Users/angelasmith/Desktop/Engage/Engage/DetailStoryMediaView.m \
+  /Users/angelasmith/Desktop/Engage/Engage/DetailStoryMediaView.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \

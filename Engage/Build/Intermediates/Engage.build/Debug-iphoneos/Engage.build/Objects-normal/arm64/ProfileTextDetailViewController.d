@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ProfileTextDetailViewController.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ProfileTextDetailViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/ProfileTextDetailViewController.m \
+  /Users/angelasmith/Desktop/Engage/Engage/ProfileTextDetailViewController.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \
@@ -25,4 +25,4 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFACL.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/Parse.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Utility.h
+  /Users/angelasmith/Desktop/Engage/Engage/Utility.h

@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/UserDetailsViewController.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/UserDetailsViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage/UserDetailsViewController.m \
+  /Users/angelasmith/Desktop/Engage/Engage/UserDetailsViewController.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFTextField.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpViewController.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpView.h \
@@ -40,11 +40,11 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFACL.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/Parse.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/DZNSegmentedControl.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ApplicationKeys.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Cache.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ProfileMediaStoryCell.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/STTweetLabel.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/ProfileTextStoryCell.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/AppDelegate.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/MBProgressHUD.h
+  /Users/angelasmith/Desktop/Engage/Engage/DZNSegmentedControl.h \
+  /Users/angelasmith/Desktop/Engage/Engage/ApplicationKeys.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Cache.h \
+  /Users/angelasmith/Desktop/Engage/Engage/ProfileMediaStoryCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage/STTweetLabel.h \
+  /Users/angelasmith/Desktop/Engage/Engage/ProfileTextStoryCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/AppDelegate.h \
+  /Users/angelasmith/Desktop/Engage/Engage/MBProgressHUD.h

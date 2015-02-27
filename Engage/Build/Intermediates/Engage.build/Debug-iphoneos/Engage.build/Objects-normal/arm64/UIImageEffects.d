@@ -1,3 +1,2 @@
-dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/UIImageEffects.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/UIImageEffects.h
+dependencies: /Users/angelasmith/Desktop/Engage/Engage/UIImageEffects.m \
+  /Users/angelasmith/Desktop/Engage/Engage/UIImageEffects.h

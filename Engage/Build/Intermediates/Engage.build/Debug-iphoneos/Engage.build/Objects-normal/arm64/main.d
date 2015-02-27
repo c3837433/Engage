@@ -1,6 +1,5 @@
-dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/main.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/AppDelegate.h \
+dependencies: /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/main.m \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/AppDelegate.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \
@@ -25,7 +24,7 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFACL.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/Parse.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/MBProgressHUD.h \
+  /Users/angelasmith/Desktop/Engage/Engage/MBProgressHUD.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFTextField.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpViewController.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFSignUpView.h \

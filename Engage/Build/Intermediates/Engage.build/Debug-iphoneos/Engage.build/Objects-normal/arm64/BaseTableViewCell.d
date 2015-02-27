@@ -1,7 +1,7 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/BaseTableViewCell.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/BaseTableViewCell.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Test\ Engage/ProfileImageView.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/BaseTableViewCell.m \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/BaseTableViewCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage/Test\ Engage/ProfileImageView.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PF_Twitter.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/angelasmith/Development/parse-library-1/Parse.framework/Headers/PFPush.h \
@@ -41,4 +41,4 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/PFCollectionViewCell.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Headers/ParseUI.h \
   /Users/angelasmith/Development/parse-library-1/ParseUI.framework/Modules/module.modulemap \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Utility.h
+  /Users/angelasmith/Desktop/Engage/Engage/Utility.h

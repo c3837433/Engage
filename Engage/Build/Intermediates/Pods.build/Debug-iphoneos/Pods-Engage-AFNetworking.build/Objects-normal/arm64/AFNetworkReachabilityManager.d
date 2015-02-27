@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Pods/AFNetworking/AFNetworking/AFNetworkReachabilityManager.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/Pods/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h
+  /Users/angelasmith/Desktop/Engage/Engage/Pods/AFNetworking/AFNetworking/AFNetworkReachabilityManager.m \
+  /Users/angelasmith/Desktop/Engage/Engage/Pods/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h

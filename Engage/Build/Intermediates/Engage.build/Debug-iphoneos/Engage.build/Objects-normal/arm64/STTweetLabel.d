@@ -1,4 +1,3 @@
-dependencies: \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/STTweetLabel.m \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/STTweetLabel.h \
-  /Users/angelasmith/Dropbox/UpdatedEngage/Engage/STTweetTextStorage.h
+dependencies: /Users/angelasmith/Desktop/Engage/Engage/STTweetLabel.m \
+  /Users/angelasmith/Desktop/Engage/Engage/STTweetLabel.h \
+  /Users/angelasmith/Desktop/Engage/Engage/STTweetTextStorage.h
