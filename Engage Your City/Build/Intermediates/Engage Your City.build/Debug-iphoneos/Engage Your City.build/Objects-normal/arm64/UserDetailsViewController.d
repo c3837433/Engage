@@ -42,6 +42,7 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/Parse.framework/Modules/module.modulemap \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CustomAddPostViewController.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/JSImagePickerViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CustomEditProfileViewController.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/ApplicationKeys.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/Cache.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/ProfileMediaStoryCell.h \
@@ -49,4 +50,7 @@ dependencies: \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/AppDelegate.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/TextCommentDetailViewController.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CommentCell.h \
-  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/MediaCommentDetailViewController.h
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/MediaCommentDetailViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/FriendCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/FollowFriendsViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/Utility.h

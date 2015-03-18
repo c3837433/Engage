@@ -24,7 +24,7 @@
 
 -(void)setComment:(PFObject*)story
 {
-    thisCommentUser = [story objectForKey:@"fromUser"];
+    thisCommentUser = [story objectForKey:aActivityFromUser];
     // Set Author and text
     
     // SET AUTHOR PICTURE
@@ -54,7 +54,7 @@
     [commentAuthorButton setTitle:[thisCommentUser objectForKey:aUserName] forState:UIControlStateHighlighted];
     [commentAuthorButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    commentText.text = [story objectForKey:@"message"];
+    commentText.text = [story objectForKey:aActivityCommentText];
     // Set Image
     PFFile *profilePictureSmall = [thisCommentUser objectForKey:@"profilePictureSmall"];
     commentAuthorPic.file = profilePictureSmall;

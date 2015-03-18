@@ -13,8 +13,11 @@
 #import "AppDelegate.h"
 #import "CustomSearchViewController.h"
 #import "MZCustomTransition.h"
+#import "ApplicationKeys.h"
 
 @interface FindFriendTableViewController () <CustomSearchDelegate>
+
+@property (nonatomic, strong) NSMutableDictionary *outstandingFollowQueries;
 
 @end
 
@@ -311,9 +314,27 @@
 
 
 
--(void)objectsDidLoad:(NSError *)error {
+- (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
+    
+    PFQuery *isFollowingQuery = [PFQuery queryWithClassName:aActivityClass];
+    [isFollowingQuery whereKey:aActivityFromUser equalTo:[PFUser currentUser]];
+    [isFollowingQuery whereKey:aActivityType equalTo:aActivityFollow];
+    [isFollowingQuery whereKey:aActivityToUser containedIn:self.objects];
+    [isFollowingQuery setCachePolicy:kPFCachePolicyNetworkOnly];
+    
+    [isFollowingQuery countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        if (!error) {
+            if (number > 0) {
+                for (PFUser *user in self.objects) {
+                    [[Cache sharedCache] setFollowStatus:YES user:user];
+                }
+            }
+        }
+        
+    }];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
 
@@ -329,7 +350,30 @@
         if (attributes) {
             // set them accordingly
             [cell.followButton setSelected:[[Cache sharedCache] followStatusForUser:(PFUser *)object]];
+        } else {
+            @synchronized(self) {
+                NSNumber *outstandingQuery = [self.outstandingFollowQueries objectForKey:indexPath];
+                if (!outstandingQuery) {
+                    [self.outstandingFollowQueries setObject:[NSNumber numberWithBool:YES] forKey:indexPath];
+                    PFQuery *isFollowingQuery = [PFQuery queryWithClassName:aActivityClass];
+                    [isFollowingQuery whereKey:aActivityFromUser equalTo:[PFUser currentUser]];
+                    [isFollowingQuery whereKey:aActivityType equalTo:aActivityFollow];
+                    [isFollowingQuery whereKey:aActivityToUser equalTo:object];
+                    [isFollowingQuery setCachePolicy:kPFCachePolicyCacheThenNetwork];
+                    
+                    [isFollowingQuery countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+                        @synchronized(self) {
+                            [self.outstandingFollowQueries removeObjectForKey:indexPath];
+                            [[Cache sharedCache] setFollowStatus:(!error && number > 0) user:(PFUser *)object];
+                        }
+                        if (cell.tag == indexPath.row) {
+                            [cell.followButton setSelected:(!error && number > 0)];
+                        }
+                    }];
+                }
+            }
         }
+
         cell.followButton.selected = NO;
         cell.followButton.tag = indexPath.row;
         cell.tag = indexPath.row;
@@ -410,7 +454,6 @@
 
 //Called when the user selects a property of a person in their address book (ex. phone, email, location,...)
  //This method will allow them to send a text or email inviting them to Engage.
-
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
                          didSelectPerson:(ABRecordRef)person
                                 property:(ABPropertyID)property

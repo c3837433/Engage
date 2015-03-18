@@ -24,6 +24,7 @@
     [super viewWillAppear:animated];
     [searchBar setBackgroundImage:[UIImage new]];
     [searchBar setTranslucent:YES];
+    [searchBar setImage:[UIImage imageNamed:@"searchIcon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     [self.navigationController.navigationBar
@@ -44,7 +45,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"MainBg"]];
     if (!tagArray) {
         // Start Hud
         [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];

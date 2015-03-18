@@ -21,7 +21,7 @@
 
 @implementation MediaCommentDetailViewController
 
-@synthesize  thisStory, commentTextField, likesView, likeStoryButton, storyLikers, currentLikeAvatars, storyDetailView, postAuthorGroupButton, postAuthorImage, postStoryLabel, postTitleLabel, postAuthorNameButton, postTimeStampLabel, firstLikesButton, andLikesLabel, extraLikesButton, postImage;
+@synthesize  thisStory, commentTextField, likesView, likeButton, storyLikers, currentLikeAvatars, storyDetailView, postAuthorGroupButton, postAuthorImage, postStoryLabel, postTitleLabel, postAuthorNameButton, postTimeStampLabel, firstLikesButton, andLikesLabel, extraLikesButton, postImage;
 
 - (id)initWithStory:(PFObject *)story {
     self = [super initWithStyle:UITableViewStylePlain];
@@ -29,7 +29,7 @@
        // self.thisStory = story;
         
         // The className to query on
-        self.parseClassName = @"Comment";
+        self.parseClassName = aActivityClass;
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
         // Whether the built-in pagination is enabled
@@ -60,12 +60,17 @@
 {
     [super viewDidLoad];
     
+    // Update the user if needed
+    PFUser* author = [thisStory objectForKey:@"author"];
+    [author fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        NSLog(@"This story author = %@", [object objectForKey:@"UsersFullName"]);
+    }];
+    
     // get the cell width
     self.cellWidth = self.tableView.frame.size.width;
     
     // BUILD THE STORY HEADER
     // get the height of the View
-    
     NSString* storyText = [thisStory objectForKey:@"story"];
     //float textHeight = [self getViewHeight:storyText];
     float stringHeight = [self getStringHeight:storyText];
@@ -108,9 +113,10 @@
 
 - (PFQuery *)queryForTable {
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
-    [query whereKey:@"onStory" equalTo:self.thisStory];
-    [query includeKey:@"fromUser"];
+    PFQuery *query = [PFQuery queryWithClassName:aActivityClass];
+    [query whereKey:aActivityType equalTo:aActivityComment];
+    [query whereKey:aActivityStory equalTo:self.thisStory];
+    [query includeKey:aActivityFromUser];
     [query orderByAscending:@"createdAt"];
     
     [query setCachePolicy:kPFCachePolicyNetworkOnly];
@@ -134,7 +140,7 @@
 
 - (void)setLikeUsers:(NSMutableArray *)anArray {
 
-    [likeStoryButton setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)storyLikers.count] forState:UIControlStateNormal];
+   // [likeButton setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)storyLikers.count] forState:UIControlStateNormal];
     
     NSInteger numOfLikes = storyLikers.count;
     if (!numOfLikes == 0) {
@@ -149,13 +155,14 @@
             extraLikesButton.hidden = YES;
         } else {
             NSString* extraTitleString;
+            andLikesLabel.text = @" and ";
             // we have more than one
             if (numOfLikes == 2) {
                 // one other
-                extraTitleString = [NSString stringWithFormat:@"%lu other like this", numOfLikes - 1];
+                extraTitleString = [NSString stringWithFormat:@"%ld other like this", numOfLikes - 1];
             } else {
                 // multiple others
-                extraTitleString = [NSString stringWithFormat:@"%lu others like this", numOfLikes - 1];
+                extraTitleString = [NSString stringWithFormat:@"%ld others like this", numOfLikes - 1];
             }
             [extraLikesButton setTitle:extraTitleString forState:UIControlStateNormal];
             [extraLikesButton setTitle:extraTitleString forState:UIControlStateHighlighted];
@@ -328,11 +335,11 @@
 
 - (void)setLikeButtonState:(BOOL)selected {
     if (selected) {
-        [likeStoryButton setTitleEdgeInsets:UIEdgeInsetsMake( -1.0f, 0.0f, 0.0f, 0.0f)];
+        [likeButton setTitleEdgeInsets:UIEdgeInsetsMake( -1.0f, 0.0f, 0.0f, 0.0f)];
     } else {
-        [likeStoryButton setTitleEdgeInsets:UIEdgeInsetsMake( 0.0f, 0.0f, 0.0f, 0.0f)];
+        [likeButton setTitleEdgeInsets:UIEdgeInsetsMake( 0.0f, 0.0f, 0.0f, 0.0f)];
     }
-    [likeStoryButton setSelected:selected];
+    [likeButton setSelected:selected];
 }
 
 - (void)reloadLikeBar {
@@ -391,8 +398,120 @@
     textHeight = (textHeight < 56.0) ? 56.0 : textHeight;
     
     return textHeight;
+}
+
+#pragma mark - STORY ATTRIBUTES
+-(void)setAttributesForStory:(PFObject*)story {
+    
+    NSDictionary* attributesForPhoto = [[Cache sharedCache] attributesForPhoto:story];
+    if (attributesForPhoto) {
+        
+        [self setLikeStatus:[[Cache sharedCache] isPhotoLikedByCurrentUser:story]];
+        if (likeButton.alpha < 1.0f) {
+            [UIView animateWithDuration:0.200f animations:^{
+                likeButton.alpha = 1.0f;
+            }];
+        }
+    } else {
+        likeButton.alpha = 0.0f;
+        
+        @synchronized(self) {
+            // check if we can update the cache
+   //         NSNumber* queryStatus = [self.activityQueries objectForKey:@(indexPath.row)];
+     //       if (!queryStatus) {
+                PFQuery* query = [Utility queryForLikersForStory:story cachePolicy:kPFCachePolicyNetworkOnly];
+                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    @synchronized(self) {
+                      //  [self.activityQueries removeObjectForKey:@(indexPath.row)];
+                        //if (error) {
+                          //  return;
+                        //}
+                        BOOL isLikedByCurrentUser = NO;
+                        NSMutableArray *likers = [NSMutableArray array];
+                        for (PFObject* liker in objects) {
+                            if ([[[liker objectForKey:@"fromUser"] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+                                isLikedByCurrentUser = YES;
+                            }
+                            // add the story liker to the list of likers
+                            [likers addObject:[liker objectForKey:@"fromUser"]];
+                        }
+                        [[Cache sharedCache] setLikeAttributesForStory:story likers:likers likedByCurrentUser:isLikedByCurrentUser];
+                        
+                        // SET LIKES
+                        [self setLikeStatus:[[Cache sharedCache] isPhotoLikedByCurrentUser:story]];
+                        if (likeButton.alpha < 1.0f) {
+                            [UIView animateWithDuration:0.200f animations:^{
+                                likeButton.alpha = 1.0f;
+                            }];
+                        }
+                    }
+                    
+                }];
+          //  }
+        }
+    }
     
 }
+
+- (void)setLikeStatus:(BOOL)liked
+{
+    [likeButton setSelected:liked];
+    if (liked)
+    {
+        [likeButton setImage:[UIImage imageNamed:@"liked"] forState:UIControlStateSelected];
+        [likeButton setImage:[UIImage imageNamed:@"liked"] forState:UIControlStateNormal];
+        [likeButton setTitleColor:[UIColor colorWithRed:0.02 green:0.4 blue:0.56 alpha:1] forState:UIControlStateNormal];
+        [likeButton setTitleColor:[UIColor colorWithRed:0.02 green:0.4 blue:0.56 alpha:1] forState:UIControlStateSelected];
+    }
+    else
+    {
+        [likeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        [likeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateSelected];
+        [likeButton setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
+        [likeButton setImage:[UIImage imageNamed:@"like"] forState:UIControlStateSelected];
+    }
+}
+
+- (void)shouldEnableLikeButton:(BOOL)enable {
+    if (enable) {
+        [likeButton removeTarget:self action:@selector(didTapLikeStoryButton:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        [likeButton addTarget:self action:@selector(didTapLikeStoryButton:) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+- (IBAction)didTapLikeStoryButton:(UIButton *)button  {
+    
+    // NSLog(@"User tapped like story: %@", story);
+    // see if the user selected the story
+    BOOL liked = !button.selected;
+    // stop user from clicking the button again
+    [self shouldEnableLikeButton:NO];
+    [self setLikeStatus:liked];
+    
+    [[Cache sharedCache] setPhotoIsLikedByCurrentUser:thisStory liked:liked];
+    
+    if (liked) {
+        NSLog(@"Liking detail story");
+        [Utility likeStoryInBackground:thisStory block:^(BOOL succeeded, NSError *error) {
+            // get this cell
+          //  PostTextCell* postCell = (PostTextCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+            [self shouldEnableLikeButton:YES];
+            [self setLikeStatus:succeeded];
+        }];
+    } else {
+        NSLog(@"Unliking detail story");
+        [Utility unlikeStoryInBackground:thisStory block:^(BOOL succeeded, NSError *error) {
+           // PostTextCell* postCell = (PostTextCell *)[self tableView:self.tableView  cellForRowAtIndexPath:indexPath];
+            [self shouldEnableLikeButton:YES];
+            [self setLikeStatus:succeeded];
+        }];
+    }
+    
+}
+
+
+
 /*
 // get height for story text
 -(CGFloat)getCommentHeight:(NSString*)text
@@ -443,16 +562,17 @@
         return [textField resignFirstResponder];
     } else {
         NSString* trimmedComment = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        if (trimmedComment.length != 0 && [self.thisStory objectForKey:@"author"]) {
-            PFObject* newComment = [PFObject objectWithClassName:@"Comment"];
-            [newComment setObject:trimmedComment forKey:@"message"];
-            [newComment setObject:[self.thisStory objectForKey:@"author"] forKey:@"toUser"]; // Set toUser
-            [newComment setObject:[PFUser currentUser] forKey:@"fromUser"]; // Set fromUser
-            [newComment setObject:self.thisStory forKey:@"onStory"];
+        if (trimmedComment.length != 0 && [self.thisStory objectForKey:aPostAuthor]) {
+            PFObject* newComment = [PFObject objectWithClassName:aActivityClass];
+            [newComment setObject:trimmedComment forKey:aActivityCommentText];
+            [newComment setObject:[self.thisStory objectForKey:aPostAuthor] forKey:aActivityToUser]; // Set toUser
+            [newComment setObject:[PFUser currentUser] forKey:aActivityFromUser]; // Set fromUser
+            [newComment setObject:self.thisStory forKey:aActivityStory];
+            [newComment setObject:aActivityComment forKey:aActivityType];
             
             PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
             [ACL setPublicReadAccess:YES];
-            [ACL setWriteAccess:YES forUser:[self.thisStory objectForKey:@"author"]];
+            [ACL setWriteAccess:YES forUser:[self.thisStory objectForKey:aPostAuthor]];
             [ACL setWriteAccess:true forRoleWithName:@"Admin"];
             [ACL setWriteAccess:true forUser:[PFUser currentUser]];
             [ACL setWriteAccess:true forRoleWithName:@"GroupLead"];

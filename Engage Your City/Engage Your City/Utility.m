@@ -15,57 +15,7 @@
 
 
 #pragma mark Facebook
-/*
-+ (void)processFacebookProfilePictureData:(NSData *)newProfilePictureData {
-    if (newProfilePictureData.length == 0) {
-        return;
-    }
-    
-    // The user's Facebook profile picture is cached to disk. Check if the cached profile picture data matches the incoming profile picture. If it does, avoid uploading this data to Parse.
-    
-    NSURL *cachesDirectoryURL = [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject]; // iOS Caches directory
-    
-    NSURL *profilePictureCacheURL = [cachesDirectoryURL URLByAppendingPathComponent:@"FacebookProfilePicture.jpg"];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[profilePictureCacheURL path]]) {
-        // We have a cached Facebook profile picture
-        
-        NSData *oldProfilePictureData = [NSData dataWithContentsOfFile:[profilePictureCacheURL path]];
-        
-        if ([oldProfilePictureData isEqualToData:newProfilePictureData]) {
-            return;
-        }
-    }
-    
-    UIImage *image = [UIImage imageWithData:newProfilePictureData];
-    
-    UIImage *mediumImage = [image thumbnailImage:280 transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationHigh];
-    UIImage *smallRoundedImage = [image thumbnailImage:64 transparentBorder:0 cornerRadius:9 interpolationQuality:kCGInterpolationLow];
-    
-    NSData *mediumImageData = UIImageJPEGRepresentation(mediumImage, 0.5); // using JPEG for larger pictures
-    NSData *smallRoundedImageData = UIImagePNGRepresentation(smallRoundedImage);
-    
-    if (mediumImageData.length > 0) {
-        PFFile *fileMediumImage = [PFFile fileWithData:mediumImageData];
-        [fileMediumImage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!error) {
-                [[PFUser currentUser] setObject:fileMediumImage forKey:@"profilePictureMedium"];
-                [[PFUser currentUser] saveEventually];
-            }
-        }];
-    }
-    
-    if (smallRoundedImageData.length > 0) {
-        PFFile *fileSmallRoundedImage = [PFFile fileWithData:smallRoundedImageData];
-        [fileSmallRoundedImage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!error) {
-                [[PFUser currentUser] setObject:fileSmallRoundedImage forKey:@"profilePictureSmall"];
-                [[PFUser currentUser] saveEventually];
-            }
-        }];
-    }
-}
-*/
+
 +(void)saveFacebookImageData:(NSData*)imageData
 {
     if (imageData != nil)
@@ -129,34 +79,44 @@
 }
 
 + (void)likeStoryInBackground:(id)story block:(void (^)(BOOL succeeded, NSError *error))completionBlock {
-    PFQuery* queryExistingLikes = [PFQuery queryWithClassName:@"Likes"];
-    [queryExistingLikes whereKey:@"onStory" equalTo:story];
-    [queryExistingLikes whereKey:@"fromUser" equalTo:[PFUser currentUser]];
+    PFQuery* queryExistingLikes = [PFQuery queryWithClassName:aActivityClass];
+    NSLog(@"Searching for previous likes");
+    [queryExistingLikes whereKey:aActivityStory equalTo:story];
+    [queryExistingLikes whereKey:aActivityType equalTo:aActivityLike];
+    [queryExistingLikes whereKey:aActivityFromUser equalTo:[PFUser currentUser]];
     [queryExistingLikes setCachePolicy:kPFCachePolicyNetworkOnly];
     [queryExistingLikes findObjectsInBackgroundWithBlock:^(NSArray* likes, NSError *error) {
         if (!error) {
             for (PFObject* like in likes) {
                 [like deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    NSLog(@"Deleting previous like");
                 }];
             }
         }
-        
+        NSLog(@"Creating a new activity like");
         // proceed to creating new like
-        PFObject* likeActivity = [PFObject objectWithClassName:@"Likes"];
-        [likeActivity setObject:[PFUser currentUser] forKey:@"fromUser"];
-        [likeActivity setObject:[story objectForKey:@"author"] forKey:@"toUser"];
-        [likeActivity setObject:story forKey:@"onStory"];
+        PFObject* likeActivity = [PFObject objectWithClassName:aActivityClass];
+        [likeActivity setObject:[PFUser currentUser] forKey:aActivityFromUser];
+        [likeActivity setObject:[story objectForKey:aPostAuthor] forKey:aActivityToUser];
+        [likeActivity setObject:story forKey:aActivityStory];
+        [likeActivity setObject:aActivityLike forKey:aActivityType];
         
         PFACL *likeACL = [PFACL ACLWithUser:[PFUser currentUser]];
         [likeACL setPublicReadAccess:YES];
-        [likeACL setWriteAccess:YES forUser:[story objectForKey:@"author"]];
+        [likeACL setWriteAccess:YES forUser:[story objectForKey:aPostAuthor]];
         likeActivity.ACL = likeACL;
-        
+        NSLog(@"Saving new like");
         [likeActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"Like saved");
+            } else if (error) {
+                NSLog(@"Error saving: %@", error.description);
+            }
             if (completionBlock) {
                 completionBlock(succeeded,error);
             }
             // refresh cache
+            NSLog(@"Updating story likes in cache");
             PFQuery *query = [Utility queryForLikersForStory:story cachePolicy:kPFCachePolicyNetworkOnly];
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if (!error) {
@@ -164,16 +124,18 @@
                     NSMutableArray *likers = [NSMutableArray array];
                     BOOL isLikedByCurrentUser = NO;
                     for (PFObject* liker in objects) {
-                        if ([[[liker objectForKey:@"fromUser"] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+                        if ([[[liker objectForKey:aActivityFromUser] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
                             isLikedByCurrentUser = YES;
                         }
                         // add the story liker to the list of likers
-                        [likers addObject:[liker objectForKey:@"fromUser"]];
+                        [likers addObject:[liker objectForKey:aActivityFromUser]];
                     }
                     [[Cache sharedCache] setLikeAttributesForStory:story likers:likers likedByCurrentUser:isLikedByCurrentUser];
+                } else {
+                    NSLog(@"Error updating cache");
                 }
                 
-                    [[NSNotificationCenter defaultCenter] postNotificationName:UtilityUserLikedUnlikedPhotoCallbackFinishedNotification object:story userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:StoryMainFeedViewControllerUserLikedUnlikedPhotoNotification]];
+                //[[NSNotificationCenter defaultCenter] postNotificationName:UtilityUserLikedUnlikedPhotoCallbackFinishedNotification object:story userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:StoryMainFeedViewControllerUserLikedUnlikedPhotoNotification]];
             }];
             
         }];
@@ -184,22 +146,24 @@
 + (void)unlikeStoryInBackground:(id)story block:(void (^)(BOOL succeeded, NSError *error))completionBlock {
     
     // Find the origional like
-    PFQuery* likeQuery = [PFQuery queryWithClassName:@"Likes"];
-    [likeQuery whereKey:@"onStory" equalTo:story];
-    [likeQuery whereKey:@"fromUser" equalTo:[PFUser currentUser]];
+    NSLog(@"Searching for previous likes");
+    PFQuery* likeQuery = [PFQuery queryWithClassName:aActivityClass];
+    [likeQuery whereKey:aActivityStory equalTo:story];
+    [likeQuery whereKey:aActivityType equalTo:aActivityLike];
+    [likeQuery whereKey:aActivityFromUser equalTo:[PFUser currentUser]];
     [likeQuery setCachePolicy:kPFCachePolicyNetworkOnly];
     [likeQuery findObjectsInBackgroundWithBlock:^(NSArray *likes, NSError *error) {
         if (!error) {
             for (PFObject* like in likes) {
-                //[activity delete];
-                [like deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                }];
+                //[activity delete
+                [like delete];
             }
             
             if (completionBlock) {
                 completionBlock(YES,nil);
             }
             // refresh cache
+            NSLog(@"Updating story likes in cache");
             PFQuery *query = [Utility queryForLikersForStory:story cachePolicy:kPFCachePolicyNetworkOnly];
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if (!error) {
@@ -207,16 +171,16 @@
                     NSMutableArray *likers = [NSMutableArray array];
                     BOOL isLikedByCurrentUser = NO;
                     for (PFObject* liker in objects) {
-                        if ([[[liker objectForKey:@"fromUser"] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+                        if ([[[liker objectForKey:aActivityFromUser] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
                             isLikedByCurrentUser = YES;
                         }
                         // add the story liker to the list of likers
-                        [likers addObject:[liker objectForKey:@"fromUser"]];
+                        [likers addObject:[liker objectForKey:aActivityFromUser]];
                     }
                     [[Cache sharedCache] setLikeAttributesForStory:story likers:likers likedByCurrentUser:isLikedByCurrentUser];
                 }
                 
-           //     [[NSNotificationCenter defaultCenter] postNotificationName:PAPUtilityUserLikedUnlikedPhotoCallbackFinishedNotification object:photo userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:PAPPhotoDetailsViewControllerUserLikedUnlikedPhotoNotificationUserInfoLikedKey]];
+                //     [[NSNotificationCenter defaultCenter] postNotificationName:PAPUtilityUserLikedUnlikedPhotoCallbackFinishedNotification object:photo userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:PAPPhotoDetailsViewControllerUserLikedUnlikedPhotoNotificationUserInfoLikedKey]];
             }];
             
         } else {
@@ -254,19 +218,19 @@
 }
 */
 + (PFQuery *)queryForLikersForStory:(PFObject *)story cachePolicy:(PFCachePolicy)cachePolicy {
-    PFQuery* queryLikes = [PFQuery queryWithClassName:@"Likes"];
-    [queryLikes whereKey:@"onStory" equalTo:story];
-    [queryLikes includeKey:@"fromUser"];
+    PFQuery* queryLikes = [PFQuery queryWithClassName:aActivityClass];
+    [queryLikes whereKey:aActivityStory equalTo:story];
+    [queryLikes includeKey:aActivityFromUser];
     return queryLikes;
 }
 
 + (PFQuery *)queryForTopFollowers:(PFCachePolicy)cachePolicy {
-    PFQuery *followersQuery = [PFQuery queryWithClassName:@"Activity"];
-    [followersQuery whereKey:@"activityType" equalTo:@"follow"];
+    PFQuery *followersQuery = [PFQuery queryWithClassName:aActivityClass];
+    [followersQuery whereKey:aActivityType equalTo:aActivityFollow];
     
     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:followersQuery,nil]];
     [query setCachePolicy:cachePolicy];
-    [query includeKey:@"fromUser"];
+    [query includeKey:aActivityFromUser];
     [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
         
     }];
@@ -285,10 +249,10 @@
         return;
     }
     
-    PFObject *followActivity = [PFObject objectWithClassName:@"Activity"];
-    [followActivity setObject:[PFUser currentUser] forKey:@"fromUser"];
-    [followActivity setObject:user forKey:@"toUser"];
-    [followActivity setObject:@"follow" forKey:@"activityType"];
+    PFObject *followActivity = [PFObject objectWithClassName:aActivityClass];
+    [followActivity setObject:[PFUser currentUser] forKey:aActivityFromUser];
+    [followActivity setObject:user forKey:aActivityToUser];
+    [followActivity setObject:aActivityFollow forKey:aActivityType];
     
     PFACL *followACL = [PFACL ACLWithUser:[PFUser currentUser]];
     [followACL setPublicReadAccess:YES];
@@ -307,10 +271,10 @@
         return;
     }
     
-    PFObject *followActivity = [PFObject objectWithClassName:@"Activity"];
-    [followActivity setObject:[PFUser currentUser] forKey:@"fromUser"];
-    [followActivity setObject:user forKey:@"toUser"];
-    [followActivity setObject:@"follow" forKey:@"activityType"];
+    PFObject *followActivity = [PFObject objectWithClassName:aActivityClass];
+    [followActivity setObject:[PFUser currentUser] forKey:aActivityFromUser];
+    [followActivity setObject:user forKey:aActivityToUser];
+    [followActivity setObject:aActivityFollow forKey:aActivityType];
     
     PFACL *followACL = [PFACL ACLWithUser:[PFUser currentUser]];
     [followACL setPublicReadAccess:YES];
@@ -328,10 +292,10 @@
 }
 
 + (void)unfollowUserEventually:(PFUser *)user {
-    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
-    [query whereKey:@"fromUser" equalTo:[PFUser currentUser]];
-    [query whereKey:@"toUser" equalTo:user];
-    [query whereKey:@"activityType" equalTo:@"follow"];
+    PFQuery *query = [PFQuery queryWithClassName:aActivityClass];
+    [query whereKey:aActivityFromUser equalTo:[PFUser currentUser]];
+    [query whereKey:aActivityToUser equalTo:user];
+    [query whereKey:aActivityType equalTo:aActivityFollow];
     [query findObjectsInBackgroundWithBlock:^(NSArray *followActivities, NSError *error) {
         // While normally there should only be one follow activity returned, we can't guarantee that.
         
@@ -345,10 +309,10 @@
 }
 
 + (void)unfollowUsersEventually:(NSArray *)users {
-    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
-    [query whereKey:@"fromUser" equalTo:[PFUser currentUser]];
-    [query whereKey:@"toUser" containedIn:users];
-    [query whereKey:@"activityType" equalTo:@"follow"];
+    PFQuery *query = [PFQuery queryWithClassName:aActivityClass];
+    [query whereKey:aActivityFromUser equalTo:[PFUser currentUser]];
+    [query whereKey:aActivityToUser containedIn:users];
+    [query whereKey:aActivityType equalTo:aActivityFollow];
     [query findObjectsInBackgroundWithBlock:^(NSArray *activities, NSError *error) {
         for (PFObject *activity in activities) {
             [activity deleteEventually];

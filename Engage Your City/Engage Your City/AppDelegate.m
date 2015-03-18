@@ -8,13 +8,10 @@
 
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
-//#import "PanelViewController.h"
 #import "LogInViewController.h"
-//#import "DataHelper.h"
 #import "Utility.h"
 #import "Cache.h"
 #import <ParseFacebookUtils/PFFacebookUtils.h>
-//#import "GroupRegionsViewController.h"
 #import "RootViewController.h"
 #import "Reachability.h"
 #import "ApplicationKeys.h"
@@ -33,11 +30,15 @@
     // SET FACEBOOK OAUTH
     [PFFacebookUtils initializeFacebook];
     
+    // set up for notifications
+    [self registerForRemoteNotification];
+    
+    // Check for badge notifications
     if (application.applicationIconBadgeNumber != 0) {
         application.applicationIconBadgeNumber = 0;
         [[PFInstallation currentInstallation] saveInBackground];
     }
-    
+
     // Set default ACLs for parse so users can read data
     PFACL *defaultACL = [PFACL ACL];
     [defaultACL setPublicReadAccess:YES];
@@ -90,6 +91,9 @@
     
     [self checkLogIn];
     userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [self handlePush:launchOptions];
+    
     return YES;
 }
 
@@ -106,53 +110,21 @@
                         withSession:[PFFacebookUtils session]];
 }
 
--(void)checkLogIn
-{
+-(void)checkLogIn {
     // NAVIGATION AND LOG IN
     // Check if user is logged in or not
-    if (![PFUser currentUser])
-    {
+    if (![PFUser currentUser]) {
         [self switchToLogInView];
     }
-    else
-    {
-        // see if home group has been set
-        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        NSString* groupString = [defaults objectForKey:@"HomeGroupSet"];
-        //NSLog(@"Group string = %@", groupString);
-        if (([groupString isEqualToString:@"inGroup"]) ||([groupString isEqualToString:@"noGroup"])) {
-            //NSLog(@"Group string has been set");
-            [self switchToMainView];
-        }
-        else {
-            //NSLog(@"Group string has not been set");
-            // Run a user check
-            PFQuery* userQuery = [PFUser query];
-            [userQuery whereKey:@"username" equalTo:[[PFUser currentUser]username]];
-            [userQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
-                // this is a previously registered user
-                if (object)
-                {
-                    // Find out if this is a new user by checkinf if permission default was set
-                   // NSString* homeGroupName = [object objectForKey:@"group"];
-                   // NSLog(@"Home Group = %@", homeGroupName);
-                   // if (homeGroupName != nil) {
-                     //   NSLog(@"Home group set");
-                      //  [userDefaults setObject:@"inGroup" forKey:@"HomeGroupSet"];
-                       // [userDefaults synchronize];
-                        [self switchToMainView];
-                   // } else {
-                     //   NSLog(@"Need to set home group");
-                       // needToSelectHomeGroup = true;
-                       // [self loadHomeGroupSelect];
-                   // }
-                }
-            }];
-            
-        }
+    else {
+        // enable notifications
+        PFInstallation *installation = [PFInstallation currentInstallation];
+        installation[@"user"] = [PFUser currentUser];
+        [installation saveInBackground];
+        [self switchToMainView];
     }
 }
-// MILESTONE 1:3 (Facebook Log In), and 1:6 (manual and facebook email match error)
+
 // WHEN USER LOG IN IS SUCCESSFUL
 -(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
 {
@@ -234,52 +206,32 @@
                                  {
                                      [userDefaults setObject:@"NO" forKey:@"sharePermission"];
                                      [userDefaults synchronize];
-                                     //NSLog(@"saving %@ for full name, and %@ for email", facebookUserName, facebookUserEmail);
                                      // Get their list of friends
                                      [self findFacebookFriends];
-                                     // Finally, close the log in view and present the next view
-                                     //[self facebookRequestDidLoad:result];
-                                   //  if (needToSelectHomeGroup) {
-                                         // load home group page
-                                     //    [self loadHomeGroupSelect];
-                                     //} else {
-                                         //switch to main view
-                                         [self switchToMainView];
-                                     //}
+                                     [self switchToMainView];
                                  }
                              }];
                              
                          }
-                         else
-                         {
-                             //NSLog(@"This person already registered");
-                             // Update the cache with their facebook friends
-                             [self findFacebookFriends];
-                             // This person already registered, update the user permission default for this device
-                             [userDefaults setObject:permissionString forKey:@"sharePermission"];
-                             [userDefaults setObject:fbLinkable forKey:@"FBLinkable"];
-                             [userDefaults synchronize];
-                          //   if (needToSelectHomeGroup) {
-                                 // load home group page
-                            //     [self loadHomeGroupSelect];
-                            // } else {
-                                 //switch to main view
-                                 [self switchToMainView];
-                             //}
-                         }
+                         else {
+                            // Update the cache with their facebook friends
+                            [self findFacebookFriends];
+                            // This person already registered, update the user permission default for this device
+                            [userDefaults setObject:permissionString forKey:@"sharePermission"];
+                            [userDefaults setObject:fbLinkable forKey:@"FBLinkable"];
+                            [userDefaults synchronize];
+                            //switch to main view
+                            [self switchToMainView];
+                        }
                          
                      }
                  }];
-             }
-             else
-                 //Find out what went wrong
-             {
+             }  else {
                  NSLog(@"%@", error);
              }
          }];
     }
-    else if (!userLinkedWithFacebook)
-    {   // User logged in manually, find their current permission and fblinkable status
+    else if (!userLinkedWithFacebook) {   // User logged in manually, find their current permission and fblinkable status
         //NSLog(@"The user logged in manually");
         
         PFQuery* userQuery = [PFUser query];
@@ -292,7 +244,6 @@
                 NSString* permissionString = [object objectForKey:@"sharePermission"];
                 NSString* fbLinkable = [object objectForKey:@"FbLinkable"];
                 NSString* homeGroupName = [object objectForKey:@"group"];
-                //NSLog(@"Permission = %@, Facebook linkable = %@, Home Group = %@", permissionString, fbLinkable, homeGroupName);
                 [userDefaults setObject:permissionString forKey:@"sharePermission"];
                 [userDefaults setObject:fbLinkable forKey:@"FBLinkable"];
                 [userDefaults synchronize];
@@ -304,44 +255,156 @@
                     //NSLog(@"Need to set home group");
                     needToSelectHomeGroup = true;
                 }
-              //  if (needToSelectHomeGroup) {
-                    // load home group page
-                //    [self loadHomeGroupSelect];
-                //} else {
-                    //NSLog(@"Loading Main View");
-                    //switch to main view
-                    [self switchToMainView];
-                //}
+                [self switchToMainView];
             }
         }];
     }
 }
 
+-(void) didLogInUser:(PFUser *)user {
+    NSLog(@"User logged in through facebook and returend to the app delegate.");
+    // Check to see if user is linked with facebook
+    BOOL userLinkedWithFacebook = [PFFacebookUtils isLinkedWithUser:user];
+    needToSelectHomeGroup = false;
+    if (userLinkedWithFacebook)
+    {
+        //NSLog(@"The user logged in through Facebook");
+        // If the user is linked, make a request for their data
+        [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error)
+         {
+             if (!error)
+             {
+                 // get the result
+                 NSLog(@"%@", result);
+                 facebookUserName = [result objectForKey:@"name"];
+                 facebookUserEmail = [[result objectForKey:@"email"] lowercaseString]; // For case insensitivity
+                 NSString* userId = [result objectForKey:@"id"];
+                 // get the user's current profile picture
+                 NSURL* userProfilePictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large",userId]];
+                 // Make the request for the image, and set it to expire in 10 days (per Facebook policy)
+                 NSURLRequest* profilePicURLRequest = [NSURLRequest requestWithURL:userProfilePictureURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0f];
+                 // Send the request
+                 [NSURLConnection connectionWithRequest:profilePicURLRequest delegate:self];
+                 // Use the NSURLConnectionDataDelegate to get the data
+                 
+                 // Make a query to verify that the user has not tried to connect with a Facebook email address that was user to register manually
+                 PFQuery* userQuery = [PFUser query];
+                 [userQuery whereKey:@"username" equalTo:[[PFUser currentUser]username]];
+                 [userQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
+                     // this is a previously registered user
+                     if (object)
+                     {
+                         // Find out if this is a new user by checkinf if permission default was set
+                         NSString* permissionString = [object objectForKey:@"sharePermission"];
+                         NSString* fbLinkable = [object objectForKey:@"FBLinkable"];
+                         NSString* homeGroupName = [object objectForKey:@"group"];
+                         //NSLog(@"Permission = %@, Facebook linkable = %@, Home Group = %@", permissionString, fbLinkable, homeGroupName);
+                         needToSelectHomeGroup = false;
+                         if (homeGroupName != nil) {
+                             NSLog(@"Home group set");
+                             [userDefaults setObject:@"inGroup" forKey:@"HomeGroupSet"];
+                             [userDefaults synchronize];
+                             needToSelectHomeGroup = false;
+                         } else {
+                             //NSLog(@"Need to set home group");
+                             needToSelectHomeGroup = true;
+                             //[self loadHomeGroupSelect];
+                         }
+                         // If not there, this is a new user
+                         if (permissionString == nil)
+                         {
+                             //NSLog(@"This is a new user");
+                             // User this persons facebook name, email, and id to register them
+                             user.email = facebookUserEmail;
+                             [user setObject:facebookUserName forKey:@"UsersFullName"];
+                             [user setObject:userId forKey:@"facebookId"];
+                             [user setObject:@"NO" forKey:@"sharePermission"];
+                             [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                 if (error) {
+                                     
+                                     // If the error code is 203, then we already have this user's email in the database, alert the user they can connect this account in settings (prevents double log ins)
+                                     NSLog(@"%ld", (long)error.code);
+                                     if (error.code == 203)
+                                     {
+                                         // this email is already registered
+                                         [[[UIAlertView alloc] initWithTitle:@"Wow, you're awesome!"  message:@"Looks like you have registered already. You can sign in with your username then link to Facebook in your Profile." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                                     }
+                                     // delete the user that was created as part of Parse's Facebook login
+                                     [user deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                         if (succeeded)
+                                         {
+                                             // Remove Facebook information too
+                                             [[FBSession activeSession] closeAndClearTokenInformation];
+                                         }
+                                     }];
+                                 } else if (succeeded)
+                                 {
+                                     [userDefaults setObject:@"NO" forKey:@"sharePermission"];
+                                     [userDefaults synchronize];
+                                     // Get their list of friends
+                                     [self findFacebookFriends];
+                                     [self switchToMainView];
+                                 }
+                             }];
+                             
+                         }
+                         else {
+                             // Update the cache with their facebook friends
+                             [self findFacebookFriends];
+                             // This person already registered, update the user permission default for this device
+                             [userDefaults setObject:permissionString forKey:@"sharePermission"];
+                             [userDefaults setObject:fbLinkable forKey:@"FBLinkable"];
+                             [userDefaults synchronize];
+                             //switch to main view
+                             [self switchToMainView];
+                         }
+                         
+                     }
+                 }];
+             }  else {
+                 NSLog(@"%@", error);
+             }
+         }];
+    }
+    else if (!userLinkedWithFacebook) {   // User logged in manually, find their current permission and fblinkable status
+        //NSLog(@"The user logged in manually");
+        
+        PFQuery* userQuery = [PFUser query];
+        [userQuery whereKey:@"username" equalTo:[[PFUser currentUser]username]];
+        [userQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
+            // this is a previously registered user
+            if (object)
+            {
+                // Update the nsuser defaults
+                NSString* permissionString = [object objectForKey:@"sharePermission"];
+                NSString* fbLinkable = [object objectForKey:@"FbLinkable"];
+                NSString* homeGroupName = [object objectForKey:@"group"];
+                [userDefaults setObject:permissionString forKey:@"sharePermission"];
+                [userDefaults setObject:fbLinkable forKey:@"FBLinkable"];
+                [userDefaults synchronize];
+                if (homeGroupName != nil) {
+                    needToSelectHomeGroup = false;
+                    [userDefaults setObject:@"inGroup" forKey:@"HomeGroupSet"];
+                    [userDefaults synchronize];
+                } else {
+                    //NSLog(@"Need to set home group");
+                    needToSelectHomeGroup = true;
+                }
+                [self switchToMainView];
+            }
+        }];
+    }
 
-/*
--(void)loadHomeGroupSelect
-{
-    //NSLog(@"Loading test view from App Delegate");
-    GroupRegionsViewController* regionsTVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GroupRegionsVC"];
-    self.window.rootViewController = regionsTVC;
 }
-*/
--(void)switchToMainView
-{
+
+-(void)switchToMainView {
     RootViewController* rootVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootView"];
     self.window.rootViewController = rootVC;
 }
 
--(void)switchToLogInView
-{
-    // Create the log in screen, and set this as the delegate
-    LogInViewController* logInVc = [[LogInViewController alloc] init];
-    [logInVc setDelegate:self];
-    
-    // Add FACEBOOK Permissions and the fields for them
-    logInVc.facebookPermissions = @[@"public_profile", @"email"];
-    logInVc.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten;
-    self.window.rootViewController = logInVc;
+-(void)switchToLogInView {
+    LogInViewController* logInVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"logInVc"];
+    self.window.rootViewController = logInVC;
 }
 
 -(void)logOutUser {
@@ -349,6 +412,8 @@
     [userDefaults removeObjectForKey:@"sharePermission"];
     [userDefaults removeObjectForKey:@"FBLinkable"];
     [userDefaults removeObjectForKey:@"HomeGroupSet"];
+    [userDefaults removeObjectForKey:@"com.parse.Engage.userDefaults.cache.facebookFriends"];
+    [userDefaults removeObjectForKey:@"com.Engage.userDefaults.activityviewcontroller.lastRefresh"];
     [userDefaults synchronize];
     
     // empty the cache
@@ -393,7 +458,12 @@
         // If the push notification payload references a photo, we will attempt to push this view controller into view
         NSString *photoObjectId = [remoteNotificationPayload objectForKey:PushPayloadPhotoObjectIdKey];
         if (photoObjectId && photoObjectId.length > 0) {
-            [self shouldNavigateToStory:[PFObject objectWithoutDataWithClassName:@"Testimonies" objectId:photoObjectId]];
+            // set this to nsuserdefaults to get on main feed load
+            [userDefaults setObject:photoObjectId forKey:@"Engage.Notif.Story"];
+            [userDefaults setObject:@"YES" forKey:@"Engage.Notif.OpenPostView"];
+            [userDefaults synchronize];
+            [self switchToMainView];
+             NSLog(@"Recieved push notification from app delegate, need to move to story comment view");
             return;
         }
         
@@ -404,16 +474,12 @@
             query.cachePolicy = kPFCachePolicyCacheElseNetwork;
             [query getObjectInBackgroundWithId:fromObjectId block:^(PFObject *user, NSError *error) {
                 if (!error) {
-                    // Display the main feed, the the profile view
-                    RootViewController* rootVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootView"];
-                    self.window.rootViewController = rootVC;
+                    // set this to nsuserdefaults to get on main feed load
+                    [userDefaults setObject:fromObjectId forKey:@"Engage.Notif.User"];
+                    [userDefaults setObject:@"YES" forKey:@"Engage.Notif.OpenUserView"];
+                    [userDefaults synchronize];
+                    [self switchToMainView];
                     NSLog(@"Recieved push notification from app delegate, need to move to user view");
-                    // UINavigationController *homeNavigationController = self.tabBarController.viewControllers[PAPHomeTabBarItemIndex];
-                    // self.tabBarController.selectedViewController = homeNavigationController;
-                    
-                    // PAPAccountViewController *accountViewController = [[PAPAccountViewController alloc] initWithStyle:UITableViewStylePlain];
-                    // accountViewController.user = (PFUser *)user;
-                    // [homeNavigationController pushViewController:accountViewController animated:YES];
                 }
             }];
         }
@@ -455,7 +521,47 @@
     };
     [hostReach startNotifier];
 }
+/*
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    BOOL wasHandled = false;
+    
+    if ([PFFacebookUtils session]) {
+        wasHandled |= [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:[PFFacebookUtils session]];
+    } else {
+        wasHandled |= [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+    }
+    
+    wasHandled |= [self handleActionURL:url];
+    
+    return wasHandled;
+}
+*/
 
+- (void)registerForRemoteNotification {
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+        UIUserNotificationType types = UIUserNotificationTypeSound | UIUserNotificationTypeBadge | UIUserNotificationTypeAlert;
+        UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+    } else {
+        
+         // Enable Push Notifications
+         UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+         UIUserNotificationTypeBadge |
+         UIUserNotificationTypeSound);
+         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+         categories:nil];
+         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+         //[[UIApplication sharedApplication] registerForRemoteNotifications];
+         
+      //  [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+    }
+}
+
+#ifdef __IPHONE_8_0
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    [application registerForRemoteNotifications];
+}
+#endif
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if (application.applicationIconBadgeNumber != 0) {
@@ -464,6 +570,7 @@
     
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
+    //currentInstallation.channels = @[ @"laborers" ];
     [currentInstallation saveInBackground];
 }
 
@@ -474,23 +581,41 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+    /*
     [[NSNotificationCenter defaultCenter] postNotificationName:AppDelegateApplicationDidReceiveRemoteNotification object:nil userInfo:userInfo];
     
     if ([UIApplication sharedApplication].applicationState != UIApplicationStateActive) {
         // Track app opens due to a push notification being acknowledged while the app wasn't active.
         [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
-    }
+    }*/
     
 }
-- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
-{
+
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    
+    // Clear badge and update installation, required for auto-incrementing badges.
+    if (application.applicationIconBadgeNumber != 0) {
+        application.applicationIconBadgeNumber = 0;
+        [[PFInstallation currentInstallation] saveInBackground];
+    }
+    
+    // Clears out all notifications from Notification Center.
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    application.applicationIconBadgeNumber = 1;
+    application.applicationIconBadgeNumber = 0;
+    
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+}
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
     NSUInteger orientations = UIInterfaceOrientationMaskAll;
     
     if ([MZFormSheetController formSheetControllersStack] > 0) {
         MZFormSheetController *viewController = [[MZFormSheetController formSheetControllersStack] lastObject];
         return [viewController.presentedFSViewController supportedInterfaceOrientations];
     }
-    
     return orientations;
 }
 
@@ -533,12 +658,6 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Facebook callback
-    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {

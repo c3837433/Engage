@@ -9,7 +9,6 @@
 #import "FindFriendTableViewController.h"
 #import "PostTableViewController.h"
 #import "UserDetailsViewController.h"
-#import "AddStoryViewController.h"
 #import "TextCommentDetailViewController.h"
 #import "MediaCommentDetailViewController.h"
 #import "Utility.h"
@@ -22,8 +21,14 @@
 #import "CustomAlertView.h"
 #import "MZCustomTransition.h"
 #import "LeftPanelViewController.h"
+#import "EmptyFeedView.h"
+#import "ApplicationKeys.h"
 
-@implementation PostTableViewController
+@implementation PostTableViewController {
+
+    BOOL firstPull;
+
+}
 
 @synthesize actionButton, segmentedControl, controlItems;
 
@@ -39,7 +44,7 @@
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
         // The number of user stories to show per page
-        self.objectsPerPage = 5;
+        self.objectsPerPage = 25;
     }
     return self;
 }
@@ -81,6 +86,7 @@
             [query orderByDescending:@"createdAt"];
             // remove any stories that are flagged
             [query whereKeyDoesNotExist:@"Flagged"];
+            firstPull = true;
             return query;
             break;
         case 1:
@@ -115,18 +121,90 @@
             return query;
             break;
     }
-    
-    // If there is no network connection, we will hit the cache first.
     if (self.objects.count == 0 || ![[UIApplication sharedApplication].delegate performSelector:@selector(isParseReachable)]) {
         [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
     }
     return query;
 }
 
+
+// PREPARE FOR EMPTY TABLE VIEW
+- (void)objectsDidLoad:(NSError *)error {
+ 
+    [super objectsDidLoad:error];
+    if (self.objects.count == 0) {
+    NSLog(@"there are: %ld objects loaded", (unsigned long)self.objects.count);
+    NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"EmptyLocalFeed"
+                                                       owner:self
+                                                     options:nil];
+    EmptyFeedView* emptyView;
+    for (id object in nibViews) {
+        if ([object isKindOfClass:[EmptyFeedView class]]) {
+            emptyView = (EmptyFeedView *)object;
+            break;
+        }
+    }
+    assert(emptyView != nil && "blah can't be nil");
+    self.tableView.backgroundView = emptyView;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        if (firstPull) {
+            //[self.tableView reloadData];
+        //    [self refreshSegments:nil];
+          //  [self loadObjects];
+          //    [self loadObjects];
+            firstPull = false;
+        }
+    } else {
+        self.tableView.backgroundView = nil;
+    }
+}
+/*
+-(void) objectsWillLoad {
+    NSLog(@"Objects loading");
+    if (self.objects.count == 0) {
+        NSLog(@"there are: %ld objects loaded", self.objects.count);
+        NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"EmptyLocalFeed"
+                                                          owner:self
+                                                        options:nil];
+        EmptyFeedView* emptyView;
+        for (id object in nibViews) {
+            if ([object isKindOfClass:[EmptyFeedView class]]) {
+                emptyView = (EmptyFeedView *)object;
+                break;
+            }
+        }
+        assert(emptyView != nil && "blah can't be nil");
+        self.tableView.backgroundView = emptyView;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        if (firstPull) {
+            //[self.tableView reloadData];
+            //    [self refreshSegments:nil];
+            //  [self loadObjects];
+            //    [self loadObjects];
+            firstPull = false;
+        }
+    } else {
+        self.tableView.backgroundView = nil;
+    }
+}
+ */
 #pragma mark - VIEW CONTROLLER METHODS
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    firstPull = true;
+    
+    // check if user opened app from notification
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([[userDefaults objectForKey:@"Engage.Notif.OpenPostView"] isEqualToString:@"YES"]) {
+        // get the object id
+        NSString* postId = [userDefaults objectForKey:@"Engage.Notif.Story"];
+        NSLog(@"The user opened app from notification and needs to view story: %@", postId);
+    } else if ([[userDefaults objectForKey:@"Engage.Notif.OpenUserView"] isEqualToString:@"YES"]) {
+        // get the object id
+        NSString* postId = [userDefaults objectForKey:@"Engage.Notif.User"];
+        NSLog(@"The user opened app from notification and needs to view user: %@", postId);
+    }
+    
     controlItems = @[@"Global Stories", @"Local Stories"];
     searchBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(menuButtonPressed:)];
     // create the two buttons
@@ -195,10 +273,6 @@
     }];
 }
 
--(void) viewController:(UIViewController *)viewController returnPostSaved:(BOOL)saved {
-    NSLog(@"Returned from post with saved %d", saved);
-}
-
 // Reload the table when returning from comment view
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -243,7 +317,7 @@
         PostTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InSetPostTextButtonsCell"];
         if (cell != nil) {
             // Set the saying to the cell
-            PFObject* saying = self.objects[indexPath.row];
+           // PFObject* saying = self.objects[indexPath.row];
             // Set up buttons
             [cell.likeButton setTag:indexPath.row];
             cell.commentButton.tag = indexPath.row;
@@ -334,6 +408,10 @@
     return cell;
 }
 
+#pragma mark - Add Post Delegate
+-(void) viewController:(UIViewController *)viewController returnPostSaved:(BOOL)saved {
+    NSLog(@"Returned from post with saved %d", saved);
+}
 
 #pragma mark - Segue Methods //textCommentSegue  postImageSegueToComment
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton*)sender
@@ -550,7 +628,7 @@
     [[Cache sharedCache] setPhotoIsLikedByCurrentUser:story liked:liked];
     
     if (liked) {
-        NSLog(@"Liking text story");
+        NSLog(@"Liking post story");
         [Utility likeStoryInBackground:story block:^(BOOL succeeded, NSError *error) {
             // get this cell
             PostTextCell* postCell = (PostTextCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
@@ -558,7 +636,7 @@
             [postCell setLikeStatus:succeeded];
         }];
     } else {
-        NSLog(@"Unliking text story");
+        NSLog(@"Unliking post story");
         [Utility unlikeStoryInBackground:story block:^(BOOL succeeded, NSError *error) {
             PostTextCell* postCell = (PostTextCell *)[self tableView:self.tableView  cellForRowAtIndexPath:indexPath];
             [postCell shouldEnableLikeButton:YES];

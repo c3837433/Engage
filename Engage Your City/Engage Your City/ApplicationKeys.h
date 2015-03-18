@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 // Font Definitions
 #define aFont @"AvenirNext-Regular"
+#define aFontBold @"AvenirNext-Bold"
+#define aFontMed @"AvenirNext-Medium"
+#define aFontItalic @"AvenirNext-Italic"
+#define aFontHeavyItalic @"AvenirNext-HeavyItalic"
 
 
 // Segmented Controller 
@@ -45,6 +49,8 @@
 #define aUserFBLinkable @"FBLInkable"
 #define aUserFaceBookId @"facebookId"
 #define aUserAutoFollowFB @"autoFollowFB"
+#define aUserAboutMe @"AboutMe"
+#define aUserLocationName @"Location"
 
 
 
@@ -102,3 +108,11 @@ extern NSString *const PushPayloadActivityFollowKey;
 extern NSString *const PushPayloadFromUserObjectIdKey;
 extern NSString *const PushPayloadToUserObjectIdKey;
 extern NSString *const PushPayloadPhotoObjectIdKey;
+
+
+#define iPhoneVersion ([[UIScreen mainScreen] bounds].size.height == 568 ? 5 : ([[UIScreen mainScreen] bounds].size.height == 480 ? 4 : ([[UIScreen mainScreen] bounds].size.height == 667 ? 6 : ([[UIScreen mainScreen] bounds].size.height == 736 ? 61 : 999))))
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)

@@ -15,10 +15,10 @@
 
 - (void)imagePickerDidSelectImageForType:(NSString*)type imageData:(NSData*)imageData  andImage:(UIImage *)image;
 
-- (void)imagePickerDidCreateVideoForType:(NSString*)type videoData:(NSData*)videoData  videoThumbData:(NSData*)videothumbData withImage:(UIImage*)image;
-
 
 @optional
+
+- (void)imagePickerDidCreateVideoForType:(NSString*)type videoData:(NSData*)videoData  videoThumbData:(NSData*)videothumbData withImage:(UIImage*)image;
 - (void)imagePickerDidOpen;
 - (void)imagePickerWillOpen;
 
@@ -36,6 +36,7 @@
 @property (nonatomic, assign) id<JSImagePickerViewControllerDelegate> delegate;
 
 @property bool isVisible;
+@property BOOL doesNeedVideo;
 
 - (void)showImagePickerInController:(UIViewController *)controller;
 

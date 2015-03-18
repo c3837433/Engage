@@ -48,7 +48,7 @@ dependencies: \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CustomAddPostViewController.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/JSImagePickerViewController.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/UserDetailsViewController.h \
-  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/AddStoryViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CustomEditProfileViewController.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/TextCommentDetailViewController.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CommentCell.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/MediaCommentDetailViewController.h \
@@ -59,4 +59,6 @@ dependencies: \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/AppDelegate.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/CustomAlertView.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/MZCustomTransition.h \
-  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/LeftPanelViewController.h
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/LeftPanelViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/EmptyFeedView.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/ApplicationKeys.h

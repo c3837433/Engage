@@ -30,7 +30,6 @@
 		99124B6D1A9D61A7000708A5 /* PostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99124B641A9D61A7000708A5 /* PostTableViewController.m */; };
 		99124B6E1A9D61A7000708A5 /* PostTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99124B661A9D61A7000708A5 /* PostTextCell.m */; };
 		99124B6F1A9D61A7000708A5 /* TextCommentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99124B681A9D61A7000708A5 /* TextCommentDetailViewController.m */; };
-		99124B7B1A9D6246000708A5 /* AddStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99124B741A9D6246000708A5 /* AddStoryViewController.m */; };
 		99124B7C1A9D6246000708A5 /* FindStoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99124B761A9D6246000708A5 /* FindStoriesViewController.m */; };
 		99124B7D1A9D6246000708A5 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99124B781A9D6246000708A5 /* FriendCell.m */; };
 		99124B7E1A9D6246000708A5 /* HashTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99124B7A1A9D6246000708A5 /* HashTagViewController.m */; };
@@ -67,12 +66,20 @@
 		995AC0A01A9E52F600622B55 /* CustomSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 995AC09F1A9E52F600622B55 /* CustomSearchViewController.m */; };
 		995AC0A31A9E765100622B55 /* MZCustomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 995AC0A21A9E765100622B55 /* MZCustomTransition.m */; };
 		995AC0A61A9E773B00622B55 /* CustomSearchNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 995AC0A51A9E773B00622B55 /* CustomSearchNavController.m */; };
+		998D92D21AB7F2E700B51D65 /* FollowFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998D92D11AB7F2E700B51D65 /* FollowFriendsViewController.m */; };
+		998D92D51AB8CD8F00B51D65 /* CustomEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998D92D41AB8CD8F00B51D65 /* CustomEditProfileViewController.m */; };
+		99A2223A1AA1769F00EDA804 /* ActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A222391AA1769F00EDA804 /* ActivityCell.m */; };
+		99A2223F1AA17C5A00EDA804 /* MZSelectableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A2223C1AA17C5A00EDA804 /* MZSelectableLabel.m */; };
+		99A222401AA17C5A00EDA804 /* UIColor+Equalable.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A2223E1AA17C5A00EDA804 /* UIColor+Equalable.m */; };
+		99D693A31AA3BB4B00C3E0B8 /* UserActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D693A21AA3BB4B00C3E0B8 /* UserActivityViewController.m */; };
 		99EE89E61A9D6C7C0069558E /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EE89E51A9D6C7C0069558E /* ProfileImageView.m */; };
 		99EE89E91A9D6CBC0069558E /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EE89E81A9D6CBC0069558E /* CustomAlertView.m */; };
 		99EE89EB1A9D6D760069558E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99EE89EA1A9D6D760069558E /* UIKit.framework */; };
 		99EE89ED1A9D6D7D0069558E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99EE89EC1A9D6D7D0069558E /* Foundation.framework */; };
 		99EE89EF1A9D6F810069558E /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99EE89EE1A9D6F810069558E /* libstdc++.6.dylib */; };
 		99EE89F11A9D6FCA0069558E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99EE89F01A9D6FCA0069558E /* Social.framework */; };
+		99F392731AB664B50098B172 /* EmptyLocalFeed.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F392721AB664B50098B172 /* EmptyLocalFeed.xib */; };
+		99F392761AB668D70098B172 /* EmptyFeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F392751AB668D70098B172 /* EmptyFeedView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,8 +139,6 @@
 		99124B661A9D61A7000708A5 /* PostTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTextCell.m; sourceTree = "<group>"; };
 		99124B671A9D61A7000708A5 /* TextCommentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCommentDetailViewController.h; sourceTree = "<group>"; };
 		99124B681A9D61A7000708A5 /* TextCommentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCommentDetailViewController.m; sourceTree = "<group>"; };
-		99124B731A9D6246000708A5 /* AddStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStoryViewController.h; sourceTree = "<group>"; };
-		99124B741A9D6246000708A5 /* AddStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStoryViewController.m; sourceTree = "<group>"; };
 		99124B751A9D6246000708A5 /* FindStoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindStoriesViewController.h; sourceTree = "<group>"; };
 		99124B761A9D6246000708A5 /* FindStoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindStoriesViewController.m; sourceTree = "<group>"; };
 		99124B771A9D6246000708A5 /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
@@ -190,14 +195,29 @@
 		995AC0A21A9E765100622B55 /* MZCustomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZCustomTransition.m; sourceTree = "<group>"; };
 		995AC0A41A9E773B00622B55 /* CustomSearchNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomSearchNavController.h; path = ../CustomSearchNavController.h; sourceTree = "<group>"; };
 		995AC0A51A9E773B00622B55 /* CustomSearchNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomSearchNavController.m; path = ../CustomSearchNavController.m; sourceTree = "<group>"; };
-		99EE89E41A9D6C7C0069558E /* ProfileImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileImageView.h; sourceTree = "<group>"; };
-		99EE89E51A9D6C7C0069558E /* ProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageView.m; sourceTree = "<group>"; };
+		998D92D01AB7F2E700B51D65 /* FollowFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowFriendsViewController.h; sourceTree = "<group>"; };
+		998D92D11AB7F2E700B51D65 /* FollowFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowFriendsViewController.m; sourceTree = "<group>"; };
+		998D92D31AB8CD8F00B51D65 /* CustomEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEditProfileViewController.h; sourceTree = "<group>"; };
+		998D92D41AB8CD8F00B51D65 /* CustomEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEditProfileViewController.m; sourceTree = "<group>"; };
+		99A222381AA1769F00EDA804 /* ActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCell.h; sourceTree = "<group>"; };
+		99A222391AA1769F00EDA804 /* ActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCell.m; sourceTree = "<group>"; };
+		99A2223B1AA17C5A00EDA804 /* MZSelectableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSelectableLabel.h; sourceTree = "<group>"; };
+		99A2223C1AA17C5A00EDA804 /* MZSelectableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZSelectableLabel.m; sourceTree = "<group>"; };
+		99A2223D1AA17C5A00EDA804 /* UIColor+Equalable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Equalable.h"; sourceTree = "<group>"; };
+		99A2223E1AA17C5A00EDA804 /* UIColor+Equalable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Equalable.m"; sourceTree = "<group>"; };
+		99D693A11AA3BB4B00C3E0B8 /* UserActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserActivityViewController.h; sourceTree = "<group>"; };
+		99D693A21AA3BB4B00C3E0B8 /* UserActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserActivityViewController.m; sourceTree = "<group>"; };
+		99EE89E41A9D6C7C0069558E /* ProfileImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileImageView.h; path = ../ProfileImageView.h; sourceTree = "<group>"; };
+		99EE89E51A9D6C7C0069558E /* ProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageView.m; path = ../ProfileImageView.m; sourceTree = "<group>"; };
 		99EE89E71A9D6CBC0069558E /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
 		99EE89E81A9D6CBC0069558E /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
 		99EE89EA1A9D6D760069558E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		99EE89EC1A9D6D7D0069558E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		99EE89EE1A9D6F810069558E /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		99EE89F01A9D6FCA0069558E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		99F392721AB664B50098B172 /* EmptyLocalFeed.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyLocalFeed.xib; sourceTree = "<group>"; };
+		99F392741AB668D70098B172 /* EmptyFeedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyFeedView.h; sourceTree = "<group>"; };
+		99F392751AB668D70098B172 /* EmptyFeedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyFeedView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +312,10 @@
 		99124B4B1A9D5D9C000708A5 /* Helper Files */ = {
 			isa = PBXGroup;
 			children = (
+				999C5ED61AA3EE2100E4034E /* Transition for Custom Form */,
+				999C5ED51AA3EDF300E4034E /* Custom Alert */,
+				99A222411AA17C6400EDA804 /* Selectable Label */,
+				99A222421AA17C7300EDA804 /* Image Picker */,
 				99124B3E1A9D5BF9000708A5 /* UIImage */,
 				99124B571A9D5EE2000708A5 /* Reachability.h */,
 				99124B581A9D5EE2000708A5 /* Reachability.m */,
@@ -347,6 +371,9 @@
 				99124B641A9D61A7000708A5 /* PostTableViewController.m */,
 				99124B861A9D62B3000708A5 /* Story Cells */,
 				99124B851A9D629F000708A5 /* Extension Views */,
+				99F392721AB664B50098B172 /* EmptyLocalFeed.xib */,
+				99F392741AB668D70098B172 /* EmptyFeedView.h */,
+				99F392751AB668D70098B172 /* EmptyFeedView.m */,
 			);
 			name = "Main Feed";
 			sourceTree = "<group>";
@@ -365,8 +392,6 @@
 		99124B801A9D6276000708A5 /* Add Story */ = {
 			isa = PBXGroup;
 			children = (
-				99124B731A9D6246000708A5 /* AddStoryViewController.h */,
-				99124B741A9D6246000708A5 /* AddStoryViewController.m */,
 				9922B01E1A9F815C00FB077E /* CustomAddPostViewController.h */,
 				9922B01F1A9F815C00FB077E /* CustomAddPostViewController.m */,
 			);
@@ -412,6 +437,10 @@
 			children = (
 				99124B881A9D6335000708A5 /* ActivityViewController.h */,
 				99124B891A9D6335000708A5 /* ActivityViewController.m */,
+				99D693A11AA3BB4B00C3E0B8 /* UserActivityViewController.h */,
+				99D693A21AA3BB4B00C3E0B8 /* UserActivityViewController.m */,
+				99A222381AA1769F00EDA804 /* ActivityCell.h */,
+				99A222391AA1769F00EDA804 /* ActivityCell.m */,
 			);
 			name = "Activity View";
 			sourceTree = "<group>";
@@ -440,6 +469,10 @@
 				99EE89F21A9D86A30069558E /* User Story Cells */,
 				99124B981A9D64F4000708A5 /* UserDetailsViewController.h */,
 				99124B991A9D64F4000708A5 /* UserDetailsViewController.m */,
+				998D92D01AB7F2E700B51D65 /* FollowFriendsViewController.h */,
+				998D92D11AB7F2E700B51D65 /* FollowFriendsViewController.m */,
+				998D92D31AB8CD8F00B51D65 /* CustomEditProfileViewController.h */,
+				998D92D41AB8CD8F00B51D65 /* CustomEditProfileViewController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -458,14 +491,6 @@
 		994428E11A9D3E6D00DFAB49 = {
 			isa = PBXGroup;
 			children = (
-				9922B0231A9FD7CE00FB077E /* JSImagePickerViewController.h */,
-				9922B0241A9FD7CE00FB077E /* JSImagePickerViewController.m */,
-				995AC0A11A9E765100622B55 /* MZCustomTransition.h */,
-				995AC0A21A9E765100622B55 /* MZCustomTransition.m */,
-				99EE89E71A9D6CBC0069558E /* CustomAlertView.h */,
-				99EE89E81A9D6CBC0069558E /* CustomAlertView.m */,
-				99EE89E41A9D6C7C0069558E /* ProfileImageView.h */,
-				99EE89E51A9D6C7C0069558E /* ProfileImageView.m */,
 				994428EC1A9D3E6D00DFAB49 /* Engage Your City */,
 				994429061A9D3E6D00DFAB49 /* Engage Your CityTests */,
 				994429331A9D3F8200DFAB49 /* Frameworks */,
@@ -554,9 +579,53 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		999C5ED51AA3EDF300E4034E /* Custom Alert */ = {
+			isa = PBXGroup;
+			children = (
+				99EE89E71A9D6CBC0069558E /* CustomAlertView.h */,
+				99EE89E81A9D6CBC0069558E /* CustomAlertView.m */,
+			);
+			name = "Custom Alert";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		999C5ED61AA3EE2100E4034E /* Transition for Custom Form */ = {
+			isa = PBXGroup;
+			children = (
+				995AC0A11A9E765100622B55 /* MZCustomTransition.h */,
+				995AC0A21A9E765100622B55 /* MZCustomTransition.m */,
+			);
+			name = "Transition for Custom Form";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		99A222411AA17C6400EDA804 /* Selectable Label */ = {
+			isa = PBXGroup;
+			children = (
+				99A2223B1AA17C5A00EDA804 /* MZSelectableLabel.h */,
+				99A2223C1AA17C5A00EDA804 /* MZSelectableLabel.m */,
+				99A2223D1AA17C5A00EDA804 /* UIColor+Equalable.h */,
+				99A2223E1AA17C5A00EDA804 /* UIColor+Equalable.m */,
+			);
+			name = "Selectable Label";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		99A222421AA17C7300EDA804 /* Image Picker */ = {
+			isa = PBXGroup;
+			children = (
+				9922B0231A9FD7CE00FB077E /* JSImagePickerViewController.h */,
+				9922B0241A9FD7CE00FB077E /* JSImagePickerViewController.m */,
+			);
+			name = "Image Picker";
+			path = ..;
+			sourceTree = "<group>";
+		};
 		99EE89F21A9D86A30069558E /* User Story Cells */ = {
 			isa = PBXGroup;
 			children = (
+				99EE89E41A9D6C7C0069558E /* ProfileImageView.h */,
+				99EE89E51A9D6C7C0069558E /* ProfileImageView.m */,
 				99124B941A9D64F4000708A5 /* ProfileMediaStoryCell.h */,
 				99124B951A9D64F4000708A5 /* ProfileMediaStoryCell.m */,
 				99124B961A9D64F4000708A5 /* ProfileTextStoryCell.h */,
@@ -616,9 +685,11 @@
 				TargetAttributes = {
 					994428E91A9D3E6D00DFAB49 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 56R6M4W3X8;
 					};
 					994429021A9D3E6D00DFAB49 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 56R6M4W3X8;
 						TestTargetID = 994428E91A9D3E6D00DFAB49;
 					};
 				};
@@ -648,6 +719,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				994428F91A9D3E6D00DFAB49 /* Main.storyboard in Resources */,
+				99F392731AB664B50098B172 /* EmptyLocalFeed.xib in Resources */,
 				994428FE1A9D3E6D00DFAB49 /* LaunchScreen.xib in Resources */,
 				994428FB1A9D3E6D00DFAB49 /* Images.xcassets in Resources */,
 			);
@@ -705,14 +777,17 @@
 				99124B6F1A9D61A7000708A5 /* TextCommentDetailViewController.m in Sources */,
 				99124B371A9D5B42000708A5 /* OnLoadViewController.m in Sources */,
 				99124B6C1A9D61A7000708A5 /* PostImageCell.m in Sources */,
+				99A2223F1AA17C5A00EDA804 /* MZSelectableLabel.m in Sources */,
+				99D693A31AA3BB4B00C3E0B8 /* UserActivityViewController.m in Sources */,
 				99124B831A9D6289000708A5 /* FindFriendTableViewController.m in Sources */,
 				99124B361A9D5B42000708A5 /* MySignUpViewController.m in Sources */,
 				99124B6A1A9D61A7000708A5 /* CommentCell.m in Sources */,
+				99A2223A1AA1769F00EDA804 /* ActivityCell.m in Sources */,
 				99124B451A9D5C51000708A5 /* UIImage+AlphaAdditions.m in Sources */,
 				99124B381A9D5B42000708A5 /* RightPanelViewController.m in Sources */,
-				99124B7B1A9D6246000708A5 /* AddStoryViewController.m in Sources */,
 				994428F31A9D3E6D00DFAB49 /* AppDelegate.m in Sources */,
 				99124B531A9D5DBA000708A5 /* Cache.m in Sources */,
+				998D92D51AB8CD8F00B51D65 /* CustomEditProfileViewController.m in Sources */,
 				99124B7E1A9D6246000708A5 /* HashTagViewController.m in Sources */,
 				99124B7C1A9D6246000708A5 /* FindStoriesViewController.m in Sources */,
 				99124B921A9D64BB000708A5 /* SettingsTableViewController.m in Sources */,
@@ -720,6 +795,7 @@
 				99124B9B1A9D64F4000708A5 /* ProfileTextStoryCell.m in Sources */,
 				99124B391A9D5B42000708A5 /* RootViewController.m in Sources */,
 				9922B0251A9FD7CE00FB077E /* JSImagePickerViewController.m in Sources */,
+				99F392761AB668D70098B172 /* EmptyFeedView.m in Sources */,
 				99124B6B1A9D61A7000708A5 /* MediaCommentDetailViewController.m in Sources */,
 				99124B541A9D5DBA000708A5 /* Utility.m in Sources */,
 				99124B8A1A9D6335000708A5 /* ActivityViewController.m in Sources */,
@@ -730,6 +806,7 @@
 				99124B351A9D5B42000708A5 /* LogInViewController.m in Sources */,
 				99124B7D1A9D6246000708A5 /* FriendCell.m in Sources */,
 				99124B8E1A9D648B000708A5 /* HomeGroupsViewController.m in Sources */,
+				998D92D21AB7F2E700B51D65 /* FollowFriendsViewController.m in Sources */,
 				99124B521A9D5DBA000708A5 /* ApplicationKeys.m in Sources */,
 				99124B471A9D5C51000708A5 /* UIImage+RoundedCornerAdditions.m in Sources */,
 				99124B9C1A9D64F4000708A5 /* UserDetailsViewController.m in Sources */,
@@ -737,6 +814,7 @@
 				99124B461A9D5C51000708A5 /* UIImage+ResizeAdditions.m in Sources */,
 				99124B341A9D5B42000708A5 /* LeftPanelViewController.m in Sources */,
 				99EE89E61A9D6C7C0069558E /* ProfileImageView.m in Sources */,
+				99A222401AA17C5A00EDA804 /* UIColor+Equalable.m in Sources */,
 				99EE89E91A9D6CBC0069558E /* CustomAlertView.m in Sources */,
 				99124B6E1A9D61A7000708A5 /* PostTextCell.m in Sources */,
 				99124B591A9D5EE2000708A5 /* Reachability.m in Sources */,
@@ -799,7 +877,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Angela Smith (EBE28C48J6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Angela Smith (EBE28C48J6)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -819,6 +898,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "b01198fc-6325-47cc-be4e-fddc003b48e1";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -840,7 +920,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Angela Smith (EBE28C48J6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Angela Smith (EBE28C48J6)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -853,6 +934,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "b01198fc-6325-47cc-be4e-fddc003b48e1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -863,6 +945,8 @@
 			baseConfigurationReference = 0EC8CAC6BC02A07AC0CE6702 /* Pods-Engage Your City.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/angelasmith/Development/parse-library-1/parse-library-1.6.3",
@@ -871,6 +955,7 @@
 				INFOPLIST_FILE = "Engage Your City/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -880,6 +965,8 @@
 			baseConfigurationReference = 93B804704F4D1DA8EFB74993 /* Pods-Engage Your City.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/angelasmith/Development/parse-library-1/parse-library-1.6.3",
@@ -888,6 +975,7 @@
 				INFOPLIST_FILE = "Engage Your City/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -896,6 +984,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -907,6 +997,7 @@
 				INFOPLIST_FILE = "Engage Your CityTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Engage Your City.app/Engage Your City";
 			};
 			name = Debug;
@@ -915,6 +1006,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -922,6 +1015,7 @@
 				INFOPLIST_FILE = "Engage Your CityTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Engage Your City.app/Engage Your City";
 			};
 			name = Release;

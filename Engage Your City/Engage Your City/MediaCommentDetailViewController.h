@@ -19,7 +19,7 @@
 @property (nonatomic) CGFloat cellWidth;
 @property (nonatomic, strong) IBOutlet UIView* likesView;
 @property (nonatomic, strong) IBOutlet UIView* storyDetailView;
-@property (nonatomic, strong) UIButton* likeStoryButton;
+//@property (nonatomic, strong) UIButton* likeStoryButton;
 @property (nonatomic, strong) NSMutableArray *currentLikeAvatars;
 @property (nonatomic, assign) BOOL likersQueryInProgress;
 @property (nonatomic, strong) IBOutlet UILabel* postTitleLabel;

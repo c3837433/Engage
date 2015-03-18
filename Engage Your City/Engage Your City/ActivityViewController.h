@@ -9,10 +9,9 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 
-//#import "ActivityCell.h"
+#import "ActivityCell.h"
 
-@interface ActivityViewController : PFQueryTableViewController //<ActivityCellDelegate>
+@interface ActivityViewController : PFQueryTableViewController 
 
-+ (NSString *)stringForActivityType:(NSString *)activityType;
 
 @end

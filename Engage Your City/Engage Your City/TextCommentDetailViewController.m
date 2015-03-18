@@ -27,10 +27,10 @@
 - (id)initWithStory:(PFObject *)story {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
-       // self.thisStory = story;
+        // self.thisStory = story;
         story = self.thisStory;
         // The className to query on
-        self.parseClassName = @"Comment";
+        self.parseClassName = aActivityClass;
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
         // Whether the built-in pagination is enabled
@@ -46,18 +46,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // set up the story properties for the header
+    // Update the user if needed
+    PFUser* author = [thisStory objectForKey:@"author"];
+    [author fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        NSLog(@"This story author = %@", [object objectForKey:@"UsersFullName"]);
+    }];
     
+    // set up the story properties for the header
     // get the cell width
     self.cellWidth = self.tableView.frame.size.width;
     
     // BUILD THE STORY HEADER
     // get the height of the View
-
+    
     NSString* storyText = [thisStory objectForKey:@"story"];
     //float textHeight = [self getViewHeight:storyText];
     float stringHeight = [self getStringHeight:storyText];
-
+    
     // Update the frames
     CGRect textViewFrame = storyDetailView.frame;
     textViewFrame.origin.x = storyDetailView.frame.origin.x;
@@ -80,18 +85,19 @@
     
     self.tableView.estimatedRowHeight = 56;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-     [self setStory];
+    [self setStory];
     // [likeStoryButton addTarget:self action:@selector(didTapLikePhotoButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-  
-   [self reloadLikeBar];
+    
+    [self reloadLikeBar];
 }
 
 
 - (PFQuery *)queryForTable {
-
-    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
-    [query whereKey:@"onStory" equalTo:self.thisStory];
-    [query includeKey:@"fromUser"];
+    
+    PFQuery *query = [PFQuery queryWithClassName:aActivityClass];
+    [query whereKey:aActivityType equalTo:aActivityComment];
+    [query whereKey:aActivityStory equalTo:self.thisStory];
+    [query includeKey:aActivityFromUser];
     [query orderByAscending:@"createdAt"];
     
     [query setCachePolicy:kPFCachePolicyNetworkOnly];
@@ -101,10 +107,10 @@
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
     
-   // [self setStory];
+    // [self setStory];
     self.tableView.estimatedRowHeight = 56;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-
+    
 }
 
 
@@ -134,15 +140,15 @@
             }
             // add the liker to the liker list
             [likers addObject:[liker objectForKey:@"fromUser"]];
-
+            
         }
         [[Cache sharedCache] setLikeAttributesForStory:thisStory likers:likers likedByCurrentUser:isLikedByCurrentUser];
         [self reloadLikeBar];
-  }];
+    }];
 }
 
 - (void)setLikeUsers:(NSArray*)anArray {
-
+    
     [likeStoryButton setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)storyLikers.count] forState:UIControlStateNormal];
     
     NSInteger numOfLikes = storyLikers.count;
@@ -161,10 +167,12 @@
             // we have more than one
             if (numOfLikes == 2) {
                 // one other
-                extraTitleString = [NSString stringWithFormat:@"%lu other like this", numOfLikes - 1];
+                numOfLikes = numOfLikes - 1;
+                extraTitleString = [NSString stringWithFormat:@"%ld other like this", (long)numOfLikes];
             } else {
+                numOfLikes = numOfLikes - 1;
                 // multiple others
-                extraTitleString = [NSString stringWithFormat:@"%lu others like this", numOfLikes - 1];
+                extraTitleString = [NSString stringWithFormat:@"%lu others like this", numOfLikes];
             }
             [extraLikesButton setTitle:extraTitleString forState:UIControlStateNormal];
             [extraLikesButton setTitle:extraTitleString forState:UIControlStateHighlighted];
@@ -178,7 +186,7 @@
 }
 
 -(void)setStory {
-
+    
     [self.thisStory fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (object) {
             [self setUpStoryView:object];
@@ -193,7 +201,7 @@
     PFUser* thisPostAuthor = [thisStory objectForKey:aPostAuthor];
     //NSLog(@"This user = %@", thisPostAuthor);
     if ([thisPostAuthor objectForKey:aUserImage]) {
-      //  NSLog(@"This user has image");
+        //  NSLog(@"This user has image");
         PFFile* imageFile = [thisPostAuthor objectForKey:aUserImage];
         if ([imageFile isDataAvailable]) {
             postAuthorImage.file = imageFile;
@@ -203,7 +211,7 @@
             [postAuthorImage loadInBackground];
         }
     } else {
-      //  NSLog(@"The author has NO profile image");
+        //  NSLog(@"The author has NO profile image");
         postAuthorImage.image = [UIImage imageNamed:@"placeholder"];
     }
     
@@ -234,6 +242,7 @@
     
     [likeStoryButton setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)storyLikers.count] forState:UIControlStateNormal];
     NSInteger numOfLikes = storyLikers.count;
+   // int number = [[dict objectForKey:@"integer"] intValue];
     if (!numOfLikes == 0) {
         // we have likes
         // get that person's name and set it to the button
@@ -251,10 +260,12 @@
             // we have more than one
             if (numOfLikes == 2) {
                 // one other
-                extraTitleString = [NSString stringWithFormat:@"%lu other like this", numOfLikes - 1];
+                numOfLikes = numOfLikes - 1;
+                extraTitleString = [NSString stringWithFormat:@"%ld other like this", (long) numOfLikes];
             } else {
                 // multiple others
-                extraTitleString = [NSString stringWithFormat:@"%lu others like this", numOfLikes - 1];
+                numOfLikes = numOfLikes - 1;
+                extraTitleString = [NSString stringWithFormat:@"%ld other like this", (long) numOfLikes];
             }
             [extraLikesButton setTitle:extraTitleString forState:UIControlStateNormal];
             [extraLikesButton setTitle:extraTitleString forState:UIControlStateHighlighted];
@@ -267,7 +278,7 @@
     }
     // Add like action
     // [self.likeButton addTarget:self action:@selector(didTapTextLikeStoryButton:) forControlEvents:UIControlEventTouchUpInside];
-
+    
 }
 - (void)detailCommentCell:(CommentCell *)detailCommentCell didTapUserButton:(UIButton *)button user:(PFUser *)user {
     NSLog(@"User tapped user image or user name: %@", user);
@@ -312,14 +323,14 @@
 {
     if ([segue.identifier isEqualToString:@"segueToComment"])
     {
-       // PFObject* story = [self.objects objectAtIndex:sender.tag];
-       // AddStoryCommentViewController* addCommentVC = segue.destinationViewController;
-       // addCommentVC.thisStory = story;
+        // PFObject* story = [self.objects objectAtIndex:sender.tag];
+        // AddStoryCommentViewController* addCommentVC = segue.destinationViewController;
+        // addCommentVC.thisStory = story;
     }
     else if ([segue.identifier isEqualToString:@"textSegueToComment"])
     {
         //PFObject* story = [self.objects objectAtIndex:sender.tag];
-       // AddStoryCommentViewController* addCommentVC = segue.destinationViewController;
+        // AddStoryCommentViewController* addCommentVC = segue.destinationViewController;
         //addCommentVC.thisStory = story;
     }
 }
@@ -336,7 +347,7 @@
 - (void)reloadLikeBar {
     // NSLog(@"Loading like bar");
     storyLikers = [[Cache sharedCache] likersForPhoto:thisStory];
-   // [self setLikeUsers:storyLikers];
+    // [self setLikeUsers:storyLikers];
     [self setLikeButtonState:[[Cache sharedCache] isPhotoLikedByCurrentUser:thisStory]];
 }
 
@@ -431,52 +442,52 @@
         [self.tableView reloadData];
         return [textField resignFirstResponder];
     } else {
-    NSString* trimmedComment = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if (trimmedComment.length != 0 && [self.thisStory objectForKey:@"author"])
-    {
-        PFObject* newComment = [PFObject objectWithClassName:@"Comment"];
-        [newComment setObject:trimmedComment forKey:@"message"];
-        [newComment setObject:[self.thisStory objectForKey:@"author"] forKey:@"toUser"]; // Set toUser
-        [newComment setObject:[PFUser currentUser] forKey:@"fromUser"]; // Set fromUser
-        //[newComment setObject:@"comment" forKey:@"activityType"];
-        [newComment setObject:self.thisStory forKey:@"onStory"];
-
-        PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-        [ACL setPublicReadAccess:YES];
-        [ACL setWriteAccess:YES forUser:[self.thisStory objectForKey:@"author"]];
-        [ACL setWriteAccess:true forRoleWithName:@"Admin"];
-        [ACL setWriteAccess:true forUser:[PFUser currentUser]];
-        [ACL setWriteAccess:true forRoleWithName:@"GroupLead"];
-        newComment.ACL = ACL;
-        
-        [[Cache sharedCache] incrementCommentCountForPhoto:self.thisStory];
-        
-        // Show HUD view
-        [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
-        
-        // If more than 5 seconds pass since we post a comment, stop waiting for the server to respond
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(handleCommentTimeout:) userInfo:@{@"comment": newComment} repeats:NO];
-        
-        [newComment saveEventually:^(BOOL succeeded, NSError *error) {
-            [timer invalidate];
+        NSString* trimmedComment = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if (trimmedComment.length != 0 && [self.thisStory objectForKey:aPostAuthor]) {
+            PFObject* newComment = [PFObject objectWithClassName:aActivityClass];
+            [newComment setObject:trimmedComment forKey:aActivityCommentText];
+            [newComment setObject:[self.thisStory objectForKey:aPostAuthor] forKey:aActivityToUser]; // Set toUser
+            [newComment setObject:[PFUser currentUser] forKey:aActivityFromUser]; // Set fromUser
+            [newComment setObject:self.thisStory forKey:aActivityStory];
+            [newComment setObject:aActivityComment forKey:aActivityType];
             
-            if (error && error.code == kPFErrorObjectNotFound) {
-                 [[Cache sharedCache] decrementCommentCountForPhoto:self.thisStory];
-                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Could not post comment", nil) message:NSLocalizedString(@"This story is no longer available", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-                 [alert show];
-                 [self.navigationController popViewControllerAnimated:YES];
+            PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+            [ACL setPublicReadAccess:YES];
+            [ACL setWriteAccess:YES forUser:[self.thisStory objectForKey:aPostAuthor]];
+            [ACL setWriteAccess:true forRoleWithName:@"Admin"];
+            [ACL setWriteAccess:true forUser:[PFUser currentUser]];
+            [ACL setWriteAccess:true forRoleWithName:@"GroupLead"];
+            newComment.ACL = ACL;
+            
+            
+            [[Cache sharedCache] incrementCommentCountForPhoto:self.thisStory];
+            
+            // Show HUD view
+            [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
+            
+            // If more than 5 seconds pass since we post a comment, stop waiting for the server to respond
+            NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(handleCommentTimeout:) userInfo:@{@"comment": newComment} repeats:NO];
+            
+            [newComment saveEventually:^(BOOL succeeded, NSError *error) {
+                [timer invalidate];
                 
-            }
-            /*
-             [[NSNotificationCenter defaultCenter] postNotificationName:PAPPhotoDetailsViewControllerUserCommentedOnPhotoNotification object:self.photo userInfo:@{@"comments": @(self.objects.count + 1)}];
-            
-             */
-            [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
-            [self loadObjects];
-        }];
-    }
-    [textField setText:@""];
-    return [textField resignFirstResponder];
+                if (error && error.code == kPFErrorObjectNotFound) {
+                    [[Cache sharedCache] decrementCommentCountForPhoto:self.thisStory];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Could not post comment", nil) message:NSLocalizedString(@"This story is no longer available", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+                    [alert show];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                }
+                /*
+                 [[NSNotificationCenter defaultCenter] postNotificationName:PAPPhotoDetailsViewControllerUserCommentedOnPhotoNotification object:self.photo userInfo:@{@"comments": @(self.objects.count + 1)}];
+                 
+                 */
+                [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
+                [self loadObjects];
+            }];
+        }
+        [textField setText:@""];
+        return [textField resignFirstResponder];
     }
 }
 
@@ -484,7 +495,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     // Close the keyboard
-   [commentTextField resignFirstResponder];
+    [commentTextField resignFirstResponder];
 }
 
 - (void)handleCommentTimeout:(NSTimer *)aTimer {

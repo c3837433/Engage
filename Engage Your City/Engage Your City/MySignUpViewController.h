@@ -15,6 +15,7 @@
     IBOutlet UIView* mainView;
     UIImagePickerController* pickerVC;
     LogInViewController* logInVc;
+    IBOutlet UIView* logoView;
 }
 
 @property (nonatomic, strong) IBOutlet UIButton* signUpButton;

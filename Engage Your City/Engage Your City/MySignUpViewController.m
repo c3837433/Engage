@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "UIImage+ResizeAdditions.h"
 #import "AppDelegate.h"
+#import "ApplicationKeys.h"
 
 @interface MySignUpViewController ()
 
@@ -23,6 +24,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if (iPhoneVersion == 4) {
+        NSLog(@"This is 3.5 inch iPhone - iPhone 4s or below");
+        // Hide the logo on this screen
+        logoView.hidden = true;
+    }
 }
 
 #pragma mark USER REGISTRATION METHODS
@@ -94,7 +100,6 @@
                  [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
                  AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                  [appDelegate switchToMainView];
-                 //[self.presentingViewController.presentingViewController dismissViewControllerAnimated:NO completion:NULL];
              }
         }];
     }
@@ -119,17 +124,6 @@
     NSString* password1 = password1Field.text;
     NSString* password2 = password2Field.text;
     // Check to make sure all the fields are valid
-  /*  if (imageThumbnail.image == nil)
-    {
-        // we have no image
-        NSLog(@"Image is missing");
-        // Alert the user there was a problem logging in
-        [[[UIAlertView alloc] initWithTitle:@"Whoops! Forgot the Picture" message:@"Please add a Profile Picture." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        emptyFields = YES;
-    }
-    // Once we have the image, check the other fields
-    else if (imageThumbnail.image != nil)
-    {*/
         // Reset the bool
         emptyFields = NO;
         // Check if the email address is valid with a regular expression

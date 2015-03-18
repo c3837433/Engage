@@ -35,4 +35,6 @@
 //-(void)loadHomeGroupSelect;
 -(void)switchToLogInView;
 -(void)logOutUser;
+
+-(void) didLogInUser:(PFUser *)user;
 @end

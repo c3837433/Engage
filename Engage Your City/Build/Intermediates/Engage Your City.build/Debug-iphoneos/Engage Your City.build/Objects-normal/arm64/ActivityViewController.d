@@ -39,4 +39,15 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFImageView.h \
   /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFCollectionViewCell.h \
   /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/ParseUI.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Modules/module.modulemap
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Modules/module.modulemap \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/ActivityCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/MZSelectableLabel.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/ApplicationKeys.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/Utility.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/TextCommentDetailViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CommentCell.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/MediaCommentDetailViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/UserDetailsViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CustomAddPostViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/JSImagePickerViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CustomEditProfileViewController.h

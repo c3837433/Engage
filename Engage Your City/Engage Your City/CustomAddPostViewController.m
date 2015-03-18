@@ -332,10 +332,9 @@
          //   NSLog(@"The save was successful");
      }];
 
-
-
-
 }
+
+
 -(void)storySavedAlert:(BOOL)saved {
     NSString* alertTitle;
     NSString* alertMessage;
@@ -352,8 +351,7 @@
     // Display the alert
     [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
     // If it did save, the fields need to be emptied, otherwise leave the data to try again
-    if (saved)
-    {
+    if (saved) {
         // Clear the current cells out
         self.titleField.text = @"";
         self.storyView.text = @"";
@@ -408,6 +406,7 @@
             [self.storyView resignFirstResponder];
     }
 }
+
 
 - (NSUInteger)supportedInterfaceOrientations
 {

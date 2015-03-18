@@ -38,7 +38,7 @@
     return self;
 }
 
-#pragma mark - PAPCache
+#pragma mark - Cache
 
 - (void)clear {
     [self.cache removeAllObjects];

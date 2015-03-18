@@ -124,7 +124,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     [self.photoLibraryBtn addTarget:self action:@selector(selectFromLibraryWasPressed) forControlEvents:UIControlEventTouchUpInside];
     
     self.cameraBtn = [[UIButton alloc] initWithFrame:cameraBtnFrame];
-    [self.cameraBtn setTitle:@"Capture Photo or Video" forState:UIControlStateNormal];
+    if (!self.doesNeedVideo) {
+        [self.cameraBtn setTitle:@"Capture Photo" forState:UIControlStateNormal];
+    } else {
+        [self.cameraBtn setTitle:@"Capture Photo or Video" forState:UIControlStateNormal];
+    }
     self.cameraBtn.titleLabel.font = btnFont;
     [self.cameraBtn addTarget:self action:@selector(takePhotoWasPressed) forControlEvents:UIControlEventTouchUpInside];
     
@@ -265,7 +269,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        picker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, kUTTypeMovie, nil];
+        if (!self.doesNeedVideo) {
+             picker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+        } else  {
+            picker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, kUTTypeMovie, nil];
+        }
         
         [self presentViewController:picker animated:YES completion:nil];
     }
@@ -287,9 +295,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     NSLog(@"did finish picking image");
     NSString* sourceType = [info objectForKey:@"UIImagePickerControllerMediaType"];
     NSLog(@"the source type = %@", sourceType);
-    if ([sourceType isEqualToString:@"public.movie"])
-    {
-                NSLog(@"video selected");
+    if ([sourceType isEqualToString:@"public.movie"]) {
+        NSLog(@"video selected");
         // Get the url
         NSURL* movieUrl = [info objectForKey:UIImagePickerControllerMediaURL];
         // To make a thumbnail image of this video, initialize the video as an AV asset

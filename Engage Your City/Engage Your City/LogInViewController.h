@@ -9,13 +9,10 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 
-@interface LogInViewController : PFLogInViewController <UITextFieldDelegate, PFLogInViewControllerDelegate>
+@interface LogInViewController : UIViewController <UITextFieldDelegate>
 
-@property (nonatomic, strong) UIImageView* emailFieldView;
-@property (nonatomic, strong) UIImageView* passwordFieldView;
-@property (nonatomic, strong) UIImageView* separatorOrLineView;
-@property (nonatomic, strong) UIButton* registerButton;
-@property (nonatomic, strong) UILabel* registerLabel;
 
--(void)didSignUpUser;
+@property (nonatomic, strong) IBOutlet UITextField* emailField;
+@property (nonatomic, strong) IBOutlet UITextField* passwordField;
+
 @end
