@@ -32,9 +32,13 @@
 - (BOOL)followStatusForUser:(PFUser *)user;
 - (void)setPhotoCount:(NSNumber *)count user:(PFUser *)user;
 - (void)setFollowStatus:(BOOL)following user:(PFUser *)user;
+- (void)setFollowGroupStatus:(BOOL)following group:(PFObject*) group;
 
 - (void)setFacebookFriends:(NSArray *)friends;
 - (NSArray *)facebookFriends;
 - (void)setLikeAttributesForStory:(PFObject *)story likers:(NSArray *)likers likedByCurrentUser:(BOOL)likedByCurrentUser;
 - (void)setLikeStatusForStory:(PFObject *)story likedByCurrentUser:(BOOL)likedByCurrentUser;
+- (BOOL)followStatusForGroup:(PFObject *)group;
+- (BOOL)joinStatusForGroup:(PFObject *)group;
+- (void)setJoinedGroupStatus:(BOOL)following group:(PFObject*) group;
 @end

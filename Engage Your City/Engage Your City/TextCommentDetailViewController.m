@@ -223,8 +223,8 @@
     if ([thisStory objectForKey:aPostAuthorGroup]) {
         PFObject* group = [thisStory  objectForKey:aPostAuthorGroup];
         [group fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            [postAuthorGroupButton setTitle:[group objectForKey:aPostAuthorGroupTitle] forState:UIControlStateNormal];
-            [postAuthorGroupButton setTitle:[group objectForKey:aPostAuthorGroupTitle] forState:UIControlStateHighlighted];
+            [postAuthorGroupButton setTitle:[group objectForKey:aHomeGroupTitle] forState:UIControlStateNormal];
+            [postAuthorGroupButton setTitle:[group objectForKey:aHomeGroupTitle] forState:UIControlStateHighlighted];
         }];
     } else {
         postAuthorGroupButton.hidden = YES;

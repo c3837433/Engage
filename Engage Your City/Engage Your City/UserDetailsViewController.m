@@ -22,20 +22,18 @@
 #import "FollowFriendsViewController.h"
 #import "Utility.h"
 #import <QuartzCore/QuartzCore.h>
+#import "GroupDetailViewController.h"
 
 @interface UserDetailsViewController ()
-//@property (nonatomic, strong) DZNSegmentedControl *control;
 @property (nonatomic, strong) NSArray* userIsFollowingArray;
 @property (nonatomic, strong) NSArray* isFollowingUserArray;
 typedef void (^ArrayResponseBlock)(NSArray* followerArray);
 typedef void (^ArrayResponseBlock)(NSArray* followingArray);
 
-//@property (nonatomic, strong) NSMutableDictionary *outstandingFollowQueries;
-
 @end
 
 @implementation UserDetailsViewController
-@synthesize /* segmentedControl, controlItems,*/ thisUser;
+@synthesize thisUser;
 
 #pragma mark - PARSE METHODS
 // Storyboard init
@@ -57,123 +55,32 @@ typedef void (^ArrayResponseBlock)(NSArray* followingArray);
     return self;
 }
 
-/*
-+ (void)load
-{
-    if (!_allowAppearance) {
-        return;
-    }
-    
-    [[DZNSegmentedControl appearance] setBackgroundColor:[UIColor redColor]];
-    [[DZNSegmentedControl appearance] setTintColor:[UIColor purpleColor]];
-    [[DZNSegmentedControl appearance] setHairlineColor:[UIColor yellowColor]];
-    
-    [[DZNSegmentedControl appearance] setFont:[UIFont fontWithName:aFont size:15.0]];
-    [[DZNSegmentedControl appearance] setSelectionIndicatorHeight:2.5];
-    [[DZNSegmentedControl appearance] setAnimationDuration:0.125];
-    [[DZNSegmentedControl appearance] setHeight:40.0f];
-}
-*/
+
 // Search parse for Stories to be displayed withing the table
 - (PFQuery *)queryForTable {
-    
-   // PFQuery* userQuery = [PFUser query];
+
+    if (!self.fromPanel) {
+        NSLog(@"Not from panel");
+    } else {
+        NSLog(@"This is from the panel, setting profile for current user");
+        self.thisUser = [PFUser currentUser];
+    }
     // Find all stories on Parse
     PFQuery* query = [PFQuery queryWithClassName:self.parseClassName];
-    // If this is not the current user, do not return anythign
-   // NSMutableArray* followers = [[NSMutableArray alloc] init];
-    //PFQuery *followeesQuery = [PFQuery queryWithClassName:aActivityClass];
     [query whereKey:@"author" equalTo:self.thisUser];
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
     [query includeKey:@"group"];
-   // return query;
-    /*
-    switch (segmentedControl.selectedSegmentIndex) {
-        case 0:
-             // Find posts for the selected user
-             if (self.thisUser == nil) {
-                 self.thisUser = [PFUser currentUser];
-             }
-             [query whereKey:@"author" equalTo:self.thisUser];
-             [query orderByDescending:@"createdAt"];
-             [query includeKey:@"author"];
-             [query includeKey:@"group"];
-             return query;
-            break;
-        case 1:
-            // people the user is following
-            [userQuery whereKey:@"idString" containedIn:self.userIsFollowingArray];
-            NSLog(@"User is following: %@", self.userIsFollowingArray.description);
-            [userQuery includeKey:@"group"];
-            return userQuery;
-            break;
-        case 2:
-            // people following the user
-            [userQuery whereKey:@"objectId" containedIn:self.isFollowingUserArray];
-            NSLog(@"User following this user: %@", self.isFollowingUserArray.description);
-            [userQuery includeKey:@"group"];
-            return userQuery;
 
-            break;
-    }
-    
-    */
-    // If there is no network connection, we will hit the cache first.
-    if (self.objects.count == 0 || ![[UIApplication sharedApplication].delegate performSelector:@selector(isParseReachable)]) {
-        NSLog(@"Zero objects found and we are connected to parse");
-        [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    if ([self.objects count] == 0) {
+        query.cachePolicy = kPFCachePolicyCacheElseNetwork;
     }
     return query;
 }
-/*
-#pragma mark - VIEW CONTROLLER METHODS
 
-- (void) getAllFollowersAsyncWithCompletion:(ArrayResponseBlock)completionBlock {
-    
-    NSMutableArray* followersArray = [NSMutableArray array];
-    PFQuery* activityQuery = [PFQuery queryWithClassName:aActivityClass];
-        [activityQuery whereKey:aActivityFromUser equalTo:self.thisUser];
-    [activityQuery whereKey:aActivityType equalTo:aActivityFollow];
-    [activityQuery findObjectsInBackgroundWithBlock:^(NSArray* follows, NSError * error) {
-        for (PFObject* follow in follows) {
-            PFUser* follower = [follow objectForKey:aActivityToUser];
-            [followersArray addObject:follower];
-        }
-        
-        completionBlock(followersArray);
-    }];
-}
-
-- (void) getAllFollowingAsyncWithCompletion:(ArrayResponseBlock)completionBlock {
-    
-    NSMutableArray* followingArray = [NSMutableArray array];
-    PFQuery* activityQuery = [PFQuery queryWithClassName:aActivityClass];
-    [activityQuery whereKey:aActivityToUser equalTo:self.thisUser];
-    [activityQuery whereKey:aActivityType equalTo:aActivityFollow];
-    [activityQuery findObjectsInBackgroundWithBlock:^(NSArray* follows, NSError * error) {
-        for (PFObject* follow in follows) {
-            PFUser* follower = [follow objectForKey:aActivityFromUser];
-            [followingArray addObject:follower];
-        }
-        
-        completionBlock(followingArray);
-    }];
-}
-*/
 - (void)viewDidLoad {
-    /*
-    [self getAllFollowersAsyncWithCompletion:^(NSArray* followerArray) {
-        self.isFollowingUserArray = followerArray;
-        NSLog(@"Retrieved all followers");
-    }];
-    [self getAllFollowingAsyncWithCompletion:^(NSArray* followingArray) {
-        NSLog(@"retrieved all people user is following");
-        self.userIsFollowingArray = followingArray;
-    }];
-    
-    controlItems = @[@"Stories", @"Following", @"Followers"]; */
-    [[PFUser currentUser] fetchIfNeededInBackground];
+
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     [super viewDidLoad];
     
@@ -201,6 +108,7 @@ typedef void (^ArrayResponseBlock)(NSArray* followingArray);
         self.navigationItem.leftBarButtonItem = menuButton;
        // self.navigationItem.hidesBackButton = YES;
     }
+    [self.thisUser fetchIfNeededInBackground];
     // set up the rounded corners on the imageview
     self.profilePicView.layer.cornerRadius = 8.0;
     self.profilePicView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
@@ -208,11 +116,7 @@ typedef void (^ArrayResponseBlock)(NSArray* followingArray);
     self.profilePicView.layer.masksToBounds = YES;
     // set this user's data in the view
     [self setUpUserDetails];
-    // Do any additional setup after loading the view.
-    // Add background image
-  //  self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"MainBg"]];
-   // self.tableView.estimatedRowHeight = 180;
-    //self.tableView.rowHeight = UITableViewAutomaticDimension;
+
 }
 
 // DELETE ITEM IN TABLEVIEW
@@ -292,43 +196,7 @@ typedef void (^ArrayResponseBlock)(NSArray* followingArray);
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.navigationController.navigationBar.translucent = NO;
 }
-/*
-- (void)updateControlCounts {
-    NSLog(@"Updating control counts");
-    NSNumber* postCount = 0;
-    NSNumber* followerCount = 0;
-    NSNumber* followingCount = 0;
-    [thisUser fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        thisUser = (PFUser*) object;
-    }];
-    // get post count
-    if ([thisUser objectForKey:@"Posts"]) {
-        // get the posts
-        int posts = [[thisUser objectForKey:@"Posts"] intValue];
-        NSLog(@"User has %d posts", posts);
-        postCount = [NSNumber numberWithInt:posts];
-        NSLog(@"Post count number = %@", postCount);
-    }
-    // get follower count
-    if ([thisUser objectForKey:@"Followers"]) {
-        int followers = [[thisUser objectForKey:@"Followers"] intValue];
-         NSLog(@"User has %d followers", followers);
-        followerCount = [NSNumber numberWithInt:followers];
-    }
-    
-    // get following count
-    if ([thisUser objectForKey:@"Following"]) {
-        // get the comment count
-        int following = [[thisUser objectForKey:@"Following"] intValue];
-         NSLog(@"User has %d users following", following);
-        followingCount = [NSNumber numberWithInt:following];
-    }
-    [self.control setCount:postCount forSegmentAtIndex:0];
-    [self.control setCount:followingCount forSegmentAtIndex:1];
-    [self.control setCount:followerCount forSegmentAtIndex:2];
 
-}
-*/
 
 -(void) setUpUserDetails {
     // Set name button properties and avatar image
@@ -357,8 +225,8 @@ typedef void (^ArrayResponseBlock)(NSArray* followingArray);
     if ([thisUser objectForKey:aUserGroup]) {
         PFObject* group = [thisUser objectForKey:aUserGroup];
         [group fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            [self.homeGroupButton setTitle:[group objectForKey:aPostAuthorGroupTitle] forState:UIControlStateNormal];
-            [self.homeGroupButton setTitle:[group objectForKey:aPostAuthorGroupTitle] forState:UIControlStateHighlighted];
+            [self.homeGroupButton setTitle:[group objectForKey:aHomeGroupTitle] forState:UIControlStateNormal];
+            [self.homeGroupButton setTitle:[group objectForKey:aHomeGroupTitle] forState:UIControlStateHighlighted];
             // add button click to open this group page up
         }];
     } else {
@@ -478,48 +346,6 @@ typedef void (^ArrayResponseBlock)(NSArray* followingArray);
             }
             return cell;
         }
-
-        /*
-        if (segmentedControl.selectedSegmentIndex == 0) {
-            if ([[object objectForKey:@"media"] isEqual:@"text"]) {
-                // This is a text cell
-                ProfileTextStoryCell* cell = [tableView dequeueReusableCellWithIdentifier:@"profileTextCell"];
-                if (cell != nil) {
-                    [cell setProfileTextStory:object];
-                }
-                return cell;
-            }
-
-            else {
-                // Otherwise use the media cell
-                ProfileMediaStoryCell* cell = [tableView dequeueReusableCellWithIdentifier:@"profileMediaCell"];
-                if (cell != nil) {
-                    [cell setProfileTextStory:object];
-                    [cell setProfileMediaStory:object];
-                }
-                return cell;
-            }
-        } else {
-            // this is a user cell
-            FriendCell* cell = [tableView dequeueReusableCellWithIdentifier:@"followFriendCell"];
-            if (cell != nil) {
-                PFUser* user = (PFUser*) object;
-                NSLog(@"This user: %@", user.description);
-                [cell setUser:(PFUser*)object];
-                cell.followButton.tag = indexPath.row;
-                // Set the default stories
-                // get the people the user already follows
-                NSDictionary *attributes = [[Cache sharedCache] attributesForUser:(PFUser *)object];
-                if (attributes) {
-                    // set them accordingly
-                    [cell.followButton setSelected:[[Cache sharedCache] followStatusForUser:(PFUser *)object]];
-                }
-                cell.followButton.selected = NO;
-                cell.followButton.tag = indexPath.row;
-                cell.tag = indexPath.row;
-            }
-            return cell;
-        }  */
     }
 }
 
@@ -528,16 +354,7 @@ typedef void (^ArrayResponseBlock)(NSArray* followingArray);
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
-/*
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-      return self.control;
-}
 
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 60;
-}
-*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForNextPageAtIndexPath:(NSIndexPath *)indexPath
 {
     // Get and return the load more cell
@@ -548,14 +365,9 @@ typedef void (^ArrayResponseBlock)(NSArray* followingArray);
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == self.objects.count) {
         return 45;
-    } //else {
+    }
     return 100;
-    //}
-  // if (self.segmentedControl.selectedSegmentIndex == 0) {
-       // return 100;
-   // }else {
-     //   return 45;
-    //}
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath  {
@@ -609,52 +421,6 @@ typedef void (^ArrayResponseBlock)(NSArray* followingArray);
         }
     }
 }
-
-/*
-#pragma mark SEGMENTED CONTROL METHODS
-- (DZNSegmentedControl *)control
-{
-    if (!segmentedControl)
-    {
-        segmentedControl = [[DZNSegmentedControl alloc] initWithItems:controlItems];
-        segmentedControl.delegate = self;
-        segmentedControl.selectedSegmentIndex = 0;
-        segmentedControl.showsGroupingSeparators = YES; //
-        segmentedControl.inverseTitles = YES; //
-        segmentedControl.tintColor = [UIColor darkGrayColor];
-        segmentedControl.hairlineColor = [UIColor colorWithRed:0.67 green:0.67 blue:0.67 alpha:1];
-        segmentedControl.showsCount = YES;
-        segmentedControl.autoAdjustSelectionIndicatorWidth = NO; //
-       // segmentedControl.adjustsFontSizeToFitWidth = YES; //
-        segmentedControl.height = 55.0f;
-        segmentedControl.font = [UIFont fontWithName:aFont size:15.0];
-
-        [segmentedControl addTarget:self action:@selector(selectedSegment:) forControlEvents:UIControlEventValueChanged];
-    }
-    return segmentedControl;
-}
-
-
-- (void)refreshSegments:(id)sender
-{
-    [self.control removeAllSegments];
-    [self.control setItems:controlItems];
-   // [self updateControlCounts];
-}
-
-
-- (void)selectedSegment:(DZNSegmentedControl *)control
-{
-    [self loadObjects];
-}
-
-// UIBarPositioningDelegate for segmented control
-
-- (UIBarPosition)positionForBar:(id <UIBarPositioning>)view
-{
-    return UIBarPositionBottom;
-}
-*/
 
 
 -(void) openProfileToEdit {
@@ -751,6 +517,12 @@ typedef void (^ArrayResponseBlock)(NSArray* followingArray);
         [self loadObjects];
     }
 }
+- (IBAction)shouldLoadLocalGroup:(id)sender {
+    GroupDetailViewController* groupDetailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"groupDetailVC"];
+    PFObject* currentGroup = [self.thisUser objectForKey:aUserGroup];
+    groupDetailVC.group = currentGroup;
+    [self.navigationController pushViewController:groupDetailVC animated:YES];
+}
 
 -(void) viewController:(UIViewController *)viewController returnPostUpdated:(BOOL)updated {
     if (updated) {
@@ -759,18 +531,7 @@ typedef void (^ArrayResponseBlock)(NSArray* followingArray);
         [self setUpUserDetails];
     }
 }
-/*
-#pragma mark - Navigation
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- 
-     if ([segue.identifier isEqualToString:@"segueToFollowing"]) {
-         FollowFriendsViewController* vc = segue.destinationViewController;
-         vc.getFollowers = true;
-         vc.followersForUser = self.thisUser;
-     }
- }
-*/
+
 
 
 

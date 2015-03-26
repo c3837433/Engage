@@ -88,7 +88,15 @@
      
      }];
      */
-    
+    /*
+    PFQuery *leaderQuery = [PFRole query];
+    [leaderQuery whereKey:@"name" equalTo:@"Admin"];
+    [leaderQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        PFRole *role = (PFRole *)object;
+        [self setRoles:role];
+        
+    }];
+     */
     [self checkLogIn];
     userDefaults = [NSUserDefaults standardUserDefaults];
     
@@ -96,7 +104,16 @@
     
     return YES;
 }
-
+/*
+-(void) setRoles:(PFRole*) adminRole {
+    PFACL *roleACL = [PFACL ACL];
+    [roleACL setPublicReadAccess:YES];
+    
+    PFRole *LocalLeadRole = [PFRole roleWithName:@"LocalLeader" acl:roleACL];
+    [roleACL setWriteAccess:YES forRole:adminRole];
+    [LocalLeadRole saveInBackground];
+}
+*/
 // FACEBOOK OAUTH
 // Facebook Test User Log In
 // email:       sherlock_cpfkskw_holmes@tfbnw.net
@@ -162,19 +179,6 @@
                          // Find out if this is a new user by checkinf if permission default was set
                          NSString* permissionString = [object objectForKey:@"sharePermission"];
                          NSString* fbLinkable = [object objectForKey:@"FBLinkable"];
-                         NSString* homeGroupName = [object objectForKey:@"group"];
-                         //NSLog(@"Permission = %@, Facebook linkable = %@, Home Group = %@", permissionString, fbLinkable, homeGroupName);
-                         needToSelectHomeGroup = false;
-                         if (homeGroupName != nil) {
-                             NSLog(@"Home group set");
-                             [userDefaults setObject:@"inGroup" forKey:@"HomeGroupSet"];
-                             [userDefaults synchronize];
-                             needToSelectHomeGroup = false;
-                         } else {
-                             //NSLog(@"Need to set home group");
-                             needToSelectHomeGroup = true;
-                             //[self loadHomeGroupSelect];
-                         }
                          // If not there, this is a new user
                          if (permissionString == nil)
                          {
@@ -243,37 +247,25 @@
                 // Update the nsuser defaults
                 NSString* permissionString = [object objectForKey:@"sharePermission"];
                 NSString* fbLinkable = [object objectForKey:@"FbLinkable"];
-                NSString* homeGroupName = [object objectForKey:@"group"];
                 [userDefaults setObject:permissionString forKey:@"sharePermission"];
                 [userDefaults setObject:fbLinkable forKey:@"FBLinkable"];
                 [userDefaults synchronize];
-                if (homeGroupName != nil) {
-                    needToSelectHomeGroup = false;
-                    [userDefaults setObject:@"inGroup" forKey:@"HomeGroupSet"];
-                    [userDefaults synchronize];
-                } else {
-                    //NSLog(@"Need to set home group");
-                    needToSelectHomeGroup = true;
-                }
                 [self switchToMainView];
             }
         }];
     }
 }
 
+
 -(void) didLogInUser:(PFUser *)user {
-    NSLog(@"User logged in through facebook and returend to the app delegate.");
     // Check to see if user is linked with facebook
     BOOL userLinkedWithFacebook = [PFFacebookUtils isLinkedWithUser:user];
     needToSelectHomeGroup = false;
-    if (userLinkedWithFacebook)
-    {
-        //NSLog(@"The user logged in through Facebook");
+    if (userLinkedWithFacebook) {
+
         // If the user is linked, make a request for their data
-        [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error)
-         {
-             if (!error)
-             {
+        [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+             if (!error) {
                  // get the result
                  NSLog(@"%@", result);
                  facebookUserName = [result objectForKey:@"name"];
@@ -292,27 +284,12 @@
                  [userQuery whereKey:@"username" equalTo:[[PFUser currentUser]username]];
                  [userQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
                      // this is a previously registered user
-                     if (object)
-                     {
+                     if (object) {
                          // Find out if this is a new user by checkinf if permission default was set
                          NSString* permissionString = [object objectForKey:@"sharePermission"];
                          NSString* fbLinkable = [object objectForKey:@"FBLinkable"];
-                         NSString* homeGroupName = [object objectForKey:@"group"];
-                         //NSLog(@"Permission = %@, Facebook linkable = %@, Home Group = %@", permissionString, fbLinkable, homeGroupName);
-                         needToSelectHomeGroup = false;
-                         if (homeGroupName != nil) {
-                             NSLog(@"Home group set");
-                             [userDefaults setObject:@"inGroup" forKey:@"HomeGroupSet"];
-                             [userDefaults synchronize];
-                             needToSelectHomeGroup = false;
-                         } else {
-                             //NSLog(@"Need to set home group");
-                             needToSelectHomeGroup = true;
-                             //[self loadHomeGroupSelect];
-                         }
                          // If not there, this is a new user
-                         if (permissionString == nil)
-                         {
+                         if (permissionString == nil) {
                              //NSLog(@"This is a new user");
                              // User this persons facebook name, email, and id to register them
                              user.email = facebookUserEmail;
@@ -366,30 +343,19 @@
              }
          }];
     }
-    else if (!userLinkedWithFacebook) {   // User logged in manually, find their current permission and fblinkable status
-        //NSLog(@"The user logged in manually");
-        
+    else if (!userLinkedWithFacebook) {
+        // User logged in manually, find their current permission and fblinkable status
         PFQuery* userQuery = [PFUser query];
         [userQuery whereKey:@"username" equalTo:[[PFUser currentUser]username]];
         [userQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
             // this is a previously registered user
-            if (object)
-            {
+            if (object) {
                 // Update the nsuser defaults
                 NSString* permissionString = [object objectForKey:@"sharePermission"];
                 NSString* fbLinkable = [object objectForKey:@"FbLinkable"];
-                NSString* homeGroupName = [object objectForKey:@"group"];
                 [userDefaults setObject:permissionString forKey:@"sharePermission"];
                 [userDefaults setObject:fbLinkable forKey:@"FBLinkable"];
                 [userDefaults synchronize];
-                if (homeGroupName != nil) {
-                    needToSelectHomeGroup = false;
-                    [userDefaults setObject:@"inGroup" forKey:@"HomeGroupSet"];
-                    [userDefaults synchronize];
-                } else {
-                    //NSLog(@"Need to set home group");
-                    needToSelectHomeGroup = true;
-                }
                 [self switchToMainView];
             }
         }];
@@ -411,7 +377,6 @@
     // Clear created NSUserDefaults
     [userDefaults removeObjectForKey:@"sharePermission"];
     [userDefaults removeObjectForKey:@"FBLinkable"];
-    [userDefaults removeObjectForKey:@"HomeGroupSet"];
     [userDefaults removeObjectForKey:@"com.parse.Engage.userDefaults.cache.facebookFriends"];
     [userDefaults removeObjectForKey:@"com.Engage.userDefaults.activityviewcontroller.lastRefresh"];
     [userDefaults synchronize];

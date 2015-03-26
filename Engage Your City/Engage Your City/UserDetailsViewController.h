@@ -8,16 +8,12 @@
 
 #import <ParseUI/ParseUI.h>
 #import <Parse/Parse.h>
-//#import "DZNSegmentedControl.h"
 #import "MZFormSheetController.h"
 #import "CustomAddPostViewController.h"
 #import "CustomEditProfileViewController.h"
 
-@interface UserDetailsViewController : PFQueryTableViewController  </*DZNSegmentedControlDelegate,*/ CustomAddPostDelegate, CustomEditProfileDelegate, MZFormSheetBackgroundWindowDelegate>
+@interface UserDetailsViewController : PFQueryTableViewController  <CustomAddPostDelegate, CustomEditProfileDelegate, MZFormSheetBackgroundWindowDelegate>
 
-
-//@property (nonatomic, strong) DZNSegmentedControl* segmentedControl;
-//@property (nonatomic, strong) NSArray* controlItems;
 @property (nonatomic, strong) PFUser* thisUser;
 @property (nonatomic) BOOL fromPanel;
 

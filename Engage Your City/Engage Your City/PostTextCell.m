@@ -9,6 +9,7 @@
 #import "PostTextCell.h"
 #import "Utility.h"
 #import "Cache.h"
+#import "ApplicationKeys.h"
 
 @implementation PostTextCell
 @synthesize thisPost, thisPostAuthor, postAuthorNameButton, postAuthorGroupButton, postAuthorImage, postStoryLabel, postTimeStampLabel, postTitleLabel, postAuthorPicButton, backgroundView, likeButton, commentButton, delegate, likesCommentsButton, thisAuthorGroup;
@@ -39,35 +40,39 @@
     thisPostAuthor = [thisPost objectForKey:aPostAuthor];
     [self.postAuthorPicButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 
+    // set the placeholder while we wait for the image to load
+    postAuthorImage.image = [UIImage imageNamed:@"placeholder"];
+    
     // Set name button properties and avatar image
-    if ([thisPostAuthor objectForKey:aPostAuthorImage]) {
+    if ([thisPostAuthor objectForKey:aUserImage]) {
         // NSLog(@"The author HAS profile image");
-        PFFile* imageFile = [thisPostAuthor objectForKey:aPostAuthorImage];
-        if ([imageFile isDataAvailable]) {
-            //[cell.image loadInBackground];
+        PFFile* imageFile = [thisPostAuthor objectForKey:aUserImage];
+       if ([imageFile isDataAvailable]) {
+           //NSLog(@"This image is in memory");
             postAuthorImage.file = imageFile;
             [postAuthorImage loadInBackground];
         } else {
+           // NSLog(@"This image is not in memory");
             postAuthorImage.file = imageFile;
             [postAuthorImage loadInBackground];
         }
-    } else {
+    } /*else {
         //  NSLog(@"The author has NO profile image");
         postAuthorImage.image = [UIImage imageNamed:@"placeholder"];
-    }
+    } */
     
     
     // SET AUTHOR NAME
-    [postAuthorNameButton setTitle:[thisPostAuthor objectForKey:aPostAuthorName] forState:UIControlStateNormal];
+    [postAuthorNameButton setTitle:[thisPostAuthor objectForKey:aUserName] forState:UIControlStateNormal];
     //NSLog(@"Users name = %@", [storyAuthor objectForKey:@"UsersFullName"] );
-    [postAuthorNameButton setTitle:[thisPostAuthor objectForKey:aPostAuthorName] forState:UIControlStateHighlighted];
+    [postAuthorNameButton setTitle:[thisPostAuthor objectForKey:aUserName] forState:UIControlStateHighlighted];
     [self.postAuthorNameButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     // SET LOCAL GROUP
     if ([thisPost objectForKey:aPostAuthorGroup]) {
         [thisAuthorGroup fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            [postAuthorGroupButton setTitle:[thisAuthorGroup objectForKey:aPostAuthorGroupTitle] forState:UIControlStateNormal];
-            [postAuthorGroupButton setTitle:[thisAuthorGroup objectForKey:aPostAuthorGroupTitle] forState:UIControlStateHighlighted];
+            [postAuthorGroupButton setTitle:[thisAuthorGroup objectForKey:aHomeGroupTitle] forState:UIControlStateNormal];
+            [postAuthorGroupButton setTitle:[thisAuthorGroup objectForKey:aHomeGroupTitle] forState:UIControlStateHighlighted];
         }];
     } else {
         self.postAuthorGroupButton.hidden = YES;
@@ -182,10 +187,4 @@
     }
 }
 
-
-/*
-- (void)shouldEnableLikeButton:(BOOL)enable
-{
-    likeButton.enabled = enable;
-}*/
 @end

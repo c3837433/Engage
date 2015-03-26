@@ -91,7 +91,7 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 2:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"homeGroupsVC"]]
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"homeGroupsVC"]] // localGroupsList homeGroupsVC
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;

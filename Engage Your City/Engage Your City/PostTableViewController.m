@@ -23,6 +23,7 @@
 #import "LeftPanelViewController.h"
 #import "EmptyFeedView.h"
 #import "ApplicationKeys.h"
+#import "GroupDetailViewController.h"
 
 @implementation PostTableViewController {
 
@@ -44,7 +45,7 @@
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
         // The number of user stories to show per page
-        self.objectsPerPage = 25;
+        self.objectsPerPage = 15;
     }
     return self;
 }
@@ -121,8 +122,9 @@
             return query;
             break;
     }
-    if (self.objects.count == 0 || ![[UIApplication sharedApplication].delegate performSelector:@selector(isParseReachable)]) {
-        [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    if ([self.objects count] == 0) {
+        query.cachePolicy = kPFCachePolicyCacheElseNetwork;
     }
     return query;
 }
@@ -158,36 +160,7 @@
         self.tableView.backgroundView = nil;
     }
 }
-/*
--(void) objectsWillLoad {
-    NSLog(@"Objects loading");
-    if (self.objects.count == 0) {
-        NSLog(@"there are: %ld objects loaded", self.objects.count);
-        NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"EmptyLocalFeed"
-                                                          owner:self
-                                                        options:nil];
-        EmptyFeedView* emptyView;
-        for (id object in nibViews) {
-            if ([object isKindOfClass:[EmptyFeedView class]]) {
-                emptyView = (EmptyFeedView *)object;
-                break;
-            }
-        }
-        assert(emptyView != nil && "blah can't be nil");
-        self.tableView.backgroundView = emptyView;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        if (firstPull) {
-            //[self.tableView reloadData];
-            //    [self refreshSegments:nil];
-            //  [self loadObjects];
-            //    [self loadObjects];
-            firstPull = false;
-        }
-    } else {
-        self.tableView.backgroundView = nil;
-    }
-}
- */
+
 #pragma mark - VIEW CONTROLLER METHODS
 
 - (void)viewDidLoad {
@@ -303,6 +276,7 @@
 #pragma mark - UITABLEVIEW DELEGATE AND DATA SOURCE METHODS
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
+    [object fetchIfNeededInBackground];
     // Get the saying for this cell
     PFObject* saying = self.objects[indexPath.row];
     // see if there is an image
@@ -649,8 +623,9 @@
 
 - (void)postTextCell:(PostTextCell *)postTextCell didTapHomeGroupButton:(UIButton *)button group:(PFObject *)group {
     NSLog(@"User tapped home group: %@", group);
-  //  PAPPhotoDetailsViewController *photoDetailsVC = [[PAPPhotoDetailsViewController alloc] initWithPhoto:photo];
-    //[self.navigationController pushViewController:photoDetailsVC animated:YES];
+    GroupDetailViewController* groupDetailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"groupDetailVC"];
+    groupDetailVC.group = group;
+    [self.navigationController pushViewController:groupDetailVC animated:YES];
 }
 
 -(NSString*)getButtonTitleForLikes:(int)likes andComments:(int)comments
@@ -741,11 +716,7 @@
 }
 
 -(IBAction)onAddClick:(UIButton*)button {
-    [self openNewPostView];
-    //AddStoryViewController* addStoryVC = [self.storyboard instantiateViewControllerWithIdentifier:@"addStoryVC"];
-   // addStoryVC.fromPanel = false;
-   // [self.navigationController pushViewController:addStoryVC animated:YES];
-    
+    [self openNewPostView];    
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {

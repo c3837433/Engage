@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-//#import "LaunchViewController.h"
+#import "CustomAdminCreateViewController.h"
+#import "MZFormSheetController.h"
 
-@interface SettingsTableViewController : UITableViewController <NSURLConnectionDataDelegate>
+@interface SettingsTableViewController : UITableViewController <NSURLConnectionDataDelegate, AdminCreateDelegate, MZFormSheetBackgroundWindowDelegate>
 
 {
     NSUserDefaults* userDefaults;
@@ -18,7 +19,6 @@
     BOOL connectedToFacebook;
     IBOutlet UISwitch* toggleFBConnect;
     PFUser* user;
-//    LaunchViewController* launchVC;
     IBOutlet UITableView* settingsTable;
     NSMutableData* facebookUserProfilePictureData;
 }

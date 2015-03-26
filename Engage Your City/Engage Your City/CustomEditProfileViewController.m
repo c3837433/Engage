@@ -268,7 +268,7 @@
             NSLog(@"Updating the user's profile image");
             [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
             // first save the image
-            PFFile* mediaThumb = [PFFile fileWithData:mediaImage];
+            PFFile* mediaThumb = [PFFile fileWithName:@"profilePic.png" data:mediaImage];
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.mode = MBProgressHUDModeAnnularDeterminate;
             hud.delegate = self;

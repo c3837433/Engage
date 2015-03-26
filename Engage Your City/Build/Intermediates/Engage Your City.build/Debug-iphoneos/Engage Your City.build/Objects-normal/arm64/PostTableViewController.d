@@ -61,4 +61,5 @@ dependencies: \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/MZCustomTransition.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/LeftPanelViewController.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/EmptyFeedView.h \
-  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/ApplicationKeys.h
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/ApplicationKeys.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/GroupDetailViewController.h

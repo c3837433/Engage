@@ -32,4 +32,11 @@
 - (NSString *)stringForTimeIntervalSinceCreated:(NSDate *)dateTime;
 //+ (PFQuery *)queryForLikesOnStory:(PFObject *)story cachePolicy:(PFCachePolicy)cachePolicy;
 + (PFQuery *)queryForLikersForStory:(PFObject *)story cachePolicy:(PFCachePolicy)cachePolicy;
++ (void)unfollowGroupEventually:(PFObject *)group;
++ (void)followGroupInBackground:(PFObject *)group block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
+
++ (void)leaveGroupEventually:(PFObject *)group;
++ (void)joinGroupInBackground:(PFObject *)group block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
++ (void)changeGroupsInBackgroundFromOldGroup:(PFObject *)oldGroup toNewGroup:(PFObject*)newGroup block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
+
 @end

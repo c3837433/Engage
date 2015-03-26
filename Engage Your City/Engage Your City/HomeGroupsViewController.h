@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeGroupsViewController : UIViewController
+@interface HomeGroupsViewController : UIViewController <UISearchBarDelegate> {
 
+    IBOutlet UIView* searchView;
+
+}
+
+@property (nonatomic, strong) IBOutlet UISearchBar* searchBar;
 @end

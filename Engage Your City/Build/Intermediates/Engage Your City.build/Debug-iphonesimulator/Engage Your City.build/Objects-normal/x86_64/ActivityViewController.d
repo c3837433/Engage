@@ -49,4 +49,5 @@ dependencies: \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/MediaCommentDetailViewController.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/UserDetailsViewController.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CustomAddPostViewController.h \
-  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/JSImagePickerViewController.h
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/JSImagePickerViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CustomEditProfileViewController.h

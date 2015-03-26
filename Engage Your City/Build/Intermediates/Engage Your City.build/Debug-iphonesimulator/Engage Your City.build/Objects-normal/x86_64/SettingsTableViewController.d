@@ -25,6 +25,22 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/Parse.framework/Headers/PFACL.h \
   /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/Parse.framework/Headers/Parse.h \
   /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/Parse.framework/Modules/module.modulemap \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CustomAdminCreateViewController.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFTextField.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFSignUpViewController.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFSignUpView.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFQueryCollectionViewController.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFTableViewCell.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFPurchaseTableViewCell.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFQueryTableViewController.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFProductTableViewController.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFLogInViewController.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/ParseUIConstants.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFLogInView.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFImageView.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFCollectionViewCell.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/ParseUI.h \
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Modules/module.modulemap \
   /Users/angelasmith/Documents/FacebookSDK/FacebookSDK.framework/Headers/FacebookSDK.h \
   /Users/angelasmith/Documents/FacebookSDK/FacebookSDK.framework/Headers/FBAccessTokenData.h \
   /Users/angelasmith/Documents/FacebookSDK/FacebookSDK.framework/Headers/FBSession.h \
@@ -73,19 +89,6 @@ dependencies: \
   /Users/angelasmith/Documents/FacebookSDK/FacebookSDK.framework/Headers/NSError+FBError.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/Utility.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/AppDelegate.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFTextField.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFSignUpViewController.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFSignUpView.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFQueryCollectionViewController.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFTableViewCell.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFPurchaseTableViewCell.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFQueryTableViewController.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFProductTableViewController.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFLogInViewController.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/ParseUIConstants.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFLogInView.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFImageView.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/PFCollectionViewCell.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Headers/ParseUI.h \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseUI.framework/Modules/module.modulemap \
-  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseFacebookUtils.framework/Headers/PFFacebookUtils.h
+  /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/ParseFacebookUtils.framework/Headers/PFFacebookUtils.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/ApplicationKeys.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/MZCustomTransition.h

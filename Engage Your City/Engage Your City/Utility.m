@@ -18,8 +18,7 @@
 
 +(void)saveFacebookImageData:(NSData*)imageData
 {
-    if (imageData != nil)
-    {
+    if (imageData != nil) {
         // We have data, create an image out of it
         UIImage* pictureImage = [UIImage imageWithData:imageData];
         // Resize the image so it is small enough to work in both the profile view and list views. Aldo round the corners
@@ -27,13 +26,12 @@
         
         //Turn the image into data, and a PFFile
         NSData* newImageData = UIImagePNGRepresentation(resizedImage);
-        if (newImageData != nil)
-        {
+        if (newImageData != nil) {
             // Save this to parse
-            PFFile* profilePicFile = [PFFile fileWithData:newImageData];
+           // PFFile* profilePicFile = [PFFile fileWithData:newImageData];
+            PFFile* profilePicFile = [PFFile fileWithName:@"faceBookProfilePic.png" data:newImageData];
             [profilePicFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (!error)
-                {
+                if (!error) {
                     // Set the picture to the current user's profile picture
                     [[PFUser currentUser] setObject:profilePicFile forKey:@"profilePictureSmall"];
                     // Save this whenever the user has internet
@@ -50,10 +48,10 @@
 }
 
 + (BOOL)userHasProfilePictures:(PFUser *)user {
-    PFFile *profilePictureMedium = [user objectForKey:@"profilePictureMedium"];
+   // PFFile *profilePictureMedium = [user objectForKey:@"profilePictureMedium"];
     PFFile *profilePictureSmall = [user objectForKey:@"profilePictureSmall"];
     
-    return (profilePictureMedium && profilePictureSmall);
+    return (profilePictureSmall);
 }
 + (void)drawSideDropShadowForRect:(CGRect)rect inContext:(CGContextRef)context {
     // Push the context
@@ -241,6 +239,125 @@
 + (UIImage *)defaultProfilePicture {
     return [UIImage imageNamed:@"placeholder"];
 }
+
+
+#pragma mark FOLLOW LOCAL GROUPS
++ (void)followGroupInBackground:(PFObject *)group block:(void (^)(BOOL succeeded, NSError *error))completionBlock {
+    if ([[group objectId] isEqualToString:[[PFUser currentUser] objectForKey:aUserGroup]]) {
+        return;
+    }
+    
+    PFObject *followActivity = [PFObject objectWithClassName:aActivityClass];
+    [followActivity setObject:[PFUser currentUser] forKey:aActivityFromUser];
+    [followActivity setObject:group forKey:aActivitytoGroup];
+    [followActivity setObject:aActivityFollowGroup forKey:aActivityType];
+    
+    PFACL *followACL = [PFACL ACLWithUser:[PFUser currentUser]];
+    [followACL setPublicReadAccess:YES];
+    followActivity.ACL = followACL;
+    
+    [followActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (completionBlock) {
+            completionBlock(succeeded, error);
+        }
+    }];
+    [[Cache sharedCache] setFollowGroupStatus:YES group:group];
+}
+
++ (void)unfollowGroupEventually:(PFObject *)group {
+    PFQuery *query = [PFQuery queryWithClassName:aActivityClass];
+    [query whereKey:aActivityFromUser equalTo:[PFUser currentUser]];
+    [query whereKey:aActivitytoGroup equalTo:group];
+    [query whereKey:aActivityType equalTo:aActivityFollowGroup];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *followActivities, NSError *error) {
+        
+        if (!error) {
+            for (PFObject *followActivity in followActivities) {
+                [followActivity deleteEventually];
+            }
+        }
+    }];
+    [[Cache sharedCache] setFollowGroupStatus:NO group:group];
+}
+
+#pragma  mark JOIN GROUP AS MEMBER
++ (void)changeGroupsInBackgroundFromOldGroup:(PFObject *)oldGroup toNewGroup:(PFObject*)newGroup block:(void (^)(BOOL succeeded, NSError *error))completionBlock {
+    PFQuery *query = [PFQuery queryWithClassName:aActivityClass];
+    [query whereKey:aActivityFromUser equalTo:[PFUser currentUser]];
+    [query whereKey:aActivitytoGroup equalTo:oldGroup];
+    [query whereKey:aActivityType equalTo:aActivityJoinGroup];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *followActivities, NSError *error) {
+        
+        if (!error) {
+            NSLog(@"Found previous activities to delete");
+            for(int i = 0; i < followActivities.count; i++) {
+                PFObject* activity =  [followActivities objectAtIndex:i];
+                // delete the current group activities
+                [activity deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    
+                }];
+            }
+            // When done, join the new one
+            [self joinGroupInBackground:newGroup block:^(BOOL succeeded, NSError *error) {
+                
+            }];
+            
+            
+        }
+    }];
+    [[Cache sharedCache] setFollowGroupStatus:NO group:newGroup];
+}
+
+
+#pragma mark Local Group Following
++ (void)joinGroupInBackground:(PFObject *)group block:(void (^)(BOOL succeeded, NSError *error))completionBlock {
+    if ([[group objectId] isEqualToString:[[PFUser currentUser] objectForKey:aUserGroup]]) {
+        return;
+    }
+    NSLog(@"Creating a new join activity");
+    PFObject *joinActivity = [PFObject objectWithClassName:aActivityClass];
+    [joinActivity setObject:[PFUser currentUser] forKey:aActivityFromUser];
+    [joinActivity setObject:group forKey:aActivitytoGroup];
+    [joinActivity setObject:aActivityJoinGroup forKey:aActivityType];
+    
+    PFACL *joinAcl = [PFACL ACLWithUser:[PFUser currentUser]];
+    [joinAcl setPublicReadAccess:YES];
+    joinActivity.ACL = joinAcl;
+    
+    [joinActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (completionBlock) {
+            completionBlock(succeeded, error);
+            // Update the users current group
+            NSLog(@"Updating the user's group");
+            PFUser* user = [PFUser currentUser];
+            [user setObject:group forKey:aUserGroup];
+            [user saveEventually];
+        }
+    }];
+    NSLog(@"Updating the group in the cache");
+    [[Cache sharedCache] setJoinedGroupStatus:YES group:group];
+}
+
++ (void)leaveGroupEventually:(PFObject *)group {
+    PFQuery *query = [PFQuery queryWithClassName:aActivityClass];
+    [query whereKey:aActivityFromUser equalTo:[PFUser currentUser]];
+    [query whereKey:aActivitytoGroup equalTo:group];
+    [query whereKey:aActivityType equalTo:aActivityJoinGroup];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *followActivities, NSError *error) {
+        
+        if (!error) {
+            for (PFObject *followActivity in followActivities) {
+                [followActivity deleteEventually];
+            }
+            // Update the users current group
+            PFUser* user = [PFUser currentUser];
+            [user removeObjectForKey:aUserGroup];
+            [user saveEventually];
+        }
+    }];
+    [[Cache sharedCache] setJoinedGroupStatus:NO group:group];
+}
+
 
 #pragma mark User Following
 

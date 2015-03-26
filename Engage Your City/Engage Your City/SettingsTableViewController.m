@@ -12,8 +12,15 @@
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "ApplicationKeys.h"
+#import "MZCustomTransition.h"
 
-@interface SettingsTableViewController ()
+@interface SettingsTableViewController () {
+  //  NSMutableArray* rolesArray;
+   // NSDictionary *userRole;
+    NSInteger roleKey;
+    BOOL haveRoles;
+}
 
 @end
 
@@ -28,10 +35,64 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+ //   rolesArray = [[NSMutableArray alloc] init];
+    roleKey = 0;
+    haveRoles = false;
+    // Check if user has admin or group leader access
+    PFQuery *query = [PFRole query];
+    [query whereKey:@"users" equalTo:[PFUser currentUser]];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        NSLog(@"Checking if user has a role");
+        if (object) {
+            NSLog(@"User has a role");
+            haveRoles = true;
+            PFRole* role = (PFRole*) object;
+            NSString* roleName = [role objectForKey:@"name"];
+            NSLog(@"Role name: %@", roleName);
+            if ([roleName isEqual:@"Admin"]) {
+                roleKey = 3;
+                //userRole = [[NSDictionary alloc]  initWithObjectsAndKeys:@"Admin", [NSNumber numberWithInt:(int)3], nil];
+            } else if ([roleName isEqual:@"RegionalDirector"]) {
+                roleKey = 2;
+            } else  {
+                roleKey = 1;
+            }
+            // when done gathering the roles, reload the table with admin section
+            [settingsTable reloadData];
+        }
+    }];
+    // set up the custom search view
+    [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
+    [[MZFormSheetBackgroundWindow appearance] setBlurRadius:5.0];
+    [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
+    
+    [MZFormSheetController registerTransitionClass:[MZCustomTransition class] forTransitionStyle:MZFormSheetTransitionStyleCustom];
     [super viewDidLoad];
 }
+
+#pragma mark - Add Post Delegate
+-(void) viewController:(UIViewController *)viewController returnRoleCreated:(BOOL)created withMessage:(NSString*)message {
+  //  NSLog(@"Returned from post with saved %d", created);
+    [self alertUserWithMessage:message];
+}
+
+-(void) alertUserWithMessage:(NSString*) alertMessage {
+
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:alertMessage
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
 
 -(void)viewDidAppear:(BOOL)animated {
     
@@ -51,6 +112,7 @@
 
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -58,23 +120,56 @@
 }
 
 #pragma mark - TABLEVIEW DATA SOURCE METHODS
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (haveRoles) {
+        return 3;
+    }
     return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (section == 0)
-    {
-        if (connectedToFacebook)
-        {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        if (connectedToFacebook) {
             return 2;
         }
         return 1;
     }
-    return  1;
+    else if (section == 1) {
+        return 1;
+    }
+    else if (haveRoles) {
+    NSLog(@"Role Key %ld", roleKey);
+        switch (roleKey) {
+            case 3:
+                // admin, section 2 == 2, 3 & 4 = 0
+                if (section == 2) {
+                    return 2;
+                } else  {
+                    return 0;
+                }
+                break;
+            case 2:
+                // regional, section 2 & 4 == 0, 3 == 1
+                if (section == 3) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+                break;
+            case 1:
+                // local section 2 & 3,== 0, 4 == 1
+                if (section == 4) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+    return 0;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
@@ -86,92 +181,98 @@
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
-    if (canLink)
-    {
-        // keep it the same
-        return [super tableView:tableView heightForHeaderInSection:section];
-    }
-    else
-    {
-        // Hide the first section
-        if (section == 0)
-        {
-            return 0;
+    if ((section == 0) || (section == 1)) {
+        return 50;
+    } else {
+        if (haveRoles) {
+            switch (roleKey) {
+                case 3:
+                    // admin, section 2 == 2, 3 & 4 = 0
+                    if (section == 2) {
+                        return 50;
+                    } else  {
+                        return 0;
+                    }
+                    break;
+                case 2:
+                    // regional, section 2 & 4 == 0, 3 == 1
+                    if (section == 3) {
+                        return 50;
+                    } else {
+                        return 0;
+                    }
+                    break;
+                case 1:
+                    // local section 2 & 3,== 0, 4 == 1
+                    if (section == 4) {
+                        return 50;
+                    } else {
+                        return 0;
+                    }
+                    break;
+                default:
+                    return 0;
+                    break;
+            }
+
         }
-        else
-        {
-            // keet it the same
-            return [super tableView:tableView heightForHeaderInSection:section];
-        }
+        return 0;
     }
-    
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 0)
-    {
-        if (indexPath.row == 1)
-        {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            NSLog(@"This section was selected: %ld", (long)indexPath.section);
+    if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
             // Updating user information
             //NSLog(@"Updating user information");
             [self updateFacebookDataForUser];
         }
         // toggle connect to facebook
-    }
-    else if (indexPath.section == 1)
-    {
+    } else if (indexPath.section == 1) {
         // log out the user
         [self logOutUser];
+    } else if (indexPath.section == 2){
+        if (indexPath.row == 0) {
+            // User wants to create a regional director
+            NSLog(@"User pressed the first button");
+            [self openCreateRoleViewForType:1];
+        } else {
+            NSLog(@"User pressed the second button");
+            [self openCreateRoleViewForType:2];
+        }
     }
 }
 
--(void)setUpFacebookToggle
-{
+-(void)setUpFacebookToggle {
     // Set switch based on whether the user is logged in with facebook or not
     // See if the current user is connected with Facebook yet
-    if (![PFFacebookUtils isLinkedWithUser:user])
-    {
+    if (![PFFacebookUtils isLinkedWithUser:user]) {
         //NSLog(@"They can connect, toggle should be off");
         [toggleFBConnect setOn:FALSE animated:TRUE];
         
-    }
-    else if ([PFFacebookUtils isLinkedWithUser:user])
-    {
+    } else if ([PFFacebookUtils isLinkedWithUser:user]) {
         //NSLog(@"They are connected, toggle should be on");
         [toggleFBConnect setOn:TRUE animated:TRUE];
-        
     }
 }
 
-- (IBAction)linkToFacebook:(id)sender
-{
-    /*
-     NSString* linkable = [userDefaults objectForKey:@"FBLinkable"];
-     if (![linkable isEqualToString:@"YES"])
-     {
-     [[[UIAlertView alloc] initWithTitle:@"Unable to Disconnect" message:@"Sorry, this account was registered through Facebook and can not be unlinked." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
-     }
-     */
-    if (![PFFacebookUtils isLinkedWithUser:user])
-    {
-        [PFFacebookUtils linkUser:user permissions:nil block:^(BOOL succeeded, NSError *error)
-         {
-             if (succeeded)
-             {
+- (IBAction)linkToFacebook:(id)sender {
+
+    if (![PFFacebookUtils isLinkedWithUser:user]) {
+        [PFFacebookUtils linkUser:user permissions:nil block:^(BOOL succeeded, NSError *error) {
+             if (succeeded) {
                  NSLog(@"Connected user with Facebook!");
                  [toggleFBConnect setOn:TRUE animated:TRUE];
                  // reload the table so the sync buton is available
                  [settingsTable reloadData];
              }
-             else
-             {
+             else {
                  NSLog(@"Error connecting user with Facebook!");
                  [toggleFBConnect setOn:FALSE animated:TRUE];
                  // If this email does not match the current one
-                 if (error.code == 208)
-                 {
+                 if (error.code == 208) {
                      // Alert user
                      [[[UIAlertView alloc] initWithTitle:@"Different Accounts"  message:@"The current Facebook account does not match the registered email." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
                  }
@@ -179,20 +280,16 @@
          }];
     }
     // When the user is linked with Facebook already
-    else if ([PFFacebookUtils isLinkedWithUser:user])
-    {
+    else if ([PFFacebookUtils isLinkedWithUser:user]) {
         
-        [PFFacebookUtils unlinkUserInBackground:user block:^(BOOL Success,NSError *unlinkError)
-         {
-             if(!unlinkError)
-             {
+        [PFFacebookUtils unlinkUserInBackground:user block:^(BOOL Success,NSError *unlinkError) {
+             if(!unlinkError) {
                  NSLog(@"Disconnected user with Facebook!");
                  [toggleFBConnect setOn:FALSE animated:TRUE];
                  // reload table to hide sync button
                  [settingsTable reloadData];
              }
-             else
-             {
+             else {
                  NSLog(@"Error disconnecting user with Facebook!");
                  [toggleFBConnect setOn:TRUE animated:TRUE];
              }
@@ -202,8 +299,7 @@
     [settingsTable reloadData];
 }
 // When the user wants to sync facebook data on the settings view
--(void)updateFacebookDataForUser
-{
+-(void)updateFacebookDataForUser {
     // Show HUD view as the data is gathered
     [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
     // Get the current user from parse
@@ -214,10 +310,9 @@
         if (!queryError) {
             NSLog(@"No query error");
             // Get the Facebook Data
-            [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error)
-             {   NSLog(@"Getting Result");
-                 if (!error)
-                 {
+            [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error)  {
+                NSLog(@"Getting Result");
+                if (!error) {
                      // get the returned data
                      NSLog(@"%@", result);
                      NSString* facebookUserName = [result objectForKey:@"name"];
@@ -272,6 +367,101 @@
     }];
 }
 
+-(void) openCreateRoleViewForType:(NSInteger)type {
+    NSLog(@"We need to display create view");
+    
+    UINavigationController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"customCreateUserRole"];
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    CustomAdminCreateViewController* customControl = (CustomAdminCreateViewController*) vc.topViewController;
+    customControl.delegate = self;
+    customControl.viewType = type;
+    
+    formSheet.presentedFormSheetSize = CGSizeMake(320, 480);
+    formSheet.shadowRadius = 2.0;
+    formSheet.shadowOpacity = 0.3;
+    formSheet.shouldDismissOnBackgroundViewTap = NO;
+    formSheet.shouldCenterVertically = YES;
+    formSheet.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsCenterVertically;
+    __weak MZFormSheetController *weakFormSheet = formSheet;
+    
+    
+    // If you want to animate status bar use this code
+    formSheet.didTapOnBackgroundViewCompletionHandler = ^(CGPoint location) {
+        UINavigationController *navController = (UINavigationController *)weakFormSheet.presentedFSViewController;
+        if ([navController.topViewController isKindOfClass:[CustomAdminCreateViewController class]]) {
+            CustomAdminCreateViewController* adminView = (CustomAdminCreateViewController *)navController.topViewController;
+            adminView.showStatusBar = NO;
+           // adminView.viewType = type;
+        }
+        
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            if ([weakFormSheet respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+                [weakFormSheet setNeedsStatusBarAppearanceUpdate];
+            }
+        }];
+    };
+    formSheet.transitionStyle = MZFormSheetTransitionStyleCustom;
+    
+    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
+    
+    [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        
+    }];
+}
+
+-(void)createNewEngageRegion:(NSString*)regionName regionDirector:(PFUser*)director {
+    // get the admin role
+    PFQuery *queryRole = [PFRole query];
+    [queryRole whereKey:@"name" equalTo:@"Admin"];
+    [queryRole getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        PFRole *role = (PFRole *)object;
+        // must be admin
+        PFObject* region = [PFObject objectWithClassName:aRegionClass];
+        [region setObject:regionName forKey:aRegionName];
+        [region setObject:director forKey:aRegionDirector];
+        PFACL* acl = [PFACL ACL];
+        [acl setWriteAccess:YES forRole:role];
+        [region setACL:acl];
+        [region saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"New region created");
+                // save this user as a regional director
+                [self createNewRgionalDirectorRoleWithUser:director];
+            }
+        }];
+    }];
+     
+    
+}
+
+-(void)createNewRgionalDirectorRoleWithUser:(PFUser*)newUser {
+    // Must be admin, need user and region, upon success notify user
+    PFQuery *queryRole = [PFRole query];
+    [queryRole whereKey:@"name" equalTo:@"RegionalDirector"];
+    [queryRole getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        PFRole *role = (PFRole *)object;
+            [role.users addObject:newUser];
+            [role saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    NSLog(@"Saved this user as a regional director");
+                }
+            }];
+        
+    }];
+}
+
+
+-(void) createNewLocalGroupLeaderRole {
+    // need user and region, must be admin or regional director, upon success notify user
+}
+
+-(void)createNewLocalGroup {
+    // need leader, and region, increase local group count in region, notify user
+    // must be admin or regional director
+}
+
 #pragma mark - NSURLConnectionDataDelegate
 // If the user profile image data came back, begin creating the data object
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -292,25 +482,13 @@
     [Utility saveFacebookImageData:facebookUserProfilePictureData];
 }
 
--(void)logOutUser
-{
-    // Clear created NSUserDefaults
-  //  [userDefaults removeObjectForKey:@"sharePermission"];
-  //  [userDefaults removeObjectForKey:@"FBLinkable"];
-  //  [userDefaults removeObjectForKey:@"HomeGroupSet"];
-  //  [userDefaults synchronize];
-    // Log out of parse
-   // [PFUser logOut];
+-(void)logOutUser {
+
     // Remove the stack
     [self.navigationController popToRootViewControllerAnimated:NO];
     // Move back to log in screen
     AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    //[appDelegate switchToLogInView];
     [appDelegate logOutUser];
-    
-    //UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //UINavigationController* mainNavControl = [storyboard instantiateViewControllerWithIdentifier:@"launchNavController"];
-    //[[UIApplication sharedApplication].keyWindow setRootViewController:mainNavControl];
 }
 
 @end

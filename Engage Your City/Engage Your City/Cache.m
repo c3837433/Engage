@@ -175,6 +175,11 @@
     return [self.cache objectForKey:key];
 }
 
+- (NSDictionary *)attributesForGroup:(PFObject *)group {
+    NSString *key = [self keyforGroup:group];
+    return [self.cache objectForKey:key];
+}
+
 - (NSNumber *)photoCountForUser:(PFUser *)user {
     NSDictionary *attributes = [self attributesForUser:user];
     if (attributes) {
@@ -195,7 +200,28 @@
             return [followStatus boolValue];
         }
     }
-    
+    return NO;
+}
+
+- (BOOL)followStatusForGroup:(PFObject *)group {
+    NSDictionary *attributes = [self attributesForGroup:group];
+    if (attributes) {
+        NSNumber *followStatus = [attributes objectForKey:@"groupIsFollowedByCurrentUser"];
+        if (followStatus) {
+            return [followStatus boolValue];
+        }
+    }
+    return NO;
+}
+
+- (BOOL)joinStatusForGroup:(PFObject *)group {
+    NSDictionary* attributes = [self attributesForGroup:group];
+    if (attributes) {
+        NSNumber* joinedStatus = [attributes objectForKey:@"groupIsJoinedByCurrentUser"];
+        if (joinedStatus) {
+            return [joinedStatus boolValue];
+        }
+    }
     return NO;
 }
 
@@ -210,6 +236,20 @@
     [attributes setObject:[NSNumber numberWithBool:following] forKey:@"isFollowedByCurrentUser"];
     [self setAttributes:attributes forUser:user];
 }
+
+- (void)setFollowGroupStatus:(BOOL)following group:(PFObject*) group {
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributesForGroup:group]];
+    [attributes setObject:[NSNumber numberWithBool:following] forKey:@"groupIsFollowedByCurrentUser"];
+    [self setAttributes:attributes forGroup:group];
+}
+
+
+- (void)setJoinedGroupStatus:(BOOL)following group:(PFObject*) group {
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributesForGroup:group]];
+    [attributes setObject:[NSNumber numberWithBool:following] forKey:@"groupIsJoinedByCurrentUser"];
+    [self setAttributes:attributes forGroup:group];
+}
+
 
 - (void)setFacebookFriends:(NSArray *)friends {
     NSString *key = @"com.parse.Engage.userDefaults.cache.facebookFriends";
@@ -238,6 +278,11 @@
     [self.cache setObject:attributes forKey:key];
 }
 
+- (void)setAttributes:(NSDictionary *)attributes forGroup:(PFObject *)group {
+    NSString *key = [self keyForPhoto:group];
+    [self.cache setObject:attributes forKey:key];
+}
+
 - (void)setAttributes:(NSDictionary *)attributes forUser:(PFUser *)user {
     NSString *key = [self keyForUser:user];
     [self.cache setObject:attributes forKey:key];
@@ -249,6 +294,10 @@
 
 - (NSString *)keyForUser:(PFUser *)user {
     return [NSString stringWithFormat:@"user_%@", [user objectId]];
+}
+
+- (NSString *)keyforGroup:(PFObject *)group {
+    return [NSString stringWithFormat:@"group%@", [group objectId]];
 }
 
 

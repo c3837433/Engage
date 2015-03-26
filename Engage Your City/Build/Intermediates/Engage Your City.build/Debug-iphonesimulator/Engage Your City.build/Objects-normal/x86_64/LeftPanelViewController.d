@@ -43,4 +43,5 @@ dependencies: \
   /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/Parse.framework/Headers/Parse.h \
   /Users/angelasmith/Development/parse-library-1/parse-library-1.6.3/Parse.framework/Modules/module.modulemap \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CustomAddPostViewController.h \
-  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/JSImagePickerViewController.h
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/JSImagePickerViewController.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/CustomEditProfileViewController.h

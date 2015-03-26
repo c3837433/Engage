@@ -34,14 +34,12 @@
 }
 
 
-- (BOOL) shouldAutorotate
-{
+- (BOOL) shouldAutorotate {
     return NO;
 }
 
 // Background is light, change status bar to dark
-- (UIStatusBarStyle) preferredStatusBarStyle
-{
+- (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleDefault;
 }
 #pragma mark UITEXTFIELD DELEGATE
@@ -54,6 +52,17 @@
         textField.text = [textField.text lowercaseString];
     }
     return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    // Move the user to the next fields when they hit enter
+    if(textField == self.emailField) {
+        [self.passwordField becomeFirstResponder];
+    }
+    else if (textField == self.passwordField) {
+        [self.passwordField resignFirstResponder];
+    }
+    return NO;
 }
 
 - (IBAction)checkLogInCredentialsForLogIn:(id)sender {
@@ -142,7 +151,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 
 }
-//[PFUser requestPasswordResetForEmailInBackground:@"email@example.com"];
+
 - (IBAction)userLoggingInThroughFacebook:(id)sender  {
     // Set permissions required from the facebook user account
     NSArray *permissionsArray = @[@"public_profile", @"email"];

@@ -37,17 +37,6 @@
 
 -(void)setUpStory:(PFObject*)post;
 
-#pragma mark SAYING CLASS KEYS
-#define aPostAuthor  @"author"
-#define aPostAuthorImage @"profilePictureSmall"
-#define aPostAuthorName @"UsersFullName"
-#define aPostAuthorGroup @"Group"
-#define aPostAuthorGroupTitle @"groupHeader"
-#define aPostTitle @"title"
-#define aPostText @"story"
-#define aPostLikes @"Likes"
-#define aPostComments @"Comments"
-
 @property (nonatomic,weak) id <PostTextCellDelegate> delegate;
 
 - (void)setLikeStatus:(BOOL)liked;

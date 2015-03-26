@@ -53,4 +53,5 @@ dependencies: \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/MediaCommentDetailViewController.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/FriendCell.h \
   /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/FollowFriendsViewController.h \
-  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/Utility.h
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/Utility.h \
+  /Users/angelasmith/Desktop/Engage/Engage\ Your\ City/Engage\ Your\ City/GroupDetailViewController.h

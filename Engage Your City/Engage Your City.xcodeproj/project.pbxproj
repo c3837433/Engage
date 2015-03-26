@@ -42,6 +42,8 @@
 		99124B9C1A9D64F4000708A5 /* UserDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99124B991A9D64F4000708A5 /* UserDetailsViewController.m */; };
 		9922B0201A9F815C00FB077E /* CustomAddPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9922B01F1A9F815C00FB077E /* CustomAddPostViewController.m */; };
 		9922B0251A9FD7CE00FB077E /* JSImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9922B0241A9FD7CE00FB077E /* JSImagePickerViewController.m */; };
+		99272D851AC462B000A77B6D /* LocalFullListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99272D841AC462B000A77B6D /* LocalFullListViewController.m */; };
+		99272D8B1AC4982D00A77B6D /* RegionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99272D8A1AC4982D00A77B6D /* RegionTableViewController.m */; };
 		994428F01A9D3E6D00DFAB49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 994428EF1A9D3E6D00DFAB49 /* main.m */; };
 		994428F31A9D3E6D00DFAB49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 994428F21A9D3E6D00DFAB49 /* AppDelegate.m */; };
 		994428F91A9D3E6D00DFAB49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 994428F71A9D3E6D00DFAB49 /* Main.storyboard */; };
@@ -66,12 +68,22 @@
 		995AC0A01A9E52F600622B55 /* CustomSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 995AC09F1A9E52F600622B55 /* CustomSearchViewController.m */; };
 		995AC0A31A9E765100622B55 /* MZCustomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 995AC0A21A9E765100622B55 /* MZCustomTransition.m */; };
 		995AC0A61A9E773B00622B55 /* CustomSearchNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 995AC0A51A9E773B00622B55 /* CustomSearchNavController.m */; };
+		99888D051ABA53DB003D30FE /* MapPinAnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99888D041ABA53DB003D30FE /* MapPinAnotationView.m */; };
+		99888D081ABA5446003D30FE /* MapPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 99888D071ABA5446003D30FE /* MapPinAnnotation.m */; };
+		99888D0C1ABA6A8A003D30FE /* GroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99888D0B1ABA6A8A003D30FE /* GroupDetailViewController.m */; };
+		99888D0F1ABA6FF2003D30FE /* GroupDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 99888D0E1ABA6FF2003D30FE /* GroupDetails.m */; };
 		998D92D21AB7F2E700B51D65 /* FollowFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998D92D11AB7F2E700B51D65 /* FollowFriendsViewController.m */; };
 		998D92D51AB8CD8F00B51D65 /* CustomEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998D92D41AB8CD8F00B51D65 /* CustomEditProfileViewController.m */; };
+		998D92D81AB9095500B51D65 /* LocalGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998D92D71AB9095500B51D65 /* LocalGroupsViewController.m */; };
+		998D92DA1AB90AE000B51D65 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 998D92D91AB90AE000B51D65 /* MapKit.framework */; };
+		998D92DD1AB91C7A00B51D65 /* LocalGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 998D92DC1AB91C7A00B51D65 /* LocalGroupCell.m */; };
 		99A2223A1AA1769F00EDA804 /* ActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A222391AA1769F00EDA804 /* ActivityCell.m */; };
 		99A2223F1AA17C5A00EDA804 /* MZSelectableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A2223C1AA17C5A00EDA804 /* MZSelectableLabel.m */; };
 		99A222401AA17C5A00EDA804 /* UIColor+Equalable.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A2223E1AA17C5A00EDA804 /* UIColor+Equalable.m */; };
+		99A432751AC0971C0006D8D4 /* GroupDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A432741AC0971C0006D8D4 /* GroupDetailCell.m */; };
 		99D693A31AA3BB4B00C3E0B8 /* UserActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D693A21AA3BB4B00C3E0B8 /* UserActivityViewController.m */; };
+		99E0E9071AC394FD000D3787 /* CustomAdminCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E0E9061AC394FD000D3787 /* CustomAdminCreateViewController.m */; };
+		99E0E90A1AC3A2A3000D3787 /* AdminSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E0E9091AC3A2A3000D3787 /* AdminSearchTableViewController.m */; };
 		99EE89E61A9D6C7C0069558E /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EE89E51A9D6C7C0069558E /* ProfileImageView.m */; };
 		99EE89E91A9D6CBC0069558E /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EE89E81A9D6CBC0069558E /* CustomAlertView.m */; };
 		99EE89EB1A9D6D760069558E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99EE89EA1A9D6D760069558E /* UIKit.framework */; };
@@ -163,6 +175,10 @@
 		9922B01F1A9F815C00FB077E /* CustomAddPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAddPostViewController.m; sourceTree = "<group>"; };
 		9922B0231A9FD7CE00FB077E /* JSImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSImagePickerViewController.h; sourceTree = "<group>"; };
 		9922B0241A9FD7CE00FB077E /* JSImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSImagePickerViewController.m; sourceTree = "<group>"; };
+		99272D831AC462B000A77B6D /* LocalFullListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalFullListViewController.h; sourceTree = "<group>"; };
+		99272D841AC462B000A77B6D /* LocalFullListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalFullListViewController.m; sourceTree = "<group>"; };
+		99272D891AC4982D00A77B6D /* RegionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionTableViewController.h; sourceTree = "<group>"; };
+		99272D8A1AC4982D00A77B6D /* RegionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionTableViewController.m; sourceTree = "<group>"; };
 		994428EA1A9D3E6D00DFAB49 /* Engage Your City.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Engage Your City.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		994428EE1A9D3E6D00DFAB49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		994428EF1A9D3E6D00DFAB49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -195,18 +211,37 @@
 		995AC0A21A9E765100622B55 /* MZCustomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZCustomTransition.m; sourceTree = "<group>"; };
 		995AC0A41A9E773B00622B55 /* CustomSearchNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomSearchNavController.h; path = ../CustomSearchNavController.h; sourceTree = "<group>"; };
 		995AC0A51A9E773B00622B55 /* CustomSearchNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomSearchNavController.m; path = ../CustomSearchNavController.m; sourceTree = "<group>"; };
+		99888D031ABA53DB003D30FE /* MapPinAnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPinAnotationView.h; sourceTree = "<group>"; };
+		99888D041ABA53DB003D30FE /* MapPinAnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPinAnotationView.m; sourceTree = "<group>"; };
+		99888D061ABA5446003D30FE /* MapPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPinAnnotation.h; sourceTree = "<group>"; };
+		99888D071ABA5446003D30FE /* MapPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPinAnnotation.m; sourceTree = "<group>"; };
+		99888D0A1ABA6A8A003D30FE /* GroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailViewController.h; sourceTree = "<group>"; };
+		99888D0B1ABA6A8A003D30FE /* GroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailViewController.m; sourceTree = "<group>"; };
+		99888D0D1ABA6FF2003D30FE /* GroupDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetails.h; sourceTree = "<group>"; };
+		99888D0E1ABA6FF2003D30FE /* GroupDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetails.m; sourceTree = "<group>"; };
 		998D92D01AB7F2E700B51D65 /* FollowFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowFriendsViewController.h; sourceTree = "<group>"; };
 		998D92D11AB7F2E700B51D65 /* FollowFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowFriendsViewController.m; sourceTree = "<group>"; };
 		998D92D31AB8CD8F00B51D65 /* CustomEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEditProfileViewController.h; sourceTree = "<group>"; };
 		998D92D41AB8CD8F00B51D65 /* CustomEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEditProfileViewController.m; sourceTree = "<group>"; };
+		998D92D61AB9095500B51D65 /* LocalGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalGroupsViewController.h; sourceTree = "<group>"; };
+		998D92D71AB9095500B51D65 /* LocalGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalGroupsViewController.m; sourceTree = "<group>"; };
+		998D92D91AB90AE000B51D65 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		998D92DB1AB91C7A00B51D65 /* LocalGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalGroupCell.h; sourceTree = "<group>"; };
+		998D92DC1AB91C7A00B51D65 /* LocalGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalGroupCell.m; sourceTree = "<group>"; };
 		99A222381AA1769F00EDA804 /* ActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCell.h; sourceTree = "<group>"; };
 		99A222391AA1769F00EDA804 /* ActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCell.m; sourceTree = "<group>"; };
 		99A2223B1AA17C5A00EDA804 /* MZSelectableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSelectableLabel.h; sourceTree = "<group>"; };
 		99A2223C1AA17C5A00EDA804 /* MZSelectableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZSelectableLabel.m; sourceTree = "<group>"; };
 		99A2223D1AA17C5A00EDA804 /* UIColor+Equalable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Equalable.h"; sourceTree = "<group>"; };
 		99A2223E1AA17C5A00EDA804 /* UIColor+Equalable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Equalable.m"; sourceTree = "<group>"; };
+		99A432731AC0971C0006D8D4 /* GroupDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailCell.h; sourceTree = "<group>"; };
+		99A432741AC0971C0006D8D4 /* GroupDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailCell.m; sourceTree = "<group>"; };
 		99D693A11AA3BB4B00C3E0B8 /* UserActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserActivityViewController.h; sourceTree = "<group>"; };
 		99D693A21AA3BB4B00C3E0B8 /* UserActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserActivityViewController.m; sourceTree = "<group>"; };
+		99E0E9051AC394FD000D3787 /* CustomAdminCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAdminCreateViewController.h; sourceTree = "<group>"; };
+		99E0E9061AC394FD000D3787 /* CustomAdminCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAdminCreateViewController.m; sourceTree = "<group>"; };
+		99E0E9081AC3A2A3000D3787 /* AdminSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminSearchTableViewController.h; sourceTree = "<group>"; };
+		99E0E9091AC3A2A3000D3787 /* AdminSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdminSearchTableViewController.m; sourceTree = "<group>"; };
 		99EE89E41A9D6C7C0069558E /* ProfileImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileImageView.h; path = ../ProfileImageView.h; sourceTree = "<group>"; };
 		99EE89E51A9D6C7C0069558E /* ProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageView.m; path = ../ProfileImageView.m; sourceTree = "<group>"; };
 		99EE89E71A9D6CBC0069558E /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
@@ -225,6 +260,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				998D92DA1AB90AE000B51D65 /* MapKit.framework in Frameworks */,
 				99EE89F11A9D6FCA0069558E /* Social.framework in Frameworks */,
 				99EE89EF1A9D6F810069558E /* libstdc++.6.dylib in Frameworks */,
 				99EE89ED1A9D6D7D0069558E /* Foundation.framework in Frameworks */,
@@ -450,6 +486,21 @@
 			children = (
 				99124B8C1A9D648B000708A5 /* HomeGroupsViewController.h */,
 				99124B8D1A9D648B000708A5 /* HomeGroupsViewController.m */,
+				998D92D61AB9095500B51D65 /* LocalGroupsViewController.h */,
+				998D92D71AB9095500B51D65 /* LocalGroupsViewController.m */,
+				998D92DB1AB91C7A00B51D65 /* LocalGroupCell.h */,
+				998D92DC1AB91C7A00B51D65 /* LocalGroupCell.m */,
+				99888D091ABA6A60003D30FE /* Map Pins */,
+				99888D0A1ABA6A8A003D30FE /* GroupDetailViewController.h */,
+				99888D0B1ABA6A8A003D30FE /* GroupDetailViewController.m */,
+				99888D0D1ABA6FF2003D30FE /* GroupDetails.h */,
+				99888D0E1ABA6FF2003D30FE /* GroupDetails.m */,
+				99A432731AC0971C0006D8D4 /* GroupDetailCell.h */,
+				99A432741AC0971C0006D8D4 /* GroupDetailCell.m */,
+				99272D831AC462B000A77B6D /* LocalFullListViewController.h */,
+				99272D841AC462B000A77B6D /* LocalFullListViewController.m */,
+				99272D891AC4982D00A77B6D /* RegionTableViewController.h */,
+				99272D8A1AC4982D00A77B6D /* RegionTableViewController.m */,
 			);
 			name = "Home Group";
 			sourceTree = "<group>";
@@ -459,6 +510,10 @@
 			children = (
 				99124B901A9D64BB000708A5 /* SettingsTableViewController.h */,
 				99124B911A9D64BB000708A5 /* SettingsTableViewController.m */,
+				99E0E9051AC394FD000D3787 /* CustomAdminCreateViewController.h */,
+				99E0E9061AC394FD000D3787 /* CustomAdminCreateViewController.m */,
+				99E0E9081AC3A2A3000D3787 /* AdminSearchTableViewController.h */,
+				99E0E9091AC3A2A3000D3787 /* AdminSearchTableViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -554,6 +609,7 @@
 		994429331A9D3F8200DFAB49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				998D92D91AB90AE000B51D65 /* MapKit.framework */,
 				99EE89F01A9D6FCA0069558E /* Social.framework */,
 				99EE89EE1A9D6F810069558E /* libstdc++.6.dylib */,
 				99EE89EC1A9D6D7D0069558E /* Foundation.framework */,
@@ -577,6 +633,17 @@
 				24322D181286879B9A399836 /* libPods-Engage Your City.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		99888D091ABA6A60003D30FE /* Map Pins */ = {
+			isa = PBXGroup;
+			children = (
+				99888D031ABA53DB003D30FE /* MapPinAnotationView.h */,
+				99888D041ABA53DB003D30FE /* MapPinAnotationView.m */,
+				99888D061ABA5446003D30FE /* MapPinAnnotation.h */,
+				99888D071ABA5446003D30FE /* MapPinAnnotation.m */,
+			);
+			name = "Map Pins";
 			sourceTree = "<group>";
 		};
 		999C5ED51AA3EDF300E4034E /* Custom Alert */ = {
@@ -776,20 +843,26 @@
 				99124B6D1A9D61A7000708A5 /* PostTableViewController.m in Sources */,
 				99124B6F1A9D61A7000708A5 /* TextCommentDetailViewController.m in Sources */,
 				99124B371A9D5B42000708A5 /* OnLoadViewController.m in Sources */,
+				99A432751AC0971C0006D8D4 /* GroupDetailCell.m in Sources */,
 				99124B6C1A9D61A7000708A5 /* PostImageCell.m in Sources */,
 				99A2223F1AA17C5A00EDA804 /* MZSelectableLabel.m in Sources */,
 				99D693A31AA3BB4B00C3E0B8 /* UserActivityViewController.m in Sources */,
 				99124B831A9D6289000708A5 /* FindFriendTableViewController.m in Sources */,
+				99E0E9071AC394FD000D3787 /* CustomAdminCreateViewController.m in Sources */,
 				99124B361A9D5B42000708A5 /* MySignUpViewController.m in Sources */,
+				99888D0C1ABA6A8A003D30FE /* GroupDetailViewController.m in Sources */,
 				99124B6A1A9D61A7000708A5 /* CommentCell.m in Sources */,
 				99A2223A1AA1769F00EDA804 /* ActivityCell.m in Sources */,
 				99124B451A9D5C51000708A5 /* UIImage+AlphaAdditions.m in Sources */,
 				99124B381A9D5B42000708A5 /* RightPanelViewController.m in Sources */,
 				994428F31A9D3E6D00DFAB49 /* AppDelegate.m in Sources */,
 				99124B531A9D5DBA000708A5 /* Cache.m in Sources */,
+				99E0E90A1AC3A2A3000D3787 /* AdminSearchTableViewController.m in Sources */,
 				998D92D51AB8CD8F00B51D65 /* CustomEditProfileViewController.m in Sources */,
 				99124B7E1A9D6246000708A5 /* HashTagViewController.m in Sources */,
+				99888D0F1ABA6FF2003D30FE /* GroupDetails.m in Sources */,
 				99124B7C1A9D6246000708A5 /* FindStoriesViewController.m in Sources */,
+				998D92DD1AB91C7A00B51D65 /* LocalGroupCell.m in Sources */,
 				99124B921A9D64BB000708A5 /* SettingsTableViewController.m in Sources */,
 				99124B9A1A9D64F4000708A5 /* ProfileMediaStoryCell.m in Sources */,
 				99124B9B1A9D64F4000708A5 /* ProfileTextStoryCell.m in Sources */,
@@ -797,13 +870,17 @@
 				9922B0251A9FD7CE00FB077E /* JSImagePickerViewController.m in Sources */,
 				99F392761AB668D70098B172 /* EmptyFeedView.m in Sources */,
 				99124B6B1A9D61A7000708A5 /* MediaCommentDetailViewController.m in Sources */,
+				99888D081ABA5446003D30FE /* MapPinAnnotation.m in Sources */,
+				99272D8B1AC4982D00A77B6D /* RegionTableViewController.m in Sources */,
 				99124B541A9D5DBA000708A5 /* Utility.m in Sources */,
 				99124B8A1A9D6335000708A5 /* ActivityViewController.m in Sources */,
+				99272D851AC462B000A77B6D /* LocalFullListViewController.m in Sources */,
 				995AC0A61A9E773B00622B55 /* CustomSearchNavController.m in Sources */,
 				995AC0A31A9E765100622B55 /* MZCustomTransition.m in Sources */,
 				995AC0A01A9E52F600622B55 /* CustomSearchViewController.m in Sources */,
 				9922B0201A9F815C00FB077E /* CustomAddPostViewController.m in Sources */,
 				99124B351A9D5B42000708A5 /* LogInViewController.m in Sources */,
+				998D92D81AB9095500B51D65 /* LocalGroupsViewController.m in Sources */,
 				99124B7D1A9D6246000708A5 /* FriendCell.m in Sources */,
 				99124B8E1A9D648B000708A5 /* HomeGroupsViewController.m in Sources */,
 				998D92D21AB7F2E700B51D65 /* FollowFriendsViewController.m in Sources */,
@@ -817,6 +894,7 @@
 				99A222401AA17C5A00EDA804 /* UIColor+Equalable.m in Sources */,
 				99EE89E91A9D6CBC0069558E /* CustomAlertView.m in Sources */,
 				99124B6E1A9D61A7000708A5 /* PostTextCell.m in Sources */,
+				99888D051ABA53DB003D30FE /* MapPinAnotationView.m in Sources */,
 				99124B591A9D5EE2000708A5 /* Reachability.m in Sources */,
 				994428F01A9D3E6D00DFAB49 /* main.m in Sources */,
 			);

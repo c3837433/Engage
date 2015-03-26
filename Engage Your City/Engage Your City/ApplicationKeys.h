@@ -56,22 +56,28 @@
 
 #pragma mark HOME GROUPS CLASS
 #define aHomeGroupClass @"HomeGroups"
-#define aHomeGroupNotes @"groupNotes"
+#define aHomeGroupAbout @"AboutUs"
 #define aHomeGroupLocation @"locationAddress"
 #define aHomeGroupMeetDate @"meetingDates"
 #define aHomeGroupMeetTime @"meetingTime"
-#define aHomeGroupRegion @"region"
+#define aHomeGroupRegion @"Region"
+#define aHomeGroupRegionPointer @"region"
+#define aHomeGroupNation @"Nation"
 #define aHomeGroupCity @"City"
 #define aHomeGroupLeader @"resident"
+#define aHomegroupLeadersArray @"Leaders"
 #define aHomeGroupJoinable @"Joinable"
 #define aHomeGroupGeoLocation @"location"
-#define aPostAuthorGroupTitle @"groupHeader"
+#define aHomeGroupLinks @"SocialLinks"
+#define aHomeGroupPhone @"Phone"
+#define aHomeGroupTitle @"groupHeader"
 
 
 #pragma mark ACTIVITY CLASS
 #define aActivityClass @"Activity"
 #define aActivityType @"activityType"
 #define aActivityFromUser @"fromUser"
+#define aActivitytoGroup @"toGroup"
 #define aActivityToUser @"toUser"
 #define aActivityCommentText @"commentText"
 #define aActivityStory @"Testimony"
@@ -79,6 +85,8 @@
 #define aActivityJoin @"join"
 #define aActivityLike @"like"
 #define aActivityComment @"comment"
+#define aActivityFollowGroup @"followGroup"
+#define aActivityJoinGroup @"joinGroup"
 
 #pragma mark HASHTAGS CLASS
 #define aHashTagClass @"Hashtags"
@@ -86,6 +94,14 @@
 #define aHashtagStory @"Story"
 #define aHashtagStoryAuthor @"StoryAuthor"
 
+#pragma mark REGION CLASS
+#define aRegionClass @"Region"
+#define aRegionName @"RegionName"
+#define aRegionHomeGroupsCount @"LocalGroups"
+#define aRegionDirector @"Director"
+
+#pragma mark ROLE
+#define aRoleName
 
 #pragma mark - NSNotification
 extern NSString *const UtilityUserFollowingChangedNotification;
@@ -93,6 +109,19 @@ extern NSString *const UtilityUserLikedUnlikedPhotoCallbackFinishedNotification;
 extern NSString *const UtilityDidFinishProcessingProfilePictureNotification;
 extern NSString *const StoryMainFeedViewControllerUserLikedUnlikedPhotoNotification;
 extern NSString *const AppDelegateApplicationDidReceiveRemoteNotification;
+
+// Local Map
+static NSString * const LocalFilterDistanceDidChangeNotification = @"FilterDistanceDidChangeNotification";
+static NSString * const LocalCurrentLocationDidChangeNotification = @"CurrentLocationDidChangeNotification";
+static NSString * const LocalPostCreatedNotification = @"PostCreatedNotification";
+
+static NSString * const LocalFilterDistanceKey = @"filterDistance";
+static NSString * const LocalLocationKey = @"location";
+static NSString * const UserDefaultsFilterDistanceKey = @"filterDistance";
+
+
+static double const LocalDefaultFilterDistance = 1000.0;
+static double const LocalMaximumSearchDistance = 100.0;
 
 #pragma mark - Installation Class
 

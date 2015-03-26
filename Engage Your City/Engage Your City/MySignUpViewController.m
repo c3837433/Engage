@@ -32,13 +32,11 @@
 }
 
 #pragma mark USER REGISTRATION METHODS
-// MILESTONE 1:2
 -(IBAction)userStartsRegistering:(UIButton*)button
 {
     BOOL haveEmptyFields = [self checkUserInformation];
     // If we don't have empty fields, gather the data to save to the new user
-    if (!haveEmptyFields)
-    {
+    if (!haveEmptyFields) {
         NSLog(@"All the information is good");
         // Create the new user
         PFUser* newUser = [PFUser user];
@@ -51,7 +49,7 @@
         // see if we have an image
         if (imageData != nil) {
             // Create the PFFIle to hold the image data
-            PFFile* imageFile = [PFFile fileWithData:imageData];
+            PFFile* imageFile = [PFFile fileWithName:@"profilePic.png" data:imageData];
             newUser[@"profilePictureSmall"] = imageFile;
         }
         // This user namually registered, so set the Facebook linkable property to YES
@@ -61,29 +59,24 @@
         
         // Show HUD view as we save this user
         [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
-        [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-         {
-             if (error)
-             {
+        [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+             if (error) {
                  // Check if email has already been registered
-                 if (error.code  == 202)
-                 {
+                 if (error.code  == 202) {
                      // remove the hud
                      [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
                      // Alert the user
                      [[[UIAlertView alloc] initWithTitle:@"Email was Already Registered" message:@"Choose Forgot Password on the Log In screen if you need to reset it." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
                  }
                  // For all other errors
-                 else
-                 {
+                 else {
                      // remove the hud
                      [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
                      // Alert the user
                      [[[UIAlertView alloc] initWithTitle:@"Sorry" message:@"We had a problem creating your account, please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
                  }
              }
-             else if (succeeded)
-             {
+             else if (succeeded) {
                  // set the acl
                  PFACL *ACL = [PFACL ACL];
                  [ACL setPublicReadAccess:YES];
